@@ -11,7 +11,7 @@ func _ready() -> void:
 #            --Main buttons--
 
 func _on_play_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/character_body_2d.tscn")
+	get_tree().change_scene_to_file("res://scenes/main_area.tscn")
 
 func _on_settings_pressed() -> void:
 	main_buttons.visible = false

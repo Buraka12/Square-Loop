@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvhmfxi7j6rr0"]
+
+[ext_resource type="Texture2D" uid="uid://c5jp6ogvngbvw" path="res://assets/sprites/Enemy/Pentagon.png" id="1_cuotf"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_utoed"]
+diffuse_texture = ExtResource("1_cuotf")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vyrux"]
+radius = 21.0
+
+[node name="Pentagon" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 4
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("CanvasTexture_utoed")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_vyrux")

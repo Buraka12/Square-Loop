@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsd1fe453iuu3"]
+
+[ext_resource type="Texture2D" uid="uid://caxjlytrc3hkq" path="res://assets/sprites/Enemy/Hexagon.png" id="1_17p37"]
+[ext_resource type="PackedScene" uid="uid://dtij3gf5j2so8" path="res://scenes/Components/hit_box.tscn" id="2_3qkvm"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_nba4g"]
+diffuse_texture = ExtResource("1_17p37")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0vgo3"]
+radius = 16.0
+
+[node name="Hexagon" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("CanvasTexture_nba4g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_0vgo3")
+
+[node name="HitBox" parent="." groups=["Enemy"] instance=ExtResource("2_3qkvm")]
+scale = Vector2(5, 5)
+collision_layer = 4
+collision_mask = 1

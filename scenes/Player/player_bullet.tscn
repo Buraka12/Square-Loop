@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://bl2vym8shwqe6"]
+
+[ext_resource type="Script" path="res://scripts/Player/player_bullet.gd" id="1_dt5ga"]
+[ext_resource type="Texture2D" uid="uid://l4mhe5w13gxx" path="res://assets/sprites/Bullet.png" id="1_v5jwa"]
+[ext_resource type="PackedScene" uid="uid://dtij3gf5j2so8" path="res://scenes/Components/hit_box.tscn" id="2_o06sg"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yhh4a"]
+light_mode = 1
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mhs4o"]
+radius = 4.0
+
+[sub_resource type="Gradient" id="Gradient_2btwn"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ldqnl"]
+gradient = SubResource("Gradient_2btwn")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.697248, 0.284404)
+
+[node name="PlayerBullet" type="RigidBody2D"]
+collision_layer = 8
+collision_mask = 6
+mass = 0.001
+gravity_scale = 0.0
+script = ExtResource("1_dt5ga")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_yhh4a")
+texture = ExtResource("1_v5jwa")
+region_enabled = true
+region_rect = Rect2(21, 39, 6, 9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_mhs4o")
+
+[node name="HitBox" parent="." instance=ExtResource("2_o06sg")]
+visible = false
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(2, 2)
+color = Color(0.541176, 0.698039, 0.984314, 1)
+texture = SubResource("GradientTexture2D_ldqnl")
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

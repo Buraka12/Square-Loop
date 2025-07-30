@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqwsgw57poqd3"]
+
+[ext_resource type="Script" path="res://scripts/Enemy/triangle.gd" id="1_7kcm5"]
+[ext_resource type="Texture2D" uid="uid://bqgfkvuepiief" path="res://assets/sprites/Enemy/Triangle.png" id="1_o3of3"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_0ixiy"]
+diffuse_texture = ExtResource("1_o3of3")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_so033"]
+radius = 14.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_je3cd"]
+bg_color = Color(0.729412, 0, 0, 1)
+
+[node name="Triangle" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_7kcm5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("CanvasTexture_0ixiy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_so033")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -18.0
+offset_top = 19.0
+offset_right = 18.0
+offset_bottom = 28.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_je3cd")
+value = 100.0
+show_percentage = false

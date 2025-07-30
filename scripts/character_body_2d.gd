@@ -1,8 +1,13 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
+const SPEED = 250.0
+var bulletscene : PackedScene = preload("res://scenes/Player/player_bullet.tscn")
+
 func _physics_process(delta: float) -> void:
+	
+	if Input.is_action_just_pressed("fire"):
+		fire()
 	
 	#mouse bakma
 	look_at(get_global_mouse_position())
@@ -21,3 +26,10 @@ func _physics_process(delta: float) -> void:
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 
 	move_and_slide()
+
+func fire():
+	var bullet = bulletscene.instantiate()
+	var mouse_pos : Vector2 = get_global_mouse_position()
+	bullet.global_position = global_position
+	bullet.pos = mouse_pos
+	$"..".add_child(bullet)
