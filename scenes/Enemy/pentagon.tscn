@@ -24,4 +24,4 @@ shape = SubResource("CircleShape2D_vyrux")
 
 [node name="Timer" type="Timer" parent="."]
 
-[node name="StopArea" parent="Timer" instance=ExtResource("3_4rtct")]
+[node name="StopArea" parent="." instance=ExtResource("3_4rtct")]
