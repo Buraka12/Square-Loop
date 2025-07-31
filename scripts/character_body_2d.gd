@@ -34,5 +34,5 @@ func fire():
 	bullet.pos = mouse_pos
 	$"..".add_child(bullet)
 
-func game_over():
-	queue_free()
+func die():
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
