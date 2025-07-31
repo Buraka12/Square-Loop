@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://biuuo5ulltukk"]
+
+[ext_resource type="Texture2D" uid="uid://dqavbc3fy78u2" path="res://assets/sprites/light.png" id="1_ysdhi"]
+
+[sub_resource type="Gradient" id="Gradient_gg6we"]
+offsets = PackedFloat32Array(0, 0.396104, 0.714286)
+colors = PackedColorArray(0.878431, 0.87451, 0.360784, 1, 0.0739732, 0.073643, 0.0303819, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_334n5"]
+gradient = SubResource("Gradient_gg6we")
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[node name="light" type="Node2D"]
+modulate = Color(100, 100, 15.676, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ysdhi")
+
+[node name="PointLight2D" type="PointLight2D" parent="Sprite2D"]
+scale = Vector2(1.58984, 1.37305)
+energy = 3.0
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_334n5")
+texture_scale = 4.0
