@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0gsl5rpmw5w7"]
+[gd_scene load_steps=10 format=3 uid="uid://d0gsl5rpmw5w7"]
 
 [ext_resource type="PackedScene" uid="uid://2whhrm0r02h1" path="res://scenes/player.tscn" id="1_sdxow"]
 [ext_resource type="PackedScene" uid="uid://dqwsgw57poqd3" path="res://scenes/Enemy/triangle.tscn" id="3_nbxkg"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://y2sekauyqslo" path="res://scenes/pause_menu.tscn" id="5_4itfh"]
 [ext_resource type="PackedScene" uid="uid://dsd1fe453iuu3" path="res://scenes/Enemy/hexagon.tscn" id="5_llnwp"]
 [ext_resource type="PackedScene" path="res://scenes/level_start.tscn" id="6_scdbj"]
+[ext_resource type="PackedScene" uid="uid://bvhmfxi7j6rr0" path="res://scenes/Enemy/pentagon.tscn" id="7_rsm6o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bx21p"]
 texture = ExtResource("4_7mbch")
@@ -197,3 +198,6 @@ layer_1/tile_data = PackedInt32Array(2097151, 262144, 1, 2031615, 262144, 1, 196
 position = Vector2(50, 597)
 
 [node name="level_start" parent="." instance=ExtResource("6_scdbj")]
+
+[node name="Pentagon" parent="." instance=ExtResource("7_rsm6o")]
+position = Vector2(522, 997)
