@@ -175,11 +175,9 @@ position = Vector2(79, 87)
 position = Vector2(312, 139)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-visible = false
 energy = 0.5
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="Pause_menu" parent="." instance=ExtResource("5_4itfh")]
