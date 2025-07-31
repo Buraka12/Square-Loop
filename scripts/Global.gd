@@ -1,7 +1,7 @@
 extends Node
 
 static var level :int = 1
-var entity :int = 0
+static var entity :int = 0
 
 
 
