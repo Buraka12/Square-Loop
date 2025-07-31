@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dsd1fe453iuu3" path="res://scenes/Enemy/hexagon.tscn" id="5_llnwp"]
 [ext_resource type="PackedScene" path="res://scenes/level_start.tscn" id="6_scdbj"]
 [ext_resource type="PackedScene" uid="uid://bvhmfxi7j6rr0" path="res://scenes/Enemy/pentagon.tscn" id="7_rsm6o"]
-[ext_resource type="PackedScene" path="res://scenes/light.tscn" id="8_do126"]
+[ext_resource type="PackedScene" uid="uid://d07mawq5e04us" path="res://scenes/light.tscn" id="8_do126"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_imb57"]
 polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
@@ -188,12 +188,6 @@ sources/0 = SubResource("TileSetAtlasSource_bx21p")
 [node name="Player" parent="." instance=ExtResource("1_sdxow")]
 position = Vector2(513, 349)
 
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-energy = 0.5
-
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0, 0, 0, 1)
-
 [node name="Pause_menu" parent="." instance=ExtResource("5_4itfh")]
 visible = false
 
@@ -277,3 +271,7 @@ rotation = 4.71239
 [node name="light16" parent="lights" instance=ExtResource("8_do126")]
 position = Vector2(833, 288)
 rotation = 4.71239
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+energy = 0.3
+blend_mode = 1

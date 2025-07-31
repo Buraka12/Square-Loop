@@ -1,12 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://2whhrm0r02h1"]
+[gd_scene load_steps=12 format=3 uid="uid://2whhrm0r02h1"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_baftj"]
 [ext_resource type="Texture2D" uid="uid://dw731i17papw7" path="res://assets/sprites/Player/Player.png" id="2_2e2v8"]
+[ext_resource type="Texture2D" uid="uid://boh8yf3o2x84e" path="res://assets/sprites/Player/Player_n.png" id="3_62q7q"]
 [ext_resource type="PackedScene" uid="uid://bjf3l5xyt7dij" path="res://scenes/Components/move_comp.tscn" id="3_pnfas"]
 [ext_resource type="PackedScene" uid="uid://bu3t5xqkxhiij" path="res://scenes/Components/hurt_box.tscn" id="4_lg3dq"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_8dgsr"]
 diffuse_texture = ExtResource("2_2e2v8")
+normal_texture = ExtResource("3_62q7q")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pqs21"]
 radius = 17.0

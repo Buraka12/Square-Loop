@@ -1,13 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://dqwsgw57poqd3"]
+[gd_scene load_steps=13 format=3 uid="uid://dqwsgw57poqd3"]
 
 [ext_resource type="Script" path="res://scripts/Enemy/triangle.gd" id="1_7kcm5"]
 [ext_resource type="Texture2D" uid="uid://bqgfkvuepiief" path="res://assets/sprites/Enemy/Triangle.png" id="1_o3of3"]
+[ext_resource type="Texture2D" uid="uid://daj3n3265bakw" path="res://assets/sprites/Enemy/Triangle_n.png" id="3_8uo3k"]
 [ext_resource type="PackedScene" uid="uid://cch7rs7cfurgk" path="res://scenes/Components/stop_area.tscn" id="3_ypk0a"]
 [ext_resource type="PackedScene" uid="uid://bjf3l5xyt7dij" path="res://scenes/Components/move_comp.tscn" id="4_m1p7r"]
 [ext_resource type="PackedScene" uid="uid://bu3t5xqkxhiij" path="res://scenes/Components/hurt_box.tscn" id="5_0opbd"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_0ixiy"]
 diffuse_texture = ExtResource("1_o3of3")
+normal_texture = ExtResource("3_8uo3k")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_so033"]
 radius = 14.0
@@ -65,6 +67,7 @@ hframes = 2
 region_rect = Rect2(47, 45, 34, 36)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 4)
 shape = SubResource("CircleShape2D_so033")
 
@@ -91,6 +94,8 @@ texture = SubResource("GradientTexture2D_oocsj")
 clutch = 80.0
 
 [node name="HurtBox" parent="." instance=ExtResource("5_0opbd")]
+position = Vector2(0, 4)
+scale = Vector2(0.9, 0.9)
 collision_layer = 4
 collision_mask = 8
 

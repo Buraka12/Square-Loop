@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://biuuo5ulltukk"]
+[gd_scene load_steps=4 format=3 uid="uid://d07mawq5e04us"]
 
 [ext_resource type="Texture2D" uid="uid://dqavbc3fy78u2" path="res://assets/sprites/light.png" id="1_ysdhi"]
 
@@ -20,8 +20,7 @@ modulate = Color(100, 100, 15.676, 1)
 texture = ExtResource("1_ysdhi")
 
 [node name="PointLight2D" type="PointLight2D" parent="Sprite2D"]
-scale = Vector2(1.58984, 1.37305)
-energy = 3.0
+energy = 2.0
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_334n5")
 texture_scale = 4.0

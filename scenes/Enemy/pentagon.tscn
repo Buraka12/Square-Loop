@@ -1,13 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://bvhmfxi7j6rr0"]
+[gd_scene load_steps=13 format=3 uid="uid://bvhmfxi7j6rr0"]
 
 [ext_resource type="Texture2D" uid="uid://c5jp6ogvngbvw" path="res://assets/sprites/Enemy/Pentagon.png" id="1_cuotf"]
 [ext_resource type="Script" path="res://scripts/Enemy/pentagon.gd" id="1_fqhux"]
 [ext_resource type="PackedScene" uid="uid://cch7rs7cfurgk" path="res://scenes/Components/stop_area.tscn" id="3_4rtct"]
+[ext_resource type="Texture2D" uid="uid://ceguy4iydvdvm" path="res://assets/sprites/Enemy/Pentagon_n.png" id="3_ibfc8"]
 [ext_resource type="PackedScene" uid="uid://bjf3l5xyt7dij" path="res://scenes/Components/move_comp.tscn" id="4_vbvdt"]
 [ext_resource type="PackedScene" uid="uid://bu3t5xqkxhiij" path="res://scenes/Components/hurt_box.tscn" id="5_oc6hd"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_utoed"]
 diffuse_texture = ExtResource("1_cuotf")
+normal_texture = ExtResource("3_ibfc8")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vyrux"]
 radius = 21.0
@@ -88,7 +90,6 @@ texture = SubResource("CanvasTexture_utoed")
 hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CircleShape2D_vyrux")
 
 [node name="Timer" type="Timer" parent="."]
@@ -137,6 +138,7 @@ max_speed = 150.0
 clutch = 40.0
 
 [node name="HurtBox" parent="." instance=ExtResource("5_oc6hd")]
+scale = Vector2(1.2, 1.2)
 collision_layer = 4
 collision_mask = 8
 
