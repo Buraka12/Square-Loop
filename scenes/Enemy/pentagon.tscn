@@ -86,7 +86,6 @@ script = ExtResource("1_fqhux")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("CanvasTexture_utoed")
 hframes = 2
-frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -109,6 +108,7 @@ position = Vector2(-16, -34)
 [node name="PointLight2D" type="PointLight2D" parent="Points/Point2"]
 position = Vector2(0, -2)
 scale = Vector2(2, 2)
+enabled = false
 color = Color(0.854902, 0.207843, 0.207843, 1)
 texture = SubResource("GradientTexture2D_rmiq0")
 
@@ -118,6 +118,7 @@ position = Vector2(0, -40)
 [node name="PointLight2D" type="PointLight2D" parent="Points/Point"]
 position = Vector2(0, -2)
 scale = Vector2(2, 2)
+enabled = false
 color = Color(0.854902, 0.207843, 0.207843, 1)
 texture = SubResource("GradientTexture2D_rmiq0")
 
@@ -127,6 +128,7 @@ position = Vector2(17, -33)
 [node name="PointLight2D" type="PointLight2D" parent="Points/Point3"]
 position = Vector2(0, -2)
 scale = Vector2(2, 2)
+enabled = false
 color = Color(0.854902, 0.207843, 0.207843, 1)
 texture = SubResource("GradientTexture2D_rmiq0")
 

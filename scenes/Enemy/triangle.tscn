@@ -62,7 +62,6 @@ script = ExtResource("1_7kcm5")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("CanvasTexture_0ixiy")
 hframes = 2
-frame = 1
 region_rect = Rect2(47, 45, 34, 36)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -83,6 +82,7 @@ position = Vector2(0, -23)
 
 [node name="PointLight2D" type="PointLight2D" parent="Marker2D"]
 scale = Vector2(2, 2)
+enabled = false
 color = Color(0.854902, 0.207843, 0.207843, 1)
 energy = 1.5
 texture = SubResource("GradientTexture2D_oocsj")
