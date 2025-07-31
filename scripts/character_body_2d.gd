@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-var SPEED = 250.0
+var SPEED = 300.0
 
 var bulletscene : PackedScene = preload("res://scenes/player_bullet.tscn")
 var can_shoot : bool = true
