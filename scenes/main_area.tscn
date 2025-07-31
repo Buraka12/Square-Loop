@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cifrq2c6wa5ro" path="res://assets/sprites/icon.svg" id="1_3hq13"]
 [ext_resource type="PackedScene" uid="uid://2whhrm0r02h1" path="res://scenes/player.tscn" id="1_sdxow"]
 [ext_resource type="PackedScene" uid="uid://dqwsgw57poqd3" path="res://scenes/Enemy/triangle.tscn" id="3_nbxkg"]
-[ext_resource type="PackedScene" uid="uid://dmm1rn6m7wwxx" path="res://scenes/Enemy/enemy_bullet.tscn" id="4_qyki1"]
+[ext_resource type="PackedScene" uid="uid://dmm1rn6m7wwxx" path="res://scenes/enemy_bullet.tscn" id="4_qyki1"]
 
 [node name="MainArea" type="Node2D"]
 

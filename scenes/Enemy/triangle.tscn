@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqwsgw57poqd3"]
+[gd_scene load_steps=6 format=3 uid="uid://dqwsgw57poqd3"]
 
 [ext_resource type="Script" path="res://scripts/Enemy/triangle.gd" id="1_7kcm5"]
 [ext_resource type="Texture2D" uid="uid://bqgfkvuepiief" path="res://assets/sprites/Enemy/Triangle.png" id="1_o3of3"]
+[ext_resource type="PackedScene" uid="uid://cch7rs7cfurgk" path="res://scenes/Components/stop_area.tscn" id="3_ypk0a"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_0ixiy"]
 diffuse_texture = ExtResource("1_o3of3")
@@ -20,3 +21,11 @@ texture = SubResource("CanvasTexture_0ixiy")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
 shape = SubResource("CircleShape2D_so033")
+
+[node name="StopArea" parent="." instance=ExtResource("3_ypk0a")]
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="StopArea" to="." method="_on_stop_area_body_entered"]
+[connection signal="body_exited" from="StopArea" to="." method="_on_stop_area_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

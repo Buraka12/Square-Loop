@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 var pos : Vector2
-const SPEED : float = 400.0
+const SPEED : float = 500.0
 
 func _ready() -> void:
 	var direction = (pos - global_position).normalized()
