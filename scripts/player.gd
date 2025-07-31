@@ -13,18 +13,15 @@ func _physics_process(delta: float) -> void:
 	look_at(get_global_mouse_position())
 
 	#sağ sol yukarı aşağı hareket
-	var directionx := Input.get_axis("left" , "right")
-	if directionx:
-		velocity.x = directionx * SPEED
+	var direction = Vector2.ZERO
+	direction.y = Input.get_axis("up" , "down")
+	direction.x = Input.get_axis("left" , "right")
+	
+	if direction :
+		velocity = direction.normalized() * SPEED
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity = Vector2.ZERO
 		
-	var directiony := Input.get_axis("up", "down")
-	if directiony:
-		velocity.y = directiony * SPEED
-	else:
-		velocity.y = move_toward(velocity.y, 0, SPEED)
-
 	move_and_slide()
 
 func fire():
