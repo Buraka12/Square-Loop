@@ -7,11 +7,11 @@ func _ready() -> void:
 		main_buttons.visible = true
 		settings_menu.visible = false
 
-
-#            --Main buttons--
-
+var now_level = str(Global.level)
+var next_file = "res://scenes/levels/level_"+ now_level +".tscn"
 func _on_play_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/main_area.tscn")
+
+	get_tree().change_scene_to_file(next_file)
 
 func _on_settings_pressed() -> void:
 	main_buttons.visible = false

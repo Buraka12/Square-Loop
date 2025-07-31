@@ -14,6 +14,7 @@ enum states {STOP,MOVE,FIRE}
 var state : states
 
 func _ready() -> void:
+	Global.entity += 1
 	state = states.MOVE
 
 func _physics_process(delta: float) -> void:
@@ -31,6 +32,8 @@ func look_at_player():
 	rotation_degrees += 90
 
 func die():
+	Global.entity -= 1
+	Global.CheckEntity_LevelChange()
 	queue_free()
 
 func fire():
