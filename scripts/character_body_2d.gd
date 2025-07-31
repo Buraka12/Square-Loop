@@ -1,28 +1,16 @@
 extends CharacterBody2D
 
-
-var SPEED = 300.0
-
+const SPEED = 250.0
 var bulletscene : PackedScene = preload("res://scenes/player_bullet.tscn")
-var can_shoot : bool = true
-var fire_rate : float = 2
-var shooting : bool = false
 
 func _physics_process(delta: float) -> void:
 	
-	if Input.is_action_pressed("fire") and can_shoot:
-		SPEED = 100.0
-		can_shoot = false
-		shooting = true
-		$Timer.start(1/fire_rate)
+	if Input.is_action_just_pressed("fire"):
 		fire()
-	if Input.is_action_just_released("fire"):
-		SPEED = 250.0
-		shooting = false
 	
 	#mouse bakma
 	look_at(get_global_mouse_position())
-	
+
 	#sağ sol yukarı aşağı hareket
 	var directionx := Input.get_axis("left" , "right")
 	if directionx:
@@ -47,6 +35,3 @@ func fire():
 
 func die():
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
-
-func _on_timer_timeout() -> void:
-	can_shoot = true

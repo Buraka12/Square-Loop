@@ -1,0 +1,131 @@
+[gd_scene load_steps=11 format=3 uid="uid://y2sekauyqslo"]
+
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_uutjt"]
+[ext_resource type="FontFile" uid="uid://dlss2jn5oociv" path="res://assets/fonts/GrapeSoda.ttf" id="2_chmnj"]
+[ext_resource type="Shader" path="res://scripts/shaders/paused_menu.gdshader" id="2_mm72w"]
+[ext_resource type="FontFile" uid="uid://bm0677vb04kec" path="res://assets/fonts/KiwiSoda.ttf" id="3_3wgky"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_65jy0"]
+shader = ExtResource("2_mm72w")
+shader_parameter/blur = 2.5
+shader_parameter/brightness = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ksgbv"]
+bg_color = Color(0.423529, 0.423529, 0.423529, 0.454902)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ihddk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_44bxu"]
+bg_color = Color(0.0588235, 0.0941176, 0.521569, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="InputEventAction" id="InputEventAction_47sw1"]
+action = &"ui_cancel"
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_6fli5"]
+events = [SubResource("InputEventAction_47sw1")]
+
+[node name="Pause_menu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_uutjt")
+
+[node name="blur" type="Panel" parent="."]
+material = SubResource("ShaderMaterial_65jy0")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="corner" type="Panel" parent="blur"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -218.5
+offset_top = -94.5
+offset_right = 218.5
+offset_bottom = 94.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ksgbv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="blur/corner"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -196.0
+offset_top = -52.5
+offset_right = 196.0
+offset_bottom = 52.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="paused" type="Label" parent="blur/corner/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_chmnj")
+theme_override_font_sizes/font_size = 40
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="blur/corner/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 23
+theme_override_styles/separator = SubResource("StyleBoxEmpty_ihddk")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="blur/corner/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 11
+
+[node name="resume_button" type="Button" parent="blur/corner/VBoxContainer/HBoxContainer"]
+process_mode = 3
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_3wgky")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_44bxu")
+shortcut = SubResource("Shortcut_6fli5")
+text = " Resume "
+
+[node name="settings_button" type="Button" parent="blur/corner/VBoxContainer/HBoxContainer"]
+process_mode = 3
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_3wgky")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_44bxu")
+text = " settings "
+
+[node name="exit_button" type="Button" parent="blur/corner/VBoxContainer/HBoxContainer"]
+process_mode = 3
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_3wgky")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_44bxu")
+text = "   Exit   "
+
+[connection signal="pressed" from="blur/corner/VBoxContainer/HBoxContainer/resume_button" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="blur/corner/VBoxContainer/HBoxContainer/settings_button" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="blur/corner/VBoxContainer/HBoxContainer/exit_button" to="." method="_on_exit_pressed"]
