@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 
 const SPEED = 250.0
-var bulletscene : PackedScene = preload("res://scenes/Player/player_bullet.tscn")
+var bulletscene : PackedScene = preload("res://scenes/player_bullet.tscn")
 
 func _physics_process(delta: float) -> void:
 	
@@ -33,3 +33,6 @@ func fire():
 	bullet.global_position = global_position
 	bullet.pos = mouse_pos
 	$"..".add_child(bullet)
+
+func game_over():
+	queue_free()

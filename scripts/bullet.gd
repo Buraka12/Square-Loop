@@ -10,6 +10,6 @@ func _ready() -> void:
 
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Enemy"):
-		body.health -= 50
+	if body.is_in_group("Entity"):
+		body.die()
 	queue_free()

@@ -9,7 +9,7 @@ diffuse_texture = ExtResource("2_2e2v8")
 [sub_resource type="CircleShape2D" id="CircleShape2D_pqs21"]
 radius = 18.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Entity"]]
 script = ExtResource("1_baftj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

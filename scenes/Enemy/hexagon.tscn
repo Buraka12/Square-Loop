@@ -9,7 +9,7 @@ diffuse_texture = ExtResource("1_17p37")
 [sub_resource type="CircleShape2D" id="CircleShape2D_0vgo3"]
 radius = 16.0
 
-[node name="Hexagon" type="CharacterBody2D"]
+[node name="Hexagon" type="CharacterBody2D" groups=["Entity"]]
 collision_layer = 4
 collision_mask = 2
 
@@ -20,7 +20,7 @@ texture = SubResource("CanvasTexture_nba4g")
 visible = false
 shape = SubResource("CircleShape2D_0vgo3")
 
-[node name="HitBox" parent="." groups=["Enemy"] instance=ExtResource("2_3qkvm")]
+[node name="HitBox" parent="." instance=ExtResource("2_3qkvm")]
 scale = Vector2(5, 5)
 collision_layer = 4
 collision_mask = 1
