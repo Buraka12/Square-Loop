@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://d0gsl5rpmw5w7"]
+[gd_scene load_steps=9 format=3 uid="uid://d0gsl5rpmw5w7"]
 
 [ext_resource type="PackedScene" uid="uid://2whhrm0r02h1" path="res://scenes/player.tscn" id="1_sdxow"]
 [ext_resource type="PackedScene" uid="uid://dqwsgw57poqd3" path="res://scenes/Enemy/triangle.tscn" id="3_nbxkg"]
 [ext_resource type="Texture2D" uid="uid://rqp6m4gwhol7" path="res://assets/sprites/tileset.png" id="4_7mbch"]
 [ext_resource type="PackedScene" uid="uid://y2sekauyqslo" path="res://scenes/pause_menu.tscn" id="5_4itfh"]
 [ext_resource type="PackedScene" uid="uid://dsd1fe453iuu3" path="res://scenes/Enemy/hexagon.tscn" id="5_llnwp"]
+[ext_resource type="PackedScene" uid="uid://dytscjitq4xv2" path="res://scenes/level_start.tscn" id="6_scdbj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bx21p"]
 texture = ExtResource("4_7mbch")
@@ -170,7 +171,7 @@ sources/0 = SubResource("TileSetAtlasSource_bx21p")
 [node name="MainArea" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_sdxow")]
-position = Vector2(518, 463)
+position = Vector2(513, 349)
 
 [node name="Triangle" parent="." instance=ExtResource("3_nbxkg")]
 position = Vector2(906, 475)
@@ -194,3 +195,5 @@ layer_1/tile_data = PackedInt32Array(2097151, 262144, 1, 2031615, 262144, 1, 196
 
 [node name="Hexagon" parent="." instance=ExtResource("5_llnwp")]
 position = Vector2(50, 597)
+
+[node name="level_start" parent="." instance=ExtResource("6_scdbj")]
