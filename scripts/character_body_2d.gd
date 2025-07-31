@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 const SPEED = 250.0
+
 var bulletscene : PackedScene = preload("res://scenes/player_bullet.tscn")
 
 func _physics_process(delta: float) -> void:
@@ -29,8 +30,9 @@ func _physics_process(delta: float) -> void:
 func fire():
 	var bullet = bulletscene.instantiate()
 	var mouse_pos : Vector2 = get_global_mouse_position()
-	bullet.global_position = global_position
+	bullet.global_position = $Marker2D.global_position
 	bullet.pos = mouse_pos
+	$AnimationPlayer.play("Shoot")
 	$"..".add_child(bullet)
 
 func die():
