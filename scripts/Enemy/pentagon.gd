@@ -8,41 +8,22 @@ var can_shoot : bool = true
 var fire_rate : float = 0.3
 var tab : float = 1000.0
 
-var max_speed : float = 150.0
-var clutch : float = 1500.0
-var SPEED : float = 0.0
+var direction : Vector2
 
-enum states {STOP,FOLLOW,FIRE}
+enum states {STOP,MOVE,FIRE}
 var state : states
 
 func _ready() -> void:
-	state = states.FOLLOW
+	state = states.MOVE
 
 func _physics_process(delta: float) -> void:
+	direction = (player.global_position-global_position).normalized()
 	look_at_player()
-	if state != states.STOP:
-		follow_player(delta)
-	else:
-		SPEED = 0
-		velocity = Vector2(0,0)
-	
 	if can_shoot:
 		can_shoot = false
-		var direction = (player.global_position-global_position).normalized()
 		velocity = -direction*tab
-		SPEED = 0
 		$Timer.start(1/fire_rate)
 		fire(direction)
-	
-	move_and_slide()
-
-func follow_player(delta):
-	var direction = (player.global_position-global_position).normalized()
-	SPEED += clutch*delta
-	if SPEED <= max_speed:
-		velocity = direction*SPEED
-	else:
-		velocity = direction*max_speed
 
 func look_at_player():
 	look_at(player.global_position)
@@ -69,7 +50,7 @@ func _on_stop_area_body_entered(body: Node2D) -> void:
 
 func _on_stop_area_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
-		state = states.FOLLOW
+		state = states.MOVE
 
 func _on_timer_timeout() -> void:
 	can_shoot = true

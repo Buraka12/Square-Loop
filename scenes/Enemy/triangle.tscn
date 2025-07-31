@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dqwsgw57poqd3"]
+[gd_scene load_steps=12 format=3 uid="uid://dqwsgw57poqd3"]
 
 [ext_resource type="Script" path="res://scripts/Enemy/triangle.gd" id="1_7kcm5"]
 [ext_resource type="Texture2D" uid="uid://bqgfkvuepiief" path="res://assets/sprites/Enemy/Triangle.png" id="1_o3of3"]
 [ext_resource type="PackedScene" uid="uid://cch7rs7cfurgk" path="res://scenes/Components/stop_area.tscn" id="3_ypk0a"]
+[ext_resource type="PackedScene" uid="uid://bjf3l5xyt7dij" path="res://scenes/Components/move_comp.tscn" id="4_m1p7r"]
+[ext_resource type="PackedScene" uid="uid://bu3t5xqkxhiij" path="res://scenes/Components/hurt_box.tscn" id="5_0opbd"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_0ixiy"]
 diffuse_texture = ExtResource("1_o3of3")
@@ -84,6 +86,13 @@ scale = Vector2(2, 2)
 color = Color(0.854902, 0.207843, 0.207843, 1)
 energy = 1.5
 texture = SubResource("GradientTexture2D_oocsj")
+
+[node name="MoveComp" parent="." instance=ExtResource("4_m1p7r")]
+clutch = 80.0
+
+[node name="HurtBox" parent="." instance=ExtResource("5_0opbd")]
+collision_layer = 4
+collision_mask = 8
 
 [connection signal="body_entered" from="StopArea" to="." method="_on_stop_area_body_entered"]
 [connection signal="body_exited" from="StopArea" to="." method="_on_stop_area_body_exited"]

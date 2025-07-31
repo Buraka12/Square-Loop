@@ -45,4 +45,5 @@ color = Color(0.854902, 0.207843, 0.207843, 1)
 energy = 1.5
 texture = SubResource("GradientTexture2D_r2vnx")
 
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

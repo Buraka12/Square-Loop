@@ -16,7 +16,12 @@ func _process(delta: float) -> void:
 	if ratio >= 1:
 		queue_free()
 
+func _on_hit_box_area_entered(area: Node2D) -> void:
+	if area.name == "HurtBox":
+		area.get_parent().die()
+		queue_free()
+
+
 func _on_hit_box_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Entity"):
-		body.die()
-	queue_free()
+	if body is TileMap:
+		queue_free()
