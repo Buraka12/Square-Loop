@@ -8,7 +8,6 @@ var can_shoot : bool = true
 var fire_rate : float = 1
 var tab : float = 400.0
 
-var health : float = 100
 var max_speed : float = 200.0
 var clutch : float = 200.0
 var SPEED : float = 0.0

@@ -147,6 +147,8 @@ enabled = false
 color = Color(0.854902, 0.207843, 0.207843, 1)
 texture = SubResource("GradientTexture2D_rmiq0")
 
+[node name="MoveComp" type="Node2D" parent="."]
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="StopArea" to="." method="_on_stop_area_body_entered"]
 [connection signal="body_exited" from="StopArea" to="." method="_on_stop_area_body_exited"]

@@ -5,12 +5,11 @@ extends CharacterBody2D
 
 @onready var bulletscene : PackedScene = load("res://scenes/enemy_bullet.tscn")
 var can_shoot : bool = true
-var fire_rate : float = 1
+var fire_rate : float = 0.3
 var tab : float = 1000.0
 
-var health : float = 100
-var max_speed : float = 200.0
-var clutch : float = 200.0
+var max_speed : float = 150.0
+var clutch : float = 1500.0
 var SPEED : float = 0.0
 
 enum states {STOP,FOLLOW,FIRE}
