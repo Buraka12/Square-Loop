@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqwsgw57poqd3"]
+[gd_scene load_steps=10 format=3 uid="uid://dqwsgw57poqd3"]
 
 [ext_resource type="Script" path="res://scripts/Enemy/triangle.gd" id="1_7kcm5"]
 [ext_resource type="Texture2D" uid="uid://bqgfkvuepiief" path="res://assets/sprites/Enemy/Triangle.png" id="1_o3of3"]
@@ -10,6 +10,48 @@ diffuse_texture = ExtResource("1_o3of3")
 [sub_resource type="CircleShape2D" id="CircleShape2D_so033"]
 radius = 14.0
 
+[sub_resource type="Animation" id="Animation_3ce5r"]
+resource_name = "Shoot"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marker2D/PointLight2D:enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nd3v6"]
+_data = {
+"Shoot": SubResource("Animation_3ce5r")
+}
+
+[sub_resource type="Gradient" id="Gradient_ho0ux"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oocsj"]
+gradient = SubResource("Gradient_ho0ux")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.697, 0.284)
+
 [node name="Triangle" type="CharacterBody2D" groups=["Entity"]]
 collision_layer = 4
 collision_mask = 2
@@ -17,6 +59,8 @@ script = ExtResource("1_7kcm5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("CanvasTexture_0ixiy")
+hframes = 2
+region_rect = Rect2(47, 45, 34, 36)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
@@ -25,6 +69,21 @@ shape = SubResource("CircleShape2D_so033")
 [node name="StopArea" parent="." instance=ExtResource("3_ypk0a")]
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nd3v6")
+}
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, -23)
+
+[node name="PointLight2D" type="PointLight2D" parent="Marker2D"]
+scale = Vector2(2, 2)
+enabled = false
+color = Color(0.854902, 0.207843, 0.207843, 1)
+energy = 1.5
+texture = SubResource("GradientTexture2D_oocsj")
 
 [connection signal="body_entered" from="StopArea" to="." method="_on_stop_area_body_entered"]
 [connection signal="body_exited" from="StopArea" to="." method="_on_stop_area_body_exited"]
