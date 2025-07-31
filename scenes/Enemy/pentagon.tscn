@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvhmfxi7j6rr0"]
+[gd_scene load_steps=6 format=3 uid="uid://bvhmfxi7j6rr0"]
 
 [ext_resource type="Texture2D" uid="uid://c5jp6ogvngbvw" path="res://assets/sprites/Enemy/Pentagon.png" id="1_cuotf"]
+[ext_resource type="Script" path="res://scripts/Enemy/pentagon.gd" id="1_fqhux"]
+[ext_resource type="PackedScene" uid="uid://cch7rs7cfurgk" path="res://scenes/Components/stop_area.tscn" id="3_4rtct"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_utoed"]
 diffuse_texture = ExtResource("1_cuotf")
@@ -11,6 +13,7 @@ radius = 21.0
 [node name="Pentagon" type="CharacterBody2D" groups=["Entity"]]
 collision_layer = 4
 collision_mask = 2
+script = ExtResource("1_fqhux")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("CanvasTexture_utoed")
@@ -18,3 +21,7 @@ texture = SubResource("CanvasTexture_utoed")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("CircleShape2D_vyrux")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="StopArea" parent="Timer" instance=ExtResource("3_4rtct")]

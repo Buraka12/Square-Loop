@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://y2sekauyqslo"]
+[gd_scene load_steps=14 format=3 uid="uid://y2sekauyqslo"]
 
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_uutjt"]
 [ext_resource type="FontFile" uid="uid://dlss2jn5oociv" path="res://assets/fonts/GrapeSoda.ttf" id="2_chmnj"]
@@ -23,7 +23,31 @@ corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ihddk"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_44bxu"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_seaot"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6h5vk"]
+bg_color = Color(0.289185, 0.345089, 0.642216, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e3ggx"]
+bg_color = Color(0.2623, 0.453535, 0.61, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_24mkb"]
 bg_color = Color(0.0588235, 0.0941176, 0.521569, 1)
 border_width_left = 1
 border_width_top = 1
@@ -106,7 +130,10 @@ process_mode = 3
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_3wgky")
 theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_44bxu")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_seaot")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6h5vk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_e3ggx")
+theme_override_styles/normal = SubResource("StyleBoxFlat_24mkb")
 shortcut = SubResource("Shortcut_6fli5")
 text = " Resume "
 
@@ -115,7 +142,10 @@ process_mode = 3
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_3wgky")
 theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_44bxu")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_seaot")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6h5vk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_e3ggx")
+theme_override_styles/normal = SubResource("StyleBoxFlat_24mkb")
 text = " settings "
 
 [node name="exit_button" type="Button" parent="blur/corner/VBoxContainer/HBoxContainer"]
@@ -123,7 +153,10 @@ process_mode = 3
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_3wgky")
 theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_44bxu")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_seaot")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6h5vk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_e3ggx")
+theme_override_styles/normal = SubResource("StyleBoxFlat_24mkb")
 text = "   Exit   "
 
 [connection signal="pressed" from="blur/corner/VBoxContainer/HBoxContainer/resume_button" to="." method="_on_resume_pressed"]
