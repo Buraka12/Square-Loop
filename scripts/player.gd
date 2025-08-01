@@ -7,10 +7,12 @@ var dodge_speed : float = 700
 var dodge_dur : float = 0.2
 var bulletscene : PackedScene = preload("res://scenes/player_bullet.tscn")
 
-enum states {MOVE,STOP,FIRE,DODGE}
+enum states {MOVE,STOP,FIRE,DODGE,DEAD}
 var state : states = states.MOVE
 
 func _physics_process(delta: float) -> void:
+	if state == states.DEAD:
+		return
 	if Input.is_action_just_pressed("fire") and state != states.DODGE:
 		fire()
 	
@@ -42,6 +44,8 @@ func dodge():
 	$HurtBox.set_collision_mask_value(1,false)
 	
 func die():
+	get_tree().paused = true
+	state = states.DEAD
 	Global.entity = 0
 	die_menu.visible = true
 	
