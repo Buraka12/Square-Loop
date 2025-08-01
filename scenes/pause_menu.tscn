@@ -67,6 +67,7 @@ events = [SubResource("InputEventAction_47sw1")]
 
 [node name="Pause_menu" type="CanvasLayer"]
 process_mode = 3
+layer = 2
 script = ExtResource("1_uutjt")
 
 [node name="blur" type="Panel" parent="."]

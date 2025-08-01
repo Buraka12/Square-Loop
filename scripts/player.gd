@@ -40,6 +40,7 @@ func dodge():
 	$HurtBox.set_collision_mask_value(1,false)
 
 func die():
+	Global.entity = 0
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 func _on_dodge_timer_timeout() -> void:

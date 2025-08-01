@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://rqp6m4gwhol7" path="res://assets/sprites/tileset.png" id="4_7mbch"]
 [ext_resource type="PackedScene" uid="uid://y2sekauyqslo" path="res://scenes/pause_menu.tscn" id="5_4itfh"]
 [ext_resource type="PackedScene" uid="uid://dsd1fe453iuu3" path="res://scenes/Enemy/hexagon.tscn" id="5_llnwp"]
-[ext_resource type="PackedScene" uid="uid://dytscjitq4xv2" path="res://scenes/level_start.tscn" id="6_scdbj"]
+[ext_resource type="PackedScene" uid="uid://budh2sxits8vi" path="res://scenes/level_start.tscn" id="6_scdbj"]
 [ext_resource type="PackedScene" uid="uid://bvhmfxi7j6rr0" path="res://scenes/Enemy/pentagon.tscn" id="7_rsm6o"]
 [ext_resource type="PackedScene" uid="uid://d07mawq5e04us" path="res://scenes/light.tscn" id="8_do126"]
 
@@ -188,9 +188,6 @@ sources/0 = SubResource("TileSetAtlasSource_bx21p")
 [node name="Player" parent="." instance=ExtResource("1_sdxow")]
 position = Vector2(513, 349)
 
-[node name="Pause_menu" parent="." instance=ExtResource("5_4itfh")]
-visible = false
-
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_w8442")
 format = 2
@@ -209,6 +206,7 @@ position = Vector2(50, 597)
 position = Vector2(522, 997)
 
 [node name="level_start" parent="." instance=ExtResource("6_scdbj")]
+layer = 1
 
 [node name="lights" type="Node2D" parent="."]
 
@@ -275,3 +273,6 @@ rotation = 4.71239
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 energy = 0.3
 blend_mode = 1
+
+[node name="Pause_menu" parent="." instance=ExtResource("5_4itfh")]
+visible = false

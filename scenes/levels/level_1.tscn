@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://y2sekauyqslo" path="res://scenes/pause_menu.tscn" id="2_xu6ee"]
 [ext_resource type="Texture2D" uid="uid://rqp6m4gwhol7" path="res://assets/sprites/tileset.png" id="3_07y1h"]
 [ext_resource type="PackedScene" uid="uid://dqwsgw57poqd3" path="res://scenes/Enemy/triangle.tscn" id="4_vf286"]
-[ext_resource type="PackedScene" uid="uid://dytscjitq4xv2" path="res://scenes/level_start.tscn" id="7_q3e51"]
+[ext_resource type="PackedScene" uid="uid://budh2sxits8vi" path="res://scenes/level_start.tscn" id="7_q3e51"]
 [ext_resource type="PackedScene" uid="uid://d07mawq5e04us" path="res://scenes/light.tscn" id="8_2tlvc"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_imb57"]
@@ -192,6 +192,7 @@ position = Vector2(906, 475)
 position = Vector2(525, 21)
 
 [node name="Pause_menu" parent="." instance=ExtResource("2_xu6ee")]
+visible = false
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_w8442")

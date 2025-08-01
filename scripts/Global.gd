@@ -7,6 +7,7 @@ static var entity :int = 0
 
 
 func CheckEntity_LevelChange():
+	print(entity)
 	if entity == 0:
 		level += 1
 		var now_level = str(level)

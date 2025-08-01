@@ -15,6 +15,7 @@ var state : states
 
 func _ready() -> void:
 	Global.entity += 1
+	print(Global.entity)
 	state = states.MOVE
 
 func _physics_process(delta: float) -> void:
