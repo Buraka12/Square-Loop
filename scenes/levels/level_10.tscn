@@ -1,15 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://bhmhqxbw6nvlc"]
+[gd_scene load_steps=11 format=3 uid="uid://b4lyvd3tv6oae"]
 
-[ext_resource type="PackedScene" uid="uid://2whhrm0r02h1" path="res://scenes/player.tscn" id="1_l5bsd"]
-[ext_resource type="Texture2D" uid="uid://rqp6m4gwhol7" path="res://assets/sprites/tileset.png" id="3_xwdg5"]
-[ext_resource type="PackedScene" uid="uid://dqwsgw57poqd3" path="res://scenes/Enemy/triangle.tscn" id="4_5xnyw"]
-[ext_resource type="PackedScene" uid="uid://d07mawq5e04us" path="res://scenes/light.tscn" id="8_00uei"]
+[ext_resource type="PackedScene" uid="uid://2whhrm0r02h1" path="res://scenes/player.tscn" id="1_am5vn"]
+[ext_resource type="PackedScene" uid="uid://dqwsgw57poqd3" path="res://scenes/Enemy/triangle.tscn" id="2_602so"]
+[ext_resource type="PackedScene" uid="uid://dsd1fe453iuu3" path="res://scenes/Enemy/hexagon.tscn" id="3_54poc"]
+[ext_resource type="PackedScene" uid="uid://bvhmfxi7j6rr0" path="res://scenes/Enemy/pentagon.tscn" id="4_inm15"]
+[ext_resource type="PackedScene" uid="uid://cpf5n2oy5yyum" path="res://scenes/Enemy/heptagon.tscn" id="5_7ap58"]
+[ext_resource type="Texture2D" uid="uid://rqp6m4gwhol7" path="res://assets/sprites/tileset.png" id="5_hulqj"]
+[ext_resource type="PackedScene" uid="uid://d07mawq5e04us" path="res://scenes/light.tscn" id="6_45vvn"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_imb57"]
 polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bx21p"]
-texture = ExtResource("3_xwdg5")
+texture = ExtResource("5_hulqj")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/z_index = -1
@@ -183,14 +186,47 @@ sources/0 = SubResource("TileSetAtlasSource_bx21p")
 
 [node name="entitys" type="Node2D" parent="."]
 
-[node name="Player" parent="entitys" instance=ExtResource("1_l5bsd")]
+[node name="Player" parent="entitys" instance=ExtResource("1_am5vn")]
 position = Vector2(768, 767)
 
-[node name="Triangle" parent="entitys" instance=ExtResource("4_5xnyw")]
+[node name="Triangle" parent="entitys" instance=ExtResource("2_602so")]
 position = Vector2(1282, 505)
 
-[node name="Triangle2" parent="entitys" instance=ExtResource("4_5xnyw")]
+[node name="Triangle2" parent="entitys" instance=ExtResource("2_602so")]
 position = Vector2(256, 505)
+
+[node name="Triangle3" parent="entitys" instance=ExtResource("2_602so")]
+position = Vector2(256, 1024)
+
+[node name="Triangle4" parent="entitys" instance=ExtResource("2_602so")]
+position = Vector2(1281, 1025)
+
+[node name="Hexagon" parent="entitys" instance=ExtResource("3_54poc")]
+position = Vector2(1020, 1290)
+
+[node name="Hexagon2" parent="entitys" instance=ExtResource("3_54poc")]
+position = Vector2(1029, 255)
+
+[node name="Hexagon3" parent="entitys" instance=ExtResource("3_54poc")]
+position = Vector2(502, 1296)
+
+[node name="Hexagon4" parent="entitys" instance=ExtResource("3_54poc")]
+position = Vector2(511, 261)
+
+[node name="Pentagon" parent="entitys" instance=ExtResource("4_inm15")]
+position = Vector2(258, 40)
+
+[node name="Pentagon2" parent="entitys" instance=ExtResource("4_inm15")]
+position = Vector2(256, 1513)
+
+[node name="Pentagon3" parent="entitys" instance=ExtResource("4_inm15")]
+position = Vector2(1283, 39)
+
+[node name="Pentagon4" parent="entitys" instance=ExtResource("4_inm15")]
+position = Vector2(1281, 1512)
+
+[node name="Heptagon" parent="entitys" instance=ExtResource("5_7ap58")]
+position = Vector2(1474, 224)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_w8442")
@@ -206,122 +242,122 @@ blend_mode = 1
 
 [node name="lights" type="Node2D" parent="."]
 
-[node name="light" parent="lights" instance=ExtResource("8_00uei")]
+[node name="light" parent="lights" instance=ExtResource("6_45vvn")]
 position = Vector2(256, 354)
 
-[node name="light2" parent="lights" instance=ExtResource("8_00uei")]
+[node name="light2" parent="lights" instance=ExtResource("6_45vvn")]
 position = Vector2(256, 866)
 
-[node name="light3" parent="lights" instance=ExtResource("8_00uei")]
+[node name="light3" parent="lights" instance=ExtResource("6_45vvn")]
 position = Vector2(256, 1377)
 
-[node name="light4" parent="lights" instance=ExtResource("8_00uei")]
+[node name="light4" parent="lights" instance=ExtResource("6_45vvn")]
 position = Vector2(768, 353)
 
-[node name="light6" parent="lights" instance=ExtResource("8_00uei")]
+[node name="light6" parent="lights" instance=ExtResource("6_45vvn")]
 position = Vector2(768, 1377)
 
-[node name="light7" parent="lights" instance=ExtResource("8_00uei")]
+[node name="light7" parent="lights" instance=ExtResource("6_45vvn")]
 position = Vector2(1280, 1377)
 
-[node name="light8" parent="lights" instance=ExtResource("8_00uei")]
+[node name="light8" parent="lights" instance=ExtResource("6_45vvn")]
 position = Vector2(1280, 865)
 
-[node name="light9" parent="lights" instance=ExtResource("8_00uei")]
+[node name="light9" parent="lights" instance=ExtResource("6_45vvn")]
 position = Vector2(1280, 353)
 
-[node name="light10" parent="lights" instance=ExtResource("8_00uei")]
+[node name="light10" parent="lights" instance=ExtResource("6_45vvn")]
 position = Vector2(1280, 159)
 rotation = 3.14159
 
-[node name="light11" parent="lights" instance=ExtResource("8_00uei")]
+[node name="light11" parent="lights" instance=ExtResource("6_45vvn")]
 position = Vector2(1280, 671)
 rotation = 3.14159
 
-[node name="light12" parent="lights" instance=ExtResource("8_00uei")]
+[node name="light12" parent="lights" instance=ExtResource("6_45vvn")]
 position = Vector2(1280, 1183)
 rotation = 3.14159
 
-[node name="light13" parent="lights" instance=ExtResource("8_00uei")]
+[node name="light13" parent="lights" instance=ExtResource("6_45vvn")]
 position = Vector2(768, 1183)
 rotation = 3.14159
 
-[node name="light15" parent="lights" instance=ExtResource("8_00uei")]
+[node name="light15" parent="lights" instance=ExtResource("6_45vvn")]
 position = Vector2(768, 159)
 rotation = 3.14159
 
-[node name="light16" parent="lights" instance=ExtResource("8_00uei")]
+[node name="light16" parent="lights" instance=ExtResource("6_45vvn")]
 position = Vector2(256, 159)
 rotation = 3.14159
 
-[node name="light17" parent="lights" instance=ExtResource("8_00uei")]
+[node name="light17" parent="lights" instance=ExtResource("6_45vvn")]
 position = Vector2(256, 671)
 rotation = 3.14159
 
-[node name="light18" parent="lights" instance=ExtResource("8_00uei")]
+[node name="light18" parent="lights" instance=ExtResource("6_45vvn")]
 position = Vector2(256, 1183)
 rotation = 3.14159
 
-[node name="light19" parent="lights" instance=ExtResource("8_00uei")]
+[node name="light19" parent="lights" instance=ExtResource("6_45vvn")]
 position = Vector2(353, 256)
 rotation = 4.71239
 
-[node name="light20" parent="lights" instance=ExtResource("8_00uei")]
+[node name="light20" parent="lights" instance=ExtResource("6_45vvn")]
 position = Vector2(865, 256)
 rotation = 4.71239
 
-[node name="light21" parent="lights" instance=ExtResource("8_00uei")]
+[node name="light21" parent="lights" instance=ExtResource("6_45vvn")]
 position = Vector2(1377, 256)
 rotation = 4.71239
 
-[node name="light22" parent="lights" instance=ExtResource("8_00uei")]
+[node name="light22" parent="lights" instance=ExtResource("6_45vvn")]
 position = Vector2(353, 769)
 rotation = 4.71239
 
-[node name="light24" parent="lights" instance=ExtResource("8_00uei")]
+[node name="light24" parent="lights" instance=ExtResource("6_45vvn")]
 position = Vector2(1377, 769)
 rotation = 4.71239
 
-[node name="light25" parent="lights" instance=ExtResource("8_00uei")]
+[node name="light25" parent="lights" instance=ExtResource("6_45vvn")]
 position = Vector2(353, 1280)
 rotation = 4.71239
 
-[node name="light28" parent="lights" instance=ExtResource("8_00uei")]
+[node name="light28" parent="lights" instance=ExtResource("6_45vvn")]
 position = Vector2(159, 255)
 rotation = 1.5708
 
-[node name="light29" parent="lights" instance=ExtResource("8_00uei")]
+[node name="light29" parent="lights" instance=ExtResource("6_45vvn")]
 position = Vector2(159, 768)
 rotation = 1.5708
 
-[node name="light30" parent="lights" instance=ExtResource("8_00uei")]
+[node name="light30" parent="lights" instance=ExtResource("6_45vvn")]
 position = Vector2(159, 1279)
 rotation = 1.5708
 
-[node name="light31" parent="lights" instance=ExtResource("8_00uei")]
+[node name="light31" parent="lights" instance=ExtResource("6_45vvn")]
 position = Vector2(671, 255)
 rotation = 1.5708
 
-[node name="light33" parent="lights" instance=ExtResource("8_00uei")]
+[node name="light33" parent="lights" instance=ExtResource("6_45vvn")]
 position = Vector2(671, 1279)
 rotation = 1.5708
 
-[node name="light34" parent="lights" instance=ExtResource("8_00uei")]
+[node name="light34" parent="lights" instance=ExtResource("6_45vvn")]
 position = Vector2(1183, 255)
 rotation = 1.5708
 
-[node name="light35" parent="lights" instance=ExtResource("8_00uei")]
+[node name="light35" parent="lights" instance=ExtResource("6_45vvn")]
 position = Vector2(1183, 768)
 rotation = 1.5708
 
-[node name="light36" parent="lights" instance=ExtResource("8_00uei")]
+[node name="light36" parent="lights" instance=ExtResource("6_45vvn")]
 position = Vector2(1183, 1279)
 rotation = 1.5708
 
-[node name="light26" parent="lights" instance=ExtResource("8_00uei")]
+[node name="light26" parent="lights" instance=ExtResource("6_45vvn")]
 position = Vector2(865, 1280)
 rotation = 4.71239
 
-[node name="light27" parent="lights" instance=ExtResource("8_00uei")]
+[node name="light27" parent="lights" instance=ExtResource("6_45vvn")]
 position = Vector2(1377, 1280)
 rotation = 4.71239
