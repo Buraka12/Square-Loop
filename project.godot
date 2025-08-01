@@ -30,6 +30,7 @@ project/assembly_name="GMTK"
 [global_group]
 
 Entity=""
+hotkey=""
 
 [input]
 

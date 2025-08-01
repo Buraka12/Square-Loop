@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://de4g5oumbcjxs"]
+[gd_scene load_steps=16 format=3 uid="uid://de4g5oumbcjxs"]
 
 [ext_resource type="Script" path="res://scripts/settings_menu.gd" id="1_ffthq"]
 [ext_resource type="Shader" path="res://scripts/shaders/blur.gdshader" id="1_s0qn1"]
 [ext_resource type="FontFile" uid="uid://dlss2jn5oociv" path="res://assets/fonts/GrapeSoda.ttf" id="2_amp82"]
 [ext_resource type="FontFile" uid="uid://bm0677vb04kec" path="res://assets/fonts/KiwiSoda.ttf" id="3_1nkmd"]
+[ext_resource type="PackedScene" uid="uid://bbgf6h1hvcsha" path="res://scenes/key_bind.tscn" id="5_ql2om"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t8pfp"]
 shader = ExtResource("1_s0qn1")
@@ -62,7 +63,9 @@ border_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 10
 corner_radius_bottom_right = 10
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ul3bm"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y2m51"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4b6k5"]
 
 [node name="SettingsMenu" type="Panel"]
 material = SubResource("ShaderMaterial_t8pfp")
@@ -117,26 +120,27 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_uv70f")
 text = "Back"
 
 [node name="TabContainer" type="TabContainer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 10.0
 offset_top = 40.0
+offset_right = -10.0
 offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 2
 tab_alignment = 1
 current_tab = 1
 
-[node name="Sounds" type="Button" parent="TabContainer"]
+[node name="Sounds" type="TabBar" parent="TabContainer"]
 visible = false
 layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ul3bm")
 metadata/_tab_index = 0
 
-[node name="Keybinding" type="Button" parent="TabContainer"]
+[node name="Keybinding" type="TabBar" parent="TabContainer"]
 layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ul3bm")
 metadata/_tab_index = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/Keybinding"]
@@ -153,5 +157,42 @@ theme_override_constants/margin_bottom = 10
 
 [node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Keybinding/MarginContainer"]
 layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Keybinding/MarginContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="HSeparator" type="HSeparator" parent="TabContainer/Keybinding/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+theme_override_styles/separator = SubResource("StyleBoxEmpty_y2m51")
+
+[node name="key_Bind" parent="TabContainer/Keybinding/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_ql2om")]
+layout_mode = 2
+action_name = "up"
+
+[node name="key_Bind2" parent="TabContainer/Keybinding/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_ql2om")]
+layout_mode = 2
+action_name = "down"
+
+[node name="key_Bind3" parent="TabContainer/Keybinding/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_ql2om")]
+layout_mode = 2
+
+[node name="key_Bind4" parent="TabContainer/Keybinding/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_ql2om")]
+layout_mode = 2
+action_name = "left"
+
+[node name="key_Bind6" parent="TabContainer/Keybinding/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_ql2om")]
+layout_mode = 2
+action_name = "dodge"
+
+[node name="key_Bind5" parent="TabContainer/Keybinding/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_ql2om")]
+layout_mode = 2
+action_name = "fire"
+
+[node name="HSeparator2" type="HSeparator" parent="TabContainer/Keybinding/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+theme_override_styles/separator = SubResource("StyleBoxEmpty_4b6k5")
 
 [connection signal="pressed" from="Back_button" to="." method="_on_back_button_pressed"]
