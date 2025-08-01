@@ -10,13 +10,13 @@ extends Node2D
 func _physics_process(delta: float) -> void:
 	var direction = parent.direction
 	if parent.state == parent.states.MOVE:
-		follow_player(delta,direction)
+		move(delta,direction)
 	elif parent.state == parent.states.STOP:
 		parent.velocity = Vector2(0,0)
 		SPEED = start_speed
 	parent.move_and_slide()
 
-func follow_player(delta,direction):
+func move(delta,direction):
 	SPEED += clutch*delta
 	if SPEED <= max_speed:
 		parent.velocity = direction.normalized()*SPEED

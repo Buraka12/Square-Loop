@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://b7uvgmguum755"]
+
+[ext_resource type="Script" path="res://scripts/Boss/boss.gd" id="1_iy5h0"]
+[ext_resource type="Texture2D" uid="uid://caxtp6krbnscy" path="res://assets/sprites/Boss/Boss-Sheet.png" id="1_vg20k"]
+[ext_resource type="Texture2D" uid="uid://s43i0p7q2841" path="res://assets/sprites/Boss/Boss-Sheet_n.png" id="2_37qcj"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_20cq5"]
+diffuse_texture = ExtResource("1_vg20k")
+normal_texture = ExtResource("2_37qcj")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_w0uql"]
+diffuse_texture = ExtResource("1_vg20k")
+normal_texture = ExtResource("2_37qcj")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_1qjj4"]
+diffuse_texture = ExtResource("1_vg20k")
+normal_texture = ExtResource("2_37qcj")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_seqqx"]
+radius = 78.0577
+
+[node name="Boss" type="CharacterBody2D"]
+position = Vector2(591, 262)
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("1_iy5h0")
+
+[node name="Main" type="Sprite2D" parent="."]
+texture = SubResource("CanvasTexture_20cq5")
+region_enabled = true
+region_rect = Rect2(52, 22, 155, 182)
+
+[node name="Day" type="Sprite2D" parent="."]
+position = Vector2(-2, 15)
+texture = SubResource("CanvasTexture_w0uql")
+offset = Vector2(0, -11)
+region_enabled = true
+region_rect = Rect2(380, 102, 8, 22)
+
+[node name="Hour" type="Sprite2D" parent="."]
+position = Vector2(-2, 15)
+texture = SubResource("CanvasTexture_1qjj4")
+offset = Vector2(0, -18)
+region_enabled = true
+region_rect = Rect2(636, 89, 8, 36)
+
+[node name="Minute" type="Sprite2D" parent="."]
+position = Vector2(-21, 2)
+texture = SubResource("CanvasTexture_1qjj4")
+offset = Vector2(0, -4)
+region_enabled = true
+region_rect = Rect2(1150, 122, 3, 8)
+
+[node name="Second" type="Sprite2D" parent="."]
+position = Vector2(18, 2)
+texture = SubResource("CanvasTexture_1qjj4")
+offset = Vector2(0, -4)
+region_enabled = true
+region_rect = Rect2(1150, 122, 3, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-2, 15)
+shape = SubResource("CircleShape2D_seqqx")

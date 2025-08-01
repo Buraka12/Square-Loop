@@ -1,0 +1,106 @@
+[gd_scene load_steps=13 format=3 uid="uid://cf2ojhqia3yvw"]
+
+[ext_resource type="Script" path="res://scripts/Boss/Player/boss_player.gd" id="1_dlp5t"]
+[ext_resource type="Texture2D" uid="uid://dw731i17papw7" path="res://assets/sprites/Player/Player.png" id="1_vn7ry"]
+[ext_resource type="Texture2D" uid="uid://boh8yf3o2x84e" path="res://assets/sprites/Player/Player_n.png" id="2_aasff"]
+[ext_resource type="PackedScene" uid="uid://bu3t5xqkxhiij" path="res://scenes/Components/hurt_box.tscn" id="4_n5wqi"]
+[ext_resource type="PackedScene" uid="uid://y2sekauyqslo" path="res://scenes/pause_menu.tscn" id="6_3yog2"]
+[ext_resource type="PackedScene" uid="uid://bdmpahix5qjbf" path="res://scenes/die_menu.tscn" id="7_uhin1"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_8dgsr"]
+diffuse_texture = ExtResource("1_vn7ry")
+normal_texture = ExtResource("2_aasff")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pqs21"]
+radius = 17.0
+
+[sub_resource type="Animation" id="Animation_3ce5r"]
+resource_name = "Shoot"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marker2D/PointLight2D:enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nd3v6"]
+_data = {
+"Shoot": SubResource("Animation_3ce5r")
+}
+
+[sub_resource type="Gradient" id="Gradient_2btwn"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tojss"]
+gradient = SubResource("Gradient_2btwn")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.697248, 0.284404)
+
+[node name="Player" type="CharacterBody2D" groups=["Entity"]]
+position = Vector2(204, 247)
+collision_mask = 2
+script = ExtResource("1_dlp5t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("CanvasTexture_8dgsr")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pqs21")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+process_callback = 0
+limit_left = 0
+limit_top = 0
+limit_right = 1152
+limit_bottom = 648
+position_smoothing_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nd3v6")
+}
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(1, -35)
+
+[node name="PointLight2D" type="PointLight2D" parent="Marker2D"]
+scale = Vector2(2, 2)
+enabled = false
+color = Color(0.541176, 0.698039, 0.984314, 1)
+texture = SubResource("GradientTexture2D_tojss")
+
+[node name="DodgeTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="HurtBox" parent="." instance=ExtResource("4_n5wqi")]
+
+[node name="Pause_menu" parent="." instance=ExtResource("6_3yog2")]
+visible = false
+
+[node name="Die_menu" parent="." instance=ExtResource("7_uhin1")]
+visible = false
+
+[connection signal="timeout" from="DodgeTimer" to="." method="_on_dodge_timer_timeout"]
