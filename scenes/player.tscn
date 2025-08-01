@@ -1,10 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://2whhrm0r02h1"]
+[gd_scene load_steps=15 format=3 uid="uid://2whhrm0r02h1"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_baftj"]
 [ext_resource type="Texture2D" uid="uid://dw731i17papw7" path="res://assets/sprites/Player/Player.png" id="2_2e2v8"]
 [ext_resource type="Texture2D" uid="uid://boh8yf3o2x84e" path="res://assets/sprites/Player/Player_n.png" id="3_62q7q"]
 [ext_resource type="PackedScene" uid="uid://bjf3l5xyt7dij" path="res://scenes/Components/move_comp.tscn" id="3_pnfas"]
 [ext_resource type="PackedScene" uid="uid://bu3t5xqkxhiij" path="res://scenes/Components/hurt_box.tscn" id="4_lg3dq"]
+[ext_resource type="PackedScene" uid="uid://budh2sxits8vi" path="res://scenes/level_start.tscn" id="6_go2uh"]
+[ext_resource type="PackedScene" uid="uid://y2sekauyqslo" path="res://scenes/pause_menu.tscn" id="7_fjoyw"]
+[ext_resource type="PackedScene" uid="uid://bdmpahix5qjbf" path="res://scenes/die_menu.tscn" id="8_vbs77"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_8dgsr"]
 diffuse_texture = ExtResource("2_2e2v8")
@@ -101,5 +104,11 @@ clutch = 0.0
 one_shot = true
 
 [node name="HurtBox" parent="." instance=ExtResource("4_lg3dq")]
+
+[node name="level_start" parent="." instance=ExtResource("6_go2uh")]
+
+[node name="Pause_menu" parent="." instance=ExtResource("7_fjoyw")]
+
+[node name="Die_menu" parent="." instance=ExtResource("8_vbs77")]
 
 [connection signal="timeout" from="DodgeTimer" to="." method="_on_dodge_timer_timeout"]

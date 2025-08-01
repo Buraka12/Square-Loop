@@ -1,12 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://y2sekauyqslo"]
+[gd_scene load_steps=14 format=3 uid="uid://bdmpahix5qjbf"]
 
-[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_uutjt"]
-[ext_resource type="FontFile" uid="uid://dlss2jn5oociv" path="res://assets/fonts/GrapeSoda.ttf" id="2_chmnj"]
-[ext_resource type="Shader" path="res://scripts/shaders/paused_menu.gdshader" id="2_mm72w"]
-[ext_resource type="FontFile" uid="uid://bm0677vb04kec" path="res://assets/fonts/KiwiSoda.ttf" id="3_3wgky"]
+[ext_resource type="Script" path="res://scripts/die_menu.gd" id="1_mcluh"]
+[ext_resource type="Shader" path="res://scripts/shaders/paused_menu.gdshader" id="2_slsjs"]
+[ext_resource type="FontFile" uid="uid://dlss2jn5oociv" path="res://assets/fonts/GrapeSoda.ttf" id="3_qu412"]
+[ext_resource type="FontFile" uid="uid://bm0677vb04kec" path="res://assets/fonts/KiwiSoda.ttf" id="4_thf04"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_65jy0"]
-shader = ExtResource("2_mm72w")
+shader = ExtResource("2_slsjs")
 shader_parameter/blur = 2.5
 shader_parameter/brightness = 1.0
 
@@ -65,10 +65,10 @@ pressed = true
 [sub_resource type="Shortcut" id="Shortcut_6fli5"]
 events = [SubResource("InputEventAction_47sw1")]
 
-[node name="Pause_menu" type="CanvasLayer"]
+[node name="Die_menu" type="CanvasLayer"]
 process_mode = 3
 layer = 2
-script = ExtResource("1_uutjt")
+script = ExtResource("1_mcluh")
 
 [node name="blur" type="Panel" parent="."]
 material = SubResource("ShaderMaterial_65jy0")
@@ -87,10 +87,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -255.5
-offset_top = -83.0
-offset_right = 255.5
-offset_bottom = 83.0
+offset_left = -198.0
+offset_top = -71.0
+offset_right = 198.0
+offset_bottom = 71.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ksgbv")
@@ -109,12 +109,15 @@ offset_bottom = 52.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="paused" type="Label" parent="blur/corner/VBoxContainer"]
+[node name="Died" type="Label" parent="blur/corner/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_chmnj")
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_qu412")
 theme_override_font_sizes/font_size = 40
-text = "Paused"
+text = "You Died
+"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="blur/corner/VBoxContainer"]
 layout_mode = 2
@@ -123,47 +126,38 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_ihddk")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="blur/corner/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 11
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/separation = 20
 
-[node name="resume_button" type="Button" parent="blur/corner/VBoxContainer/HBoxContainer"]
+[node name="restart_button" type="Button" parent="blur/corner/VBoxContainer/HBoxContainer"]
 process_mode = 3
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_3wgky")
+theme_override_fonts/font = ExtResource("4_thf04")
 theme_override_font_sizes/font_size = 28
 theme_override_styles/focus = SubResource("StyleBoxEmpty_seaot")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6h5vk")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_e3ggx")
 theme_override_styles/normal = SubResource("StyleBoxFlat_24mkb")
 shortcut = SubResource("Shortcut_6fli5")
-text = " Resume "
+text = " Restart "
 
 [node name="main menu" type="Button" parent="blur/corner/VBoxContainer/HBoxContainer"]
 process_mode = 3
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_3wgky")
+theme_override_fonts/font = ExtResource("4_thf04")
 theme_override_font_sizes/font_size = 28
 theme_override_styles/focus = SubResource("StyleBoxEmpty_seaot")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6h5vk")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_e3ggx")
 theme_override_styles/normal = SubResource("StyleBoxFlat_24mkb")
+shortcut = SubResource("Shortcut_6fli5")
 text = " Main menu "
-
-[node name="settings_button" type="Button" parent="blur/corner/VBoxContainer/HBoxContainer"]
-process_mode = 3
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_3wgky")
-theme_override_font_sizes/font_size = 28
-theme_override_styles/focus = SubResource("StyleBoxEmpty_seaot")
-theme_override_styles/hover = SubResource("StyleBoxFlat_6h5vk")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_e3ggx")
-theme_override_styles/normal = SubResource("StyleBoxFlat_24mkb")
-text = " settings "
 
 [node name="exit_button" type="Button" parent="blur/corner/VBoxContainer/HBoxContainer"]
 process_mode = 3
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_3wgky")
+theme_override_fonts/font = ExtResource("4_thf04")
 theme_override_font_sizes/font_size = 28
 theme_override_styles/focus = SubResource("StyleBoxEmpty_seaot")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6h5vk")
@@ -171,7 +165,6 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_e3ggx")
 theme_override_styles/normal = SubResource("StyleBoxFlat_24mkb")
 text = "   Exit   "
 
-[connection signal="pressed" from="blur/corner/VBoxContainer/HBoxContainer/resume_button" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="blur/corner/VBoxContainer/HBoxContainer/restart_button" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="blur/corner/VBoxContainer/HBoxContainer/main menu" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="blur/corner/VBoxContainer/HBoxContainer/settings_button" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="blur/corner/VBoxContainer/HBoxContainer/exit_button" to="." method="_on_exit_pressed"]

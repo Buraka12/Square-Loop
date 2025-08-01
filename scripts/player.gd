@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var die_menu: CanvasLayer = $Die_menu
+
 var direction = Vector2.ZERO
 var dodge_speed : float = 700
 var dodge_dur : float = 0.2
@@ -38,10 +40,12 @@ func fire():
 func dodge():
 	velocity = direction.normalized()*dodge_speed
 	$HurtBox.set_collision_mask_value(1,false)
-
+	
 func die():
 	Global.entity = 0
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	die_menu.visible = true
+	
+
 
 func _on_dodge_timer_timeout() -> void:
 	state = states.STOP
