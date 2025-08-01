@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_aroy5"]
 [ext_resource type="FontFile" uid="uid://dlss2jn5oociv" path="res://assets/fonts/GrapeSoda.ttf" id="1_owrnv"]
 [ext_resource type="Texture2D" uid="uid://jaikt4ed85dk" path="res://assets/sprites/deneme_background.png" id="2_28kgc"]
-[ext_resource type="PackedScene" uid="uid://de4g5oumbcjxs" path="res://scenes/settings_menu.tscn" id="5_o6a1y"]
+[ext_resource type="PackedScene" path="res://scenes/settings_menu.tscn" id="5_o6a1y"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k14ds"]
 texture = ExtResource("2_28kgc")
