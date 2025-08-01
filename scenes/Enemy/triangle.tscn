@@ -72,6 +72,7 @@ position = Vector2(0, 4)
 shape = SubResource("CircleShape2D_so033")
 
 [node name="StopArea" parent="." instance=ExtResource("3_ypk0a")]
+visible = false
 
 [node name="Timer" type="Timer" parent="."]
 

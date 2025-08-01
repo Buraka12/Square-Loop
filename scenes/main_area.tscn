@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d0gsl5rpmw5w7"]
+[gd_scene load_steps=13 format=3 uid="uid://d0gsl5rpmw5w7"]
 
 [ext_resource type="PackedScene" uid="uid://2whhrm0r02h1" path="res://scenes/player.tscn" id="1_sdxow"]
 [ext_resource type="PackedScene" uid="uid://dqwsgw57poqd3" path="res://scenes/Enemy/triangle.tscn" id="3_nbxkg"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://budh2sxits8vi" path="res://scenes/level_start.tscn" id="6_scdbj"]
 [ext_resource type="PackedScene" uid="uid://bvhmfxi7j6rr0" path="res://scenes/Enemy/pentagon.tscn" id="7_rsm6o"]
 [ext_resource type="PackedScene" uid="uid://d07mawq5e04us" path="res://scenes/light.tscn" id="8_do126"]
+[ext_resource type="PackedScene" uid="uid://cpf5n2oy5yyum" path="res://scenes/Enemy/heptagon.tscn" id="9_6uw8l"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_imb57"]
 polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
@@ -275,3 +276,6 @@ blend_mode = 1
 
 [node name="Pause_menu" parent="." instance=ExtResource("5_4itfh")]
 visible = false
+
+[node name="Heptagon" parent="." instance=ExtResource("9_6uw8l")]
+position = Vector2(80, 789)
