@@ -206,7 +206,6 @@ position = Vector2(50, 597)
 position = Vector2(522, 997)
 
 [node name="level_start" parent="." instance=ExtResource("6_scdbj")]
-layer = 1
 
 [node name="lights" type="Node2D" parent="."]
 
