@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwui2yn1j2bip"]
+
+[ext_resource type="Texture2D" uid="uid://cdc5raddruj25" path="res://assets/sprites/Laser.png" id="1_6rfu2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tches"]
+size = Vector2(24, 195)
+
+[sub_resource type="Gradient" id="Gradient_nxvvo"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jhcw1"]
+gradient = SubResource("Gradient_nxvvo")
+fill_from = Vector2(0, 0.5)
+fill_to = Vector2(0.5, 0.5)
+repeat = 2
+
+[node name="Laser" type="Sprite2D"]
+scale = Vector2(1, 10)
+texture = ExtResource("1_6rfu2")
+offset = Vector2(0, -184)
+hframes = 2
+frame = 1
+region_rect = Rect2(0, 0, 16, 368)
+
+[node name="HitBox" type="Area2D" parent="."]
+visible = false
+position = Vector2(0, -1062.5)
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, 87.5)
+scale = Vector2(1, 10)
+shape = SubResource("RectangleShape2D_tches")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -960)
+scale = Vector2(3, 30)
+color = Color(0.854902, 0.207843, 0.207843, 1)
+texture = SubResource("GradientTexture2D_jhcw1")
