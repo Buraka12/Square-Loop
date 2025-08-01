@@ -47,6 +47,7 @@ func die():
 	get_tree().paused = true
 	state = states.DEAD
 	Global.entity = 0
+	die_menu.show_game_over_message()
 	die_menu.visible = true
 	
 
