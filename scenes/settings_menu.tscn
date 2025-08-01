@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://de4g5oumbcjxs"]
+[gd_scene load_steps=17 format=3 uid="uid://de4g5oumbcjxs"]
 
 [ext_resource type="Script" path="res://scripts/settings_menu.gd" id="1_ffthq"]
 [ext_resource type="Shader" path="res://scripts/shaders/blur.gdshader" id="1_s0qn1"]
 [ext_resource type="FontFile" uid="uid://dlss2jn5oociv" path="res://assets/fonts/GrapeSoda.ttf" id="2_amp82"]
 [ext_resource type="FontFile" uid="uid://bm0677vb04kec" path="res://assets/fonts/KiwiSoda.ttf" id="3_1nkmd"]
+[ext_resource type="FontFile" uid="uid://cjimgeaiaqp6h" path="res://assets/fonts/ari-w9500.ttf" id="5_8l3yd"]
 [ext_resource type="PackedScene" uid="uid://bbgf6h1hvcsha" path="res://scenes/key_bind.tscn" id="5_ql2om"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t8pfp"]
@@ -131,6 +132,8 @@ offset_right = -10.0
 offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_8l3yd")
+theme_override_font_sizes/font_size = 16
 tab_alignment = 1
 current_tab = 1
 

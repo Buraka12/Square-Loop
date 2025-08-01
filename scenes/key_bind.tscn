@@ -1,8 +1,44 @@
-[gd_scene load_steps=3 format=3 uid="uid://bbgf6h1hvcsha"]
+[gd_scene load_steps=8 format=3 uid="uid://bbgf6h1hvcsha"]
 
 [ext_resource type="Script" path="res://scripts/key_bind.gd" id="1_4uev5"]
+[ext_resource type="FontFile" uid="uid://cjimgeaiaqp6h" path="res://assets/fonts/ari-w9500.ttf" id="2_1327o"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_10lay"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_luo82"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kb0px"]
+bg_color = Color(0.252028, 0.252028, 0.252027, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m1j14"]
+bg_color = Color(0.162066, 0.162066, 0.162065, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vwm2x"]
+bg_color = Color(0.20871, 0.20871, 0.20871, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="key_Bind" type="Control" groups=["hotkey"]]
 layout_mode = 3
@@ -32,6 +68,8 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_10lay")
 [node name="Label" type="Label" parent="HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1327o")
+theme_override_font_sizes/font_size = 25
 text = "Action"
 vertical_alignment = 1
 
@@ -43,6 +81,12 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_10lay")
 [node name="Button" type="Button" parent="HBoxContainer"]
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1327o")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/focus = SubResource("StyleBoxEmpty_luo82")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kb0px")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_m1j14")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vwm2x")
 toggle_mode = true
 text = "Action_key"
 
