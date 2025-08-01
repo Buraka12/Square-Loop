@@ -32,13 +32,17 @@ func set_action_name() -> void:
 		
 func set_text_for_key() -> void:
 	var action_events = InputMap.action_get_events(action_name)
-	var action_event = action_events[0]
-	if action_event is InputEventKey:
-		var action_key_code = OS.get_keycode_string(action_event.physical_keycode)
-		button.text = "%s" % action_key_code
-	elif action_event is InputEventMouseButton:
-		var action_button_index = action_event.button_index
-		button.text = ("M"+"%s" % action_button_index)
+	if action_events.size() > 0:
+		var action_event = action_events[0]
+		if action_event is InputEventKey:
+			var action_keycode = OS.get_keycode_string(action_event.physical_keycode)
+			button.text = "%s" % action_keycode
+		elif action_event is InputEventMouseButton:
+			button.text = "Mouse Button %d" % action_event.button_index
+		else:
+			button.text = "Unsupported Input"
+	else:
+		button.text = "No Input Event"
 		
 
 func _on_button_toggled(button_pressed) -> void:
@@ -63,8 +67,8 @@ func _unhandled_key_input(event):
 	rebind_action_key(event)
 	button.button_pressed = false
 	
-func rebind_action_key(event) ->void:
-	InputMap.action_erase_event(action_name,event)
+func rebind_action_key(event) -> void:
+	InputMap.action_erase_events(action_name)
 	InputMap.action_add_event(action_name,event)
 	
 	set_process_unhandled_key_input(false)
