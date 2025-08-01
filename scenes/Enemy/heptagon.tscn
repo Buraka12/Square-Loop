@@ -1,8 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://cpf5n2oy5yyum"]
+[gd_scene load_steps=15 format=3 uid="uid://cpf5n2oy5yyum"]
 
+[ext_resource type="Script" path="res://scripts/Enemy/heptagon.gd" id="1_57fvq"]
 [ext_resource type="Texture2D" uid="uid://1eqv3upav6dp" path="res://assets/sprites/Enemy/Heptagon-Sheet.png" id="1_ctwc3"]
 [ext_resource type="Texture2D" uid="uid://bmxdfdm2suqr5" path="res://assets/sprites/Enemy/Heptagon-Sheet_n.png" id="2_ahufa"]
 [ext_resource type="PackedScene" uid="uid://bu3t5xqkxhiij" path="res://scenes/Components/hurt_box.tscn" id="3_ilog8"]
+[ext_resource type="PackedScene" uid="uid://bwui2yn1j2bip" path="res://scenes/laser.tscn" id="4_2w7uk"]
+[ext_resource type="PackedScene" uid="uid://cch7rs7cfurgk" path="res://scenes/Components/stop_area.tscn" id="6_gp6th"]
+[ext_resource type="PackedScene" uid="uid://bjf3l5xyt7dij" path="res://scenes/Components/move_comp.tscn" id="7_pkwaa"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_giack"]
 diffuse_texture = ExtResource("1_ctwc3")
@@ -27,9 +31,58 @@ tracks/0/keys = {
 "update": 1,
 "values": [1, 2, 3]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PointLight2D:energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.5, 3.0, 2.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Laser:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Laser:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
-[sub_resource type="Animation" id="Animation_ecma3"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_3ighb"]
+resource_name = "Normal"
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -40,25 +93,74 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [2]
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Laser:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Laser:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nhr3c"]
 _data = {
-"RESET": SubResource("Animation_ecma3"),
+"Normal": SubResource("Animation_3ighb"),
 "Shoot": SubResource("Animation_igmc3")
 }
 
+[sub_resource type="Gradient" id="Gradient_u8kcl"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3shfp"]
+gradient = SubResource("Gradient_u8kcl")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.697, 0.284)
+
 [node name="Heptagon" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_57fvq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("CanvasTexture_giack")
 hframes = 4
-frame = 2
 
 [node name="HurtBox" parent="." instance=ExtResource("3_ilog8")]
 position = Vector2(0, 10)
 scale = Vector2(1.4, 1.4)
+collision_layer = 4
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 10)
@@ -68,3 +170,30 @@ shape = SubResource("CircleShape2D_d7b1f")
 libraries = {
 "": SubResource("AnimationLibrary_nhr3c")
 }
+autoplay = "Normal"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -38)
+scale = Vector2(2, 2)
+enabled = false
+color = Color(0.854902, 0.207843, 0.207843, 1)
+energy = 1.5
+texture = SubResource("GradientTexture2D_3shfp")
+
+[node name="Laser" parent="." instance=ExtResource("4_2w7uk")]
+visible = false
+position = Vector2(0, -38)
+frame = 0
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="RunArea" parent="." instance=ExtResource("6_gp6th")]
+visible = false
+
+[node name="MoveComp" parent="." instance=ExtResource("7_pkwaa")]
+max_speed = 150.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="RunArea" to="." method="_on_run_area_body_entered"]
+[connection signal="body_exited" from="RunArea" to="." method="_on_run_area_body_exited"]

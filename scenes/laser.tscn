@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwui2yn1j2bip"]
+[gd_scene load_steps=6 format=3 uid="uid://bwui2yn1j2bip"]
 
 [ext_resource type="Texture2D" uid="uid://cdc5raddruj25" path="res://assets/sprites/Laser.png" id="1_6rfu2"]
+[ext_resource type="Script" path="res://scripts/laser.gd" id="2_5rrc0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tches"]
 size = Vector2(24, 195)
@@ -20,9 +21,9 @@ offset = Vector2(0, -184)
 hframes = 2
 frame = 1
 region_rect = Rect2(0, 0, 16, 368)
+script = ExtResource("2_5rrc0")
 
 [node name="HitBox" type="Area2D" parent="."]
-visible = false
 position = Vector2(0, -1062.5)
 collision_layer = 16
 
@@ -30,9 +31,12 @@ collision_layer = 16
 position = Vector2(0, 87.5)
 scale = Vector2(1, 10)
 shape = SubResource("RectangleShape2D_tches")
+disabled = true
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(0, -960)
-scale = Vector2(3, 30)
+scale = Vector2(2, 30)
 color = Color(0.854902, 0.207843, 0.207843, 1)
 texture = SubResource("GradientTexture2D_jhcw1")
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
