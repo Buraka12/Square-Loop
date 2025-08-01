@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_uutjt"]
 [ext_resource type="FontFile" uid="uid://dlss2jn5oociv" path="res://assets/fonts/GrapeSoda.ttf" id="2_chmnj"]
-[ext_resource type="Shader" path="res://scripts/shaders/paused_menu.gdshader" id="2_mm72w"]
+[ext_resource type="Shader" path="res://scripts/shaders/blur.gdshader" id="2_mm72w"]
 [ext_resource type="FontFile" uid="uid://bm0677vb04kec" path="res://assets/fonts/KiwiSoda.ttf" id="3_3wgky"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_65jy0"]

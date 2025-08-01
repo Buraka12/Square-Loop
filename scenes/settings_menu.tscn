@@ -1,0 +1,157 @@
+[gd_scene load_steps=14 format=3 uid="uid://de4g5oumbcjxs"]
+
+[ext_resource type="Script" path="res://scripts/settings_menu.gd" id="1_ffthq"]
+[ext_resource type="Shader" path="res://scripts/shaders/blur.gdshader" id="1_s0qn1"]
+[ext_resource type="FontFile" uid="uid://dlss2jn5oociv" path="res://assets/fonts/GrapeSoda.ttf" id="2_amp82"]
+[ext_resource type="FontFile" uid="uid://bm0677vb04kec" path="res://assets/fonts/KiwiSoda.ttf" id="3_1nkmd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t8pfp"]
+shader = ExtResource("1_s0qn1")
+shader_parameter/blur = 1.89
+shader_parameter/brightness = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xr30x"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vhpcg"]
+bg_color = Color(0.188235, 0.211765, 0.698039, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ow03p"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.051971, 0.051971, 0.0519709, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a7snn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n6341"]
+bg_color = Color(0.318779, 0.319395, 0.775881, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_bottom_right = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qkixd"]
+bg_color = Color(0.57, 0.57, 0.57, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_bottom_right = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uv70f"]
+bg_color = Color(0.168627, 0.133333, 0.486275, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_bottom_right = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ul3bm"]
+
+[node name="SettingsMenu" type="Panel"]
+material = SubResource("ShaderMaterial_t8pfp")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -278.5
+offset_top = -220.0
+offset_right = 278.5
+offset_bottom = 274.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xr30x")
+script = ExtResource("1_ffthq")
+
+[node name="Settings_label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_amp82")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_vhpcg")
+text = "Settings
+"
+horizontal_alignment = 1
+
+[node name="borders" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ow03p")
+
+[node name="Back_button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 473.5
+offset_top = 445.0
+offset_right = 555.5
+offset_bottom = 493.0
+theme_override_fonts/font = ExtResource("3_1nkmd")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/focus = SubResource("StyleBoxEmpty_a7snn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_n6341")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qkixd")
+theme_override_styles/normal = SubResource("StyleBoxFlat_uv70f")
+text = "Back"
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 40.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+tab_alignment = 1
+current_tab = 1
+
+[node name="Sounds" type="Button" parent="TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ul3bm")
+metadata/_tab_index = 0
+
+[node name="Keybinding" type="Button" parent="TabContainer"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ul3bm")
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Keybinding"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Keybinding/MarginContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="Back_button" to="." method="_on_back_button_pressed"]

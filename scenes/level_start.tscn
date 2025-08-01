@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://budh2sxits8vi"]
 
-[ext_resource type="Shader" path="res://scripts/shaders/level_start.gdshader" id="1_34l51"]
 [ext_resource type="Script" path="res://scripts/level_start.gd" id="1_qevc4"]
 [ext_resource type="FontFile" uid="uid://dlss2jn5oociv" path="res://assets/fonts/GrapeSoda.ttf" id="2_f5ii3"]
+[ext_resource type="Shader" path="res://scripts/shaders/blur.gdshader" id="2_ohlg2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7i5po"]
-shader = ExtResource("1_34l51")
+shader = ExtResource("2_ohlg2")
 shader_parameter/blur = 2.5
 shader_parameter/brightness = 1.0
 

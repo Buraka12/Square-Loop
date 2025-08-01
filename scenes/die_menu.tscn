@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://bdmpahix5qjbf"]
 
 [ext_resource type="Script" path="res://scripts/die_menu.gd" id="1_mcluh"]
-[ext_resource type="Shader" path="res://scripts/shaders/paused_menu.gdshader" id="2_slsjs"]
+[ext_resource type="Shader" path="res://scripts/shaders/blur.gdshader" id="2_slsjs"]
 [ext_resource type="FontFile" uid="uid://dlss2jn5oociv" path="res://assets/fonts/GrapeSoda.ttf" id="3_qu412"]
 [ext_resource type="FontFile" uid="uid://bm0677vb04kec" path="res://assets/fonts/KiwiSoda.ttf" id="4_thf04"]
 

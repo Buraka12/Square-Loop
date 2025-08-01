@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://co4n0dru6hwof"]
+[gd_scene load_steps=12 format=3 uid="uid://co4n0dru6hwof"]
 
 [ext_resource type="FontFile" uid="uid://bm0677vb04kec" path="res://assets/fonts/KiwiSoda.ttf" id="1_0xlla"]
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_aroy5"]
 [ext_resource type="FontFile" uid="uid://dlss2jn5oociv" path="res://assets/fonts/GrapeSoda.ttf" id="1_owrnv"]
 [ext_resource type="Texture2D" uid="uid://jaikt4ed85dk" path="res://assets/sprites/deneme_background.png" id="2_28kgc"]
+[ext_resource type="PackedScene" uid="uid://de4g5oumbcjxs" path="res://scenes/settings_menu.tscn" id="5_o6a1y"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k14ds"]
 texture = ExtResource("2_28kgc")
@@ -49,57 +50,6 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h6oux"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_70vd7"]
-bg_color = Color(0.188235, 0.211765, 0.698039, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kx5ry"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.051971, 0.051971, 0.0519709, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tgjnp"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nhkbm"]
-bg_color = Color(0.318779, 0.319395, 0.775881, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 10
-corner_radius_bottom_right = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v1trl"]
-bg_color = Color(0.57, 0.57, 0.57, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 10
-corner_radius_bottom_right = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6wsf4"]
-bg_color = Color(0.168627, 0.133333, 0.486275, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 10
-corner_radius_bottom_right = 10
-
 [node name="MainMenu" type="Control"]
 process_mode = 3
 layout_mode = 3
@@ -118,6 +68,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_k14ds")
+
+[node name="SettingsMenu" parent="." instance=ExtResource("5_o6a1y")]
+layout_mode = 1
+offset_top = -247.0
+offset_bottom = 247.0
 
 [node name="Main_buttons" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -176,59 +131,6 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_wm0ov")
 theme_override_styles/normal = SubResource("StyleBoxFlat_kye4b")
 text = "Exit"
 
-[node name="SettingsMenu" type="Panel" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -217.5
-offset_top = -140.0
-offset_right = 217.5
-offset_bottom = 261.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_h6oux")
-
-[node name="Settings_label" type="Label" parent="SettingsMenu"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 23.0
-grow_horizontal = 2
-theme_override_fonts/font = ExtResource("1_owrnv")
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_70vd7")
-text = "Settings
-"
-horizontal_alignment = 1
-
-[node name="borders" type="Panel" parent="SettingsMenu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_kx5ry")
-
-[node name="Back_button" type="Button" parent="SettingsMenu"]
-layout_mode = 0
-offset_left = 351.5
-offset_top = 352.0
-offset_right = 433.5
-offset_bottom = 400.0
-theme_override_fonts/font = ExtResource("1_0xlla")
-theme_override_font_sizes/font_size = 35
-theme_override_styles/focus = SubResource("StyleBoxEmpty_tgjnp")
-theme_override_styles/hover = SubResource("StyleBoxFlat_nhkbm")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_v1trl")
-theme_override_styles/normal = SubResource("StyleBoxFlat_6wsf4")
-text = "Back"
-
 [connection signal="pressed" from="Main_buttons/Play_button" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Main_buttons/Settings_button" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Main_buttons/Exit_button" to="." method="_on_exit_pressed"]
-[connection signal="pressed" from="SettingsMenu/Back_button" to="." method="_on_back_button_pressed"]

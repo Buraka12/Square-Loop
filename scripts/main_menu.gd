@@ -3,6 +3,8 @@ extends Control
 @onready var main_buttons: VBoxContainer = $Main_buttons
 @onready var settings_menu: Panel = $SettingsMenu
 
+
+
 func _ready() -> void:
 		main_buttons.visible = true
 		settings_menu.visible = false
