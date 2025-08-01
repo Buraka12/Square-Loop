@@ -21,7 +21,7 @@ var state : states = states.STOP
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
-		velocity.y += 30
+		velocity.y += 40
 	
 	if Input.is_action_just_pressed("dodge"):
 		dodge()
@@ -29,22 +29,22 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("fire"):
 		fire()
 	
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("up") and is_on_floor():
 		is_jumping = true
 		jump_timer = 0.0
 		velocity.y = jump_velocity
 		
-	if Input.is_action_pressed("ui_accept") and is_jumping:
+	if Input.is_action_pressed("up") and is_jumping:
 		jump_timer += delta
 		if jump_timer < max_jump_time:
 			velocity.y = jump_velocity
 		else:
 			is_jumping = false
 	
-	if Input.is_action_just_released("ui_accept"):
+	if Input.is_action_just_released("up"):
 		is_jumping = false
 	
-	direction = Input.get_axis("ui_left", "ui_right")
+	direction = Input.get_axis("left", "right")
 	if direction:
 		velocity.x = direction * SPEED
 	else:
@@ -62,7 +62,6 @@ func fire():
 func dodge():
 	velocity.x = direction*dodge_speed
 	$HurtBox.set_collision_mask_value(1,false)
-	move_and_slide()
 	
 func die():
 	get_tree().paused = true

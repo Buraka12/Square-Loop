@@ -23,7 +23,6 @@ func _physics_process(delta: float) -> void:
 		look_at_player()
 		direction = -(player.global_position-global_position).normalized()
 	if can_shoot:
-		print("Nasıl AMK")
 		fire()
 
 
@@ -40,7 +39,6 @@ func fire():
 	can_shoot = false
 	state = states.FIRE
 	$AnimationPlayer.play("Shoot")
-	print("Sıkmaya Hazırlanıyor")
 	$Timer.start(1)
 
 func _on_run_area_body_entered(body: Node2D) -> void:
@@ -53,17 +51,14 @@ func _on_run_area_body_exited(body: Node2D) -> void:
 
 func _on_timer_timeout() -> void:
 	if state == states.FIRE:
-		print("Ateş Edecek")
 		shooting = true
 		await get_tree().create_timer(0.4).timeout
-		print("Ateş Etti")
 		$AnimationPlayer.stop()
 		$Laser.frame = 1
 		velocity += direction*tab
 		$Laser/HitBox/CollisionShape2D.disabled = false
 		await get_tree().create_timer(0.4).timeout
 		$Laser/HitBox/CollisionShape2D.disabled = true
-		print("Normale Döndü")
 		shooting = false
 		$AnimationPlayer.play("Normal")
 		$Timer.start(1/fire_rate)

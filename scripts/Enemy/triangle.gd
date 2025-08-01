@@ -15,7 +15,6 @@ var state : states
 
 func _ready() -> void:
 	Global.entity += 1
-	print(Global.entity)
 	state = states.MOVE
 
 func _physics_process(delta: float) -> void:
@@ -24,6 +23,7 @@ func _physics_process(delta: float) -> void:
 	if can_shoot:
 		can_shoot = false
 		velocity = -direction*tab
+		move_and_slide()
 		$Timer.start(1/fire_rate)
 		fire()
 

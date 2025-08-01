@@ -23,6 +23,7 @@ func _physics_process(delta: float) -> void:
 	if can_shoot:
 		can_shoot = false
 		velocity = -direction*tab
+		move_and_slide()
 		$Timer.start(1/fire_rate)
 		fire(direction)
 
