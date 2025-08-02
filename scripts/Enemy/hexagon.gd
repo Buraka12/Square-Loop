@@ -17,7 +17,7 @@ func _physics_process(delta: float) -> void:
 	direction = (player.global_position-global_position).normalized()
 	rotation_degrees+=delta*rot_speed
 
-func die():
+func die(damage = 1):
 	Global.entity -= 1
 	Global.CheckEntity_LevelChange()
 	queue_free()

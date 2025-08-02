@@ -32,7 +32,7 @@ func look_at_player():
 	look_at(player.global_position)
 	rotation_degrees += 90
 
-func die():
+func die(damage = 1):
 	Global.entity -= 1
 	Global.CheckEntity_LevelChange()
 	queue_free()
