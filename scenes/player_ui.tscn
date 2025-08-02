@@ -1,9 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://b5akj6ksqqrlt"]
+[gd_scene load_steps=25 format=3 uid="uid://b5akj6ksqqrlt"]
 
 [ext_resource type="FontFile" uid="uid://cjimgeaiaqp6h" path="res://assets/fonts/ari-w9500.ttf" id="1_1gxuj"]
 [ext_resource type="Script" path="res://scripts/player_ui.gd" id="1_6fsia"]
 [ext_resource type="Shader" path="res://scripts/shaders/blur.gdshader" id="1_hl16e"]
 [ext_resource type="Texture2D" uid="uid://cemopkriafivs" path="res://assets/sprites/ammo.png" id="4_gebf4"]
+[ext_resource type="Texture2D" uid="uid://djwxihumsbd8u" path="res://assets/sprites/dodge.png" id="5_36tg6"]
+[ext_resource type="Texture2D" uid="uid://bwxvjwtr42c5o" path="res://assets/sprites/dash.png" id="6_omwhv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d3s1c"]
 shader = ExtResource("1_hl16e")
@@ -26,46 +28,53 @@ border_width_bottom = 1
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rfgfa"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8rqwh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bvb6e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mjvfc"]
 bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+corner_radius_top_left = 1
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3qis4"]
 bg_color = Color(0.164706, 0.164706, 0.164706, 0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
 border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+corner_radius_top_left = 1
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3rbcj"]
+
+[sub_resource type="Gradient" id="Gradient_8uq4m"]
+offsets = PackedFloat32Array(0, 0.357414, 1)
+colors = PackedColorArray(0.154226, 0.197938, 0.615399, 1, 0.262116, 0.312376, 0.685577, 1, 0.551696, 0.635283, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gre21"]
+gradient = SubResource("Gradient_8uq4m")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6kfex"]
 
 [sub_resource type="Animation" id="Animation_ecuqy"]
 resource_name = "reloading_ui"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ammo_and_dodge/reload_ui/reload:size")
+tracks/0/path = NodePath("ammo_and_dodge_and_laser/reload_ui/reload:size")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 19), Vector2(125, 19)]
+"values": [Vector2(1, 13), Vector2(28, 13)]
 }
 
 [sub_resource type="Animation" id="Animation_5knxx"]
@@ -73,19 +82,111 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ammo_and_dodge/reload_ui/reload:size")
+tracks/0/path = NodePath("ammo_and_dodge_and_laser/laser_ui/gradient:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 19)]
+"values": [Vector2(1.40625, 0.3125)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ammo_and_dodge_and_laser/reload_ui/reload:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(28, 16)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ammo_and_dodge_and_laser/dodge_ui/dodge:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2p274"]
+resource_name = "laser_reload"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ammo_and_dodge_and_laser/laser_ui/gradient:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.015625, 0.3125), Vector2(1.40625, 0.3125)]
+}
+
+[sub_resource type="Animation" id="Animation_teglw"]
+resource_name = "laser_use"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ammo_and_dodge_and_laser/laser_ui/gradient:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.40625, 0.3125), Vector2(0.015625, 0.3125)]
+}
+
+[sub_resource type="Animation" id="Animation_w4lsl"]
+resource_name = "dodge_using"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ammo_and_dodge_and_laser/dodge_ui/dodge:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.27451)]
+}
+
+[sub_resource type="Animation" id="Animation_7kp2m"]
+resource_name = "dodge_reload"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ammo_and_dodge_and_laser/dodge_ui/dodge:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.27451), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a875l"]
 _data = {
 "RESET": SubResource("Animation_5knxx"),
+"dodge_reload": SubResource("Animation_7kp2m"),
+"dodge_using": SubResource("Animation_w4lsl"),
+"laser_reload": SubResource("Animation_2p274"),
+"laser_use": SubResource("Animation_teglw"),
 "reloading_ui": SubResource("Animation_ecuqy")
 }
 
@@ -142,79 +243,120 @@ text = "Enemy Left"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ammo_and_dodge" type="Panel" parent="."]
+[node name="ammo_and_dodge_and_laser" type="Panel" parent="."]
 material = SubResource("ShaderMaterial_d3s1c")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -575.0
-offset_top = 521.0
-offset_right = -435.0
-offset_bottom = 623.0
+offset_left = -571.0
+offset_top = 454.0
+offset_right = -431.0
+offset_bottom = 604.0
 grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_rfgfa")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_8rqwh")
 
-[node name="reload_ui" type="Panel" parent="ammo_and_dodge"]
+[node name="reload_ui" type="Panel" parent="ammo_and_dodge_and_laser"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -70.0
-offset_right = 70.0
-offset_bottom = 103.0
+offset_left = -72.0
+offset_top = 13.0
+offset_right = 68.0
+offset_bottom = 146.0
 grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8lwnm")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bvb6e")
 
-[node name="reload" type="Panel" parent="ammo_and_dodge/reload_ui"]
+[node name="reload" type="Panel" parent="ammo_and_dodge_and_laser/reload_ui"]
 layout_mode = 0
-offset_left = 6.0
-offset_top = 42.0
-offset_right = 6.0
-offset_bottom = 61.0
+offset_left = 98.0
+offset_top = 58.0
+offset_right = 126.0
+offset_bottom = 74.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_mjvfc")
 
-[node name="corner" type="Panel" parent="ammo_and_dodge/reload_ui"]
+[node name="corner" type="Panel" parent="ammo_and_dodge_and_laser/reload_ui"]
 layout_mode = 0
-offset_left = 4.0
-offset_top = 40.0
-offset_right = 132.0
-offset_bottom = 63.0
+offset_left = 97.0
+offset_top = 57.0
+offset_right = 127.0
+offset_bottom = 72.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_3qis4")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ammo_and_dodge"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ammo_and_dodge_and_laser"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -69.0
-offset_top = -51.0
-offset_right = 14.0
-offset_bottom = -12.0
+offset_left = -71.0
+offset_top = -23.0
+offset_right = 12.0
+offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ammo_label" type="Label" parent="ammo_and_dodge/HBoxContainer"]
+[node name="ammo_label" type="Label" parent="ammo_and_dodge_and_laser/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_1gxuj")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 20
 text = "30"
 vertical_alignment = 1
 
-[node name="text" type="Label" parent="ammo_and_dodge/HBoxContainer"]
+[node name="text" type="Label" parent="ammo_and_dodge_and_laser/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_1gxuj")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 20
 text = "/30"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="sprite" type="Sprite2D" parent="ammo_and_dodge/HBoxContainer"]
-position = Vector2(116.875, 22)
+[node name="sprite" type="Sprite2D" parent="ammo_and_dodge_and_laser/HBoxContainer"]
+position = Vector2(78, 21)
 scale = Vector2(2.01562, 2)
 texture = ExtResource("4_gebf4")
 hframes = 4
+
+[node name="laser_ui" type="Panel" parent="ammo_and_dodge_and_laser"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -15.0
+offset_right = 69.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_3rbcj")
+
+[node name="gradient" type="Sprite2D" parent="ammo_and_dodge_and_laser/laser_ui"]
+position = Vector2(34, 38)
+scale = Vector2(1.40625, 0.3125)
+texture = SubResource("GradientTexture2D_gre21")
+centered = false
+
+[node name="sprite" type="Sprite2D" parent="ammo_and_dodge_and_laser/laser_ui"]
+position = Vector2(66.2501, 49)
+scale = Vector2(2.02344, 1.75)
+texture = ExtResource("5_36tg6")
+
+[node name="dodge_ui" type="Panel" parent="ammo_and_dodge_and_laser"]
+layout_mode = 0
+offset_left = -15.0
+offset_top = 9.0
+offset_right = 25.0
+offset_bottom = 49.0
+scale = Vector2(1.32, 1.32)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6kfex")
+
+[node name="dodge" type="Sprite2D" parent="ammo_and_dodge_and_laser/dodge_ui"]
+position = Vector2(19, 20)
+texture = ExtResource("6_omwhv")
+hframes = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

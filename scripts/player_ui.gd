@@ -5,7 +5,7 @@ extends CanvasLayer
 @onready var player: CharacterBody2D = $".."
 
 func _ready() -> void:
-	$ammo_and_dodge/reload_ui/corner.visible = false
+	$ammo_and_dodge_and_laser/reload_ui.visible = false
 
 func _process(delta: float) -> void:
 	enemy.text = str(Global.entity)

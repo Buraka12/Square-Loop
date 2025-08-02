@@ -36,7 +36,7 @@ func _physics_process(delta: float) -> void:
 		reloading = true
 		$ReloadTimer.start(1)
 		$player_ui/AnimationPlayer.play("reloading_ui")
-		$player_ui/ammo_and_dodge/reload_ui/corner.visible = true
+		$player_ui/ammo_and_dodge_and_laser/reload_ui.visible = true
 
 	if Input.is_action_just_pressed("laser") and can_laser:
 		state = states.FIRE
@@ -47,6 +47,8 @@ func _physics_process(delta: float) -> void:
 		can_dodge = false
 		state = states.DODGE
 		$DodgeTimer.start(dodge_dur*delta)
+		$player_ui/AnimationPlayer.play("dodge_using")
+		
 		dodge()
 	
 	#mouse bakma
@@ -67,19 +69,20 @@ func fire():
 	$AnimationPlayer.play("Shoot")
 	$"..".add_child(bullet)
 	ammo -= 1
-	$player_ui/ammo_and_dodge/HBoxContainer/ammo_label.text = str(ammo)
+	$player_ui/ammo_and_dodge_and_laser/HBoxContainer/ammo_label.text = str(ammo)
 	if ammo == 0:
-		$player_ui/ammo_and_dodge/HBoxContainer/sprite.frame = 3
+		$player_ui/ammo_and_dodge_and_laser/HBoxContainer/sprite.frame = 3
 	elif ammo <10:
-		$player_ui/ammo_and_dodge/HBoxContainer/sprite.frame = 2
+		$player_ui/ammo_and_dodge_and_laser/HBoxContainer/sprite.frame = 2
 	elif ammo < 20:
-		$player_ui/ammo_and_dodge/HBoxContainer/sprite.frame = 1
+		$player_ui/ammo_and_dodge_and_laser/HBoxContainer/sprite.frame = 1
 
 func fire_laser():
 	can_laser = false
 	laser.visible = true
 	laser.deactive = false
 	$LaserTimer.start(laser_dur)
+	$player_ui/AnimationPlayer.play("laser_use")
 	
 
 func dodge():
@@ -100,6 +103,7 @@ func _on_dodge_timer_timeout() -> void:
 		state = states.STOP
 		$HurtBox.set_collision_mask_value(1,true)
 		$DodgeTimer.start(dodge_cooldown)
+		$player_ui/AnimationPlayer.play("dodge_reload")
 	else:
 		can_dodge = true
 
@@ -109,9 +113,9 @@ func _on_fire_rate_timer_timeout() -> void:
 func _on_reload_timer_timeout() -> void:
 	ammo = max_ammo
 	reloading = false
-	$player_ui/ammo_and_dodge/reload_ui/corner.visible = false
-	$player_ui/ammo_and_dodge/HBoxContainer/ammo_label.text = str(ammo)
-	$player_ui/ammo_and_dodge/HBoxContainer/sprite.frame = 0
+	$player_ui/ammo_and_dodge_and_laser/reload_ui.visible = false
+	$player_ui/ammo_and_dodge_and_laser/HBoxContainer/ammo_label.text = str(ammo)
+	$player_ui/ammo_and_dodge_and_laser/HBoxContainer/sprite.frame = 0
 
 func _on_laser_timer_timeout() -> void:
 	if laser.visible:
@@ -119,5 +123,6 @@ func _on_laser_timer_timeout() -> void:
 		laser.visible = false
 		laser.deactive = true
 		$LaserTimer.start(laser_cooldown)
+		$player_ui/AnimationPlayer.play("laser_reload")
 	else:
 		can_laser = true
