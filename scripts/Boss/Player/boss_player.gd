@@ -142,6 +142,7 @@ func _on_reload_timer_timeout() -> void:
 	$player_ui/ammo_and_dodge_and_laser/reload_ui/corner.visible = false
 	$player_ui/ammo_and_dodge_and_laser/HBoxContainer/ammo_label.text = str(ammo)
 	$player_ui/ammo_and_dodge_and_laser/HBoxContainer/sprite.frame = 0
+	$player_ui/ammo_and_dodge_and_laser/reload_ui.visible = false
 
 func _on_laser_timer_timeout() -> void:
 	if laser.visible:
@@ -150,6 +151,5 @@ func _on_laser_timer_timeout() -> void:
 		laser.deactive = true
 		$LaserTimer.start(laser_cooldown)
 		$player_ui/AnimationPlayer.play("laser_reload")
-		$player_ui/ammo_and_dodge_and_laser/reload_ui.visible = false
 	else:
 		can_laser = true
