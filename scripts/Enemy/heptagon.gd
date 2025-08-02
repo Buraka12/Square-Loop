@@ -35,7 +35,7 @@ func die(_damage = 1):
 	Global.entity -= 1
 	Global.next = true
 	Global.CheckEntity_LevelChange()
-	queue_free()
+	call_deferred("queue_free")
 
 func fire():
 	can_shoot = false

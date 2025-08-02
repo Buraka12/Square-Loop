@@ -17,7 +17,7 @@ func _ready() -> void:
 	Global.entity += 1
 	state = states.MOVE
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	direction = (player.global_position-global_position).normalized()
 	look_at_player()
 	if can_shoot:
@@ -25,19 +25,19 @@ func _physics_process(delta: float) -> void:
 		velocity = -direction*tab
 		move_and_slide()
 		$Timer.start(1/fire_rate)
-		fire(direction)
+		fire()
 
 func look_at_player():
 	look_at(player.global_position)
 	rotation_degrees += 90
 
-func die(damage = 1):
+func die(_damage = 1):
 	Global.entity -= 1
 	Global.next = true
 	Global.CheckEntity_LevelChange()
-	queue_free()
+	call_deferred("queue_free")
 
-func fire(direction):
+func fire():
 	var offsets = [-16, 0, 16]
 	var dist = Vector2(-direction.y, direction.x)
 	var a : int = 0

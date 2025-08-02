@@ -17,7 +17,7 @@ func _ready() -> void:
 	Global.entity += 1
 	state = states.MOVE
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	look_at_player()
 	direction = (player.global_position-global_position).normalized()
 	if can_shoot:
@@ -32,11 +32,11 @@ func look_at_player():
 	look_at(player.global_position)
 	rotation_degrees += 90
 
-func die(damage = 1):
+func die(_damage = 1):
 	Global.entity -= 1
 	Global.next = true
+	call_deferred("queue_free")
 	Global.CheckEntity_LevelChange()
-	queue_free()
 
 func fire():
 	var bullet = bulletscene.instantiate()

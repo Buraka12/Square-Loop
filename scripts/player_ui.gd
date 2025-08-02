@@ -1,7 +1,7 @@
 extends CanvasLayer
 @onready var enemy: Label = $"enemy count/HBoxContainer/enemy"
-@onready var ammolabel: Label = $ammo/HBoxContainer/ammo
-@onready var sprite: Sprite2D = $ammo/HBoxContainer/sprite
+@onready var ammolabel: Label = $ammo_and_dodge_and_laser/HBoxContainer/ammo_label
+@onready var sprite: Sprite2D = $ammo_and_dodge_and_laser/HBoxContainer/sprite
 @onready var player: CharacterBody2D = $".."
 
 @export var dodge_state : Color

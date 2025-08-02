@@ -16,7 +16,7 @@ var can_laser : bool = true
 
 var direction : float
 
-var dodge_dur : float = 4
+var dodge_dur : float = 6.5
 var dodge_speed : float = 1200
 var dodge_cooldown : float = 0.7
 var can_dodge : bool = true
@@ -118,7 +118,7 @@ func dodge():
 	state = states.STOP
 	
 func die(_damage = 1):
-	if state != states.DODGE:
+	if state != states.DODGE and !Global.end:
 		get_tree().paused = true
 		state = states.DEAD
 		Global.entity = 0

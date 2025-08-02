@@ -49,7 +49,7 @@ func returnMainMenu():
 
 func restart():
 	Global.entity = 0
-	Global.level -= 1
+	Global.next = false
 	Global.CheckEntity_LevelChange()
 	
 func get_random_message() -> String:

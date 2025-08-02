@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var health : int = 150
+var health : int = 5
 
 var bullet_scene : PackedScene = load("res://scenes/enemy_bullet.tscn")
 var fire_rate : float = 6.0
@@ -56,7 +56,7 @@ func die(damage = 1):
 	if $"..".start:
 		health -= damage
 		print(health)
-		if health<0:
+		if health<=0:
 			Global.end = true
 			$"..".find_child("BossAnimations").play("End")
 			$AnimationPlayer.play("Dead")

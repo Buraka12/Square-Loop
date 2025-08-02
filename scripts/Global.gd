@@ -20,6 +20,12 @@ func CheckEntity_LevelChange():
 			next_file = "res://scenes/Boss/boss_room.tscn"
 		else:
 			var now_level = str(level)
-			next_file = "res://scenes/levels/level_"+ now_level +".tscn"
-		get_tree().change_scene_to_file(next_file)
+			next_file = "res://scenes/levels/level_" + now_level + ".tscn"
+		
+		# Deferred çağır, fizik sırasında değil
+		call_deferred("_change_scene", next_file)
+
+# Bu fonksiyon fizik dışı bir anda çağrılır
+func _change_scene(path: String) -> void:
+	get_tree().change_scene_to_file(path)
 		

@@ -4,7 +4,7 @@ extends CharacterBody2D
 
 var direction = Vector2.ZERO
 var dodge_speed : float = 800.0
-var dodge_dur : float = 5
+var dodge_dur : float = 6.5
 var dodge_cooldown : float = 0.4
 var can_dodge : bool = true
 
@@ -96,7 +96,7 @@ func dodge():
 	velocity = direction.normalized()*dodge_speed
 	$HurtBox.set_collision_mask_value(1,false)
 	
-func die(damage = 1):
+func die(_damage = 1):
 	if state != states.DODGE:
 		get_tree().paused = true
 		state = states.DEAD
