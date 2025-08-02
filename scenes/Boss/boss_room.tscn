@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dg0jnidxst3s0"]
+[gd_scene load_steps=31 format=3 uid="uid://dg0jnidxst3s0"]
 
 [ext_resource type="Texture2D" uid="uid://bqa7cpf4unqhh" path="res://assets/sprites/Boss/Boss_Tileset.png" id="1_3j2pb"]
 [ext_resource type="Script" path="res://scripts/Boss/boss_room.gd" id="1_wjv1j"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bwui2yn1j2bip" path="res://scenes/laser.tscn" id="5_6vrey"]
 [ext_resource type="PackedScene" uid="uid://xjuylb30biad" path="res://scenes/Boss/line_lazer.tscn" id="7_fahfu"]
 [ext_resource type="Texture2D" uid="uid://cfw8btpmgni2w" path="res://assets/sprites/Boss/BossRoomBackGround.png" id="8_8wbym"]
+[ext_resource type="Script" path="res://scripts/enddoor.gd" id="9_0tltu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hjdnd"]
 texture = ExtResource("1_3j2pb")
@@ -756,18 +757,200 @@ tracks/3/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_llj71"]
+resource_name = "End"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HorizantalLazerArea1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HorizantalLazerArea2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HorizantalLazerArea3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HorizantalLazerArea4:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HorizantalLazerArea5:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HorizantalLazerArea6:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HorizantalLazerArea7:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("HorizantalLazerArea8:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("LineLazer2:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("LineLazer:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("LineLazer3:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_8asng"]
+resource_name = "Door"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(829, 735), Vector2(829, 507)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Door/PointLight2D:enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_spinb"]
 _data = {
 "BossLazer": SubResource("Animation_78hqq"),
 "Bottom_Empty_Lazer": SubResource("Animation_lktpd"),
 "Bottom_Lazer": SubResource("Animation_8jnfm"),
 "Corner_Lazer": SubResource("Animation_2vffo"),
+"Door": SubResource("Animation_8asng"),
+"End": SubResource("Animation_llj71"),
 "Line_Lazer": SubResource("Animation_8vccg"),
 "Middle_Empty_Lazer": SubResource("Animation_alqvr"),
 "Middle_Lazer": SubResource("Animation_3jrs3"),
 "Player_Start": SubResource("Animation_6j24g"),
 "Start": SubResource("Animation_7xtd6")
 }
+
+[sub_resource type="Gradient" id="Gradient_iohh4"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ijd4g"]
+gradient = SubResource("Gradient_iohh4")
+fill_to = Vector2(0.0321101, 0.0275229)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qlmts"]
+size = Vector2(64, 63.2687)
+
+[sub_resource type="Gradient" id="Gradient_o17yq"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_r4gmj"]
+gradient = SubResource("Gradient_o17yq")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.766055, 0.206422)
 
 [node name="boos_room" type="Node2D"]
 script = ExtResource("1_wjv1j")
@@ -976,3 +1159,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
+
+[node name="Door" type="Sprite2D" parent="."]
+position = Vector2(829, 735)
+scale = Vector2(1.375, 2.09375)
+texture = SubResource("GradientTexture2D_ijd4g")
+script = ExtResource("9_0tltu")
+
+[node name="Area2D" type="Area2D" parent="Door"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door/Area2D"]
+position = Vector2(0.727234, 0.111954)
+shape = SubResource("RectangleShape2D_qlmts")
+
+[node name="PointLight2D" type="PointLight2D" parent="Door"]
+position = Vector2(3.63637, 6.20897)
+scale = Vector2(3.67046, 2.08955)
+enabled = false
+texture = SubResource("GradientTexture2D_r4gmj")
+
+[connection signal="body_entered" from="Door/Area2D" to="Door" method="_on_area_2d_body_entered"]

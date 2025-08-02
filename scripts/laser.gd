@@ -7,5 +7,5 @@ func _process(_delta: float) -> void:
 	$HitBox/CollisionShape2D.disabled = deactive
 
 func _on_hit_box_area_entered(area: Node2D) -> void:
-	if area.name == "HurtBox":
+	if area.name == "HurtBox" and !Global.end:
 		area.get_parent().die(5)
