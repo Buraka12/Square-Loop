@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5akj6ksqqrlt"]
+
+[ext_resource type="FontFile" uid="uid://cjimgeaiaqp6h" path="res://assets/fonts/ari-w9500.ttf" id="1_1gxuj"]
+[ext_resource type="Script" path="res://scripts/player_ui.gd" id="1_6fsia"]
+[ext_resource type="Shader" path="res://scripts/shaders/blur.gdshader" id="1_hl16e"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d3s1c"]
+shader = ExtResource("1_hl16e")
+shader_parameter/blur = 1.0
+shader_parameter/brightness = 0.85
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8lwnm"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="player_ui" type="CanvasLayer"]
+script = ExtResource("1_6fsia")
+
+[node name="Panel" type="Panel" parent="."]
+material = SubResource("ShaderMaterial_d3s1c")
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -113.5
+offset_right = 113.5
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8lwnm")
+
+[node name="Panel2" type="Panel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -113.5
+offset_right = 113.5
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8lwnm")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -113.5
+offset_top = -3.0
+offset_right = 113.5
+offset_bottom = 37.0
+grow_horizontal = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="enemy" type="Label" parent="Panel/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1gxuj")
+theme_override_font_sizes/font_size = 30
+text = " "
+vertical_alignment = 1
+
+[node name="e_left" type="Label" parent="Panel/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1gxuj")
+theme_override_font_sizes/font_size = 30
+text = "Enemy Left"
+horizontal_alignment = 1
+vertical_alignment = 1
