@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var health : int = 1
+var health : int = 150
 
 var bullet_scene : PackedScene = load("res://scenes/enemy_bullet.tscn")
 var fire_rate : float = 6.0
