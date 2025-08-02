@@ -99,12 +99,9 @@ one_shot = true
 [node name="HurtBox" parent="." instance=ExtResource("4_n5wqi")]
 
 [node name="Pause_menu" parent="." instance=ExtResource("6_3yog2")]
-visible = false
 
 [node name="Die_menu" parent="." instance=ExtResource("7_uhin1")]
-visible = false
 
 [node name="level_start" parent="." instance=ExtResource("5_o8l77")]
-visible = false
 
 [connection signal="timeout" from="DodgeTimer" to="." method="_on_dodge_timer_timeout"]

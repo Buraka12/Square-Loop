@@ -193,6 +193,10 @@ action_name = "dodge"
 layout_mode = 2
 action_name = "fire"
 
+[node name="key_Bind8" parent="TabContainer/Keybinding/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_ql2om")]
+layout_mode = 2
+action_name = "laser"
+
 [node name="key_Bind7" parent="TabContainer/Keybinding/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_ql2om")]
 layout_mode = 2
 action_name = "reload"

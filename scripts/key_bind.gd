@@ -30,6 +30,8 @@ func set_action_name() -> void:
 			label.text = "Use Fire"
 		"reload":
 			label.text = "Use Reload"
+		"laser":
+			label.text = "Use Laser"
 			
 
 		

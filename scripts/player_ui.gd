@@ -4,5 +4,8 @@ extends CanvasLayer
 @onready var sprite: Sprite2D = $ammo/HBoxContainer/sprite
 @onready var player: CharacterBody2D = $".."
 
+func _ready() -> void:
+	$ammo_and_dodge/reload_ui/corner.visible = false
+
 func _process(delta: float) -> void:
 	enemy.text = str(Global.entity)

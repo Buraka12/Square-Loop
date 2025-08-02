@@ -35,7 +35,9 @@ func _physics_process(delta: float) -> void:
 	if ammo != max_ammo and Input.is_action_just_pressed("reload"):
 		reloading = true
 		$ReloadTimer.start(1)
-	
+		$player_ui/AnimationPlayer.play("reloading_ui")
+		$player_ui/ammo_and_dodge/reload_ui/corner.visible = true
+
 	if Input.is_action_just_pressed("laser") and can_laser:
 		state = states.FIRE
 		velocity += (global_position-get_global_mouse_position()).normalized()*laser_tab
@@ -66,6 +68,15 @@ func fire():
 	$"..".add_child(bullet)
 	ammo -= 1
 	$player_ui/ammo_and_dodge/HBoxContainer/ammo_label.text = str(ammo)
+	if ammo == 0:
+		$player_ui/ammo_and_dodge/HBoxContainer/sprite.frame = 3
+	elif ammo <10:
+		$player_ui/ammo_and_dodge/HBoxContainer/sprite.frame = 2
+	elif ammo < 20:
+		$player_ui/ammo_and_dodge/HBoxContainer/sprite.frame = 1
+
+		
+		
 
 func fire_laser():
 	can_laser = false
@@ -101,6 +112,9 @@ func _on_fire_rate_timer_timeout() -> void:
 func _on_reload_timer_timeout() -> void:
 	ammo = max_ammo
 	reloading = false
+	$player_ui/ammo_and_dodge/reload_ui/corner.visible = false
+	$player_ui/ammo_and_dodge/HBoxContainer/ammo_label.text = str(ammo)
+	$player_ui/ammo_and_dodge/HBoxContainer/sprite.frame = 0
 
 func _on_laser_timer_timeout() -> void:
 	if laser.visible:

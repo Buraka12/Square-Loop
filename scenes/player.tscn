@@ -6,10 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://bjf3l5xyt7dij" path="res://scenes/Components/move_comp.tscn" id="3_pnfas"]
 [ext_resource type="PackedScene" uid="uid://bu3t5xqkxhiij" path="res://scenes/Components/hurt_box.tscn" id="4_lg3dq"]
 [ext_resource type="PackedScene" uid="uid://budh2sxits8vi" path="res://scenes/level_start.tscn" id="6_go2uh"]
-[ext_resource type="PackedScene" path="res://scenes/player_ui.tscn" id="6_ivp2n"]
+[ext_resource type="PackedScene" uid="uid://b5akj6ksqqrlt" path="res://scenes/player_ui.tscn" id="6_ivp2n"]
 [ext_resource type="PackedScene" uid="uid://y2sekauyqslo" path="res://scenes/pause_menu.tscn" id="7_fjoyw"]
 [ext_resource type="PackedScene" uid="uid://bdmpahix5qjbf" path="res://scenes/die_menu.tscn" id="8_vbs77"]
-[ext_resource type="PackedScene" uid="uid://dwf57g8aocwp5" path="res://scenes/player_laser.tscn" id="10_tsgo4"]
+[ext_resource type="PackedScene" path="res://scenes/player_laser.tscn" id="10_tsgo4"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_8dgsr"]
 diffuse_texture = ExtResource("2_2e2v8")
@@ -68,6 +68,7 @@ script = ExtResource("1_baftj")
 rotation = 1.5708
 texture = SubResource("CanvasTexture_8dgsr")
 hframes = 2
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_pqs21")
@@ -92,7 +93,6 @@ position = Vector2(34, 1)
 
 [node name="PointLight2D" type="PointLight2D" parent="Marker2D"]
 scale = Vector2(2, 2)
-enabled = false
 color = Color(0.541176, 0.698039, 0.984314, 1)
 texture = SubResource("GradientTexture2D_tojss")
 
