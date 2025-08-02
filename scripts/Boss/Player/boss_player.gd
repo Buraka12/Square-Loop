@@ -6,8 +6,10 @@ var bulletscene : PackedScene = preload("res://scenes/player_bullet.tscn")
 
 var direction : float
 
-var dodge_dur : float = 0.2
-var dodge_speed : float = 800.0
+var dodge_dur : float = 4
+var dodge_speed : float = 1200
+var dodge_cooldown : float = 0.7
+var can_dodge : bool = true
 
 const SPEED = 400.0
 
@@ -29,7 +31,9 @@ func _physics_process(delta: float) -> void:
 		velocity.y += 40
 	
 	if Input.is_action_just_pressed("dodge") and state != states.DODGE:
+		can_dodge = false
 		state = states.DODGE
+		$DodgeTimer.start(dodge_dur*delta)
 		dodge()
 	
 	if Input.is_action_just_pressed("fire"):
@@ -73,8 +77,17 @@ func dodge():
 	state = states.STOP
 	
 func die():
-	get_tree().paused = true
-	state = states.DEAD
-	Global.entity = 0
-	die_menu.show_game_over_message()
-	die_menu.visible = true
+	if state != states.DODGE:
+		get_tree().paused = true
+		state = states.DEAD
+		Global.entity = 0
+		die_menu.show_game_over_message()
+		die_menu.visible = true
+	
+func _on_dodge_timer_timeout() -> void:
+	if state == states.DODGE:
+		state = states.STOP
+		$HurtBox.set_collision_mask_value(1,true)
+		$DodgeTimer.start(dodge_cooldown)
+	else:
+		can_dodge = true

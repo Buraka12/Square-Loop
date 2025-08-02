@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dg0jnidxst3s0"]
+[gd_scene load_steps=22 format=3 uid="uid://dg0jnidxst3s0"]
 
 [ext_resource type="Texture2D" uid="uid://bqa7cpf4unqhh" path="res://assets/sprites/Boss/Boss_Tileset.png" id="1_3j2pb"]
 [ext_resource type="Script" path="res://scripts/Boss/boss_room.gd" id="1_wjv1j"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dprurrx63v3im" path="res://assets/sprites/Warning.png" id="4_25wcd"]
 [ext_resource type="PackedScene" uid="uid://bwui2yn1j2bip" path="res://scenes/laser.tscn" id="5_6vrey"]
 [ext_resource type="PackedScene" uid="uid://xjuylb30biad" path="res://scenes/Boss/line_lazer.tscn" id="7_fahfu"]
+[ext_resource type="Texture2D" uid="uid://cfw8btpmgni2w" path="res://assets/sprites/Boss/BossRoomBackGround.png" id="8_8wbym"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hjdnd"]
 texture = ExtResource("1_3j2pb")
@@ -859,4 +860,13 @@ position = Vector2(-35, 548)
 position = Vector2(1264, 484)
 
 [node name="LineLazer3" parent="." instance=ExtResource("7_fahfu")]
-position = Vector2(1264, 421)
+position = Vector2(730, 497)
+
+[node name="BackGround" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(573, 324)
+texture = ExtResource("8_8wbym")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+energy = 0.4
+blend_mode = 1

@@ -1,8 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://xjuylb30biad"]
+[gd_scene load_steps=6 format=3 uid="uid://xjuylb30biad"]
 
 [ext_resource type="Texture2D" uid="uid://1tetvt28dnx6" path="res://assets/sprites/Boss/LineLazer.png" id="1_cv3fm"]
 [ext_resource type="PackedScene" uid="uid://dtij3gf5j2so8" path="res://scenes/Components/hit_box.tscn" id="2_o7v2w"]
 [ext_resource type="Script" path="res://scripts/laser.gd" id="2_xn7t6"]
+
+[sub_resource type="Gradient" id="Gradient_tovgq"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ab1rp"]
+gradient = SubResource("Gradient_tovgq")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.922018, 0.119266)
 
 [node name="LineLazer" type="Sprite2D"]
 texture = ExtResource("1_cv3fm")
@@ -12,5 +21,12 @@ script = ExtResource("2_xn7t6")
 scale = Vector2(0.5, 6)
 collision_layer = 16
 collision_mask = 1
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0.249999, 0)
+scale = Vector2(2, 2)
+color = Color(0.854902, 0.207843, 0.207843, 1)
+energy = 2.0
+texture = SubResource("GradientTexture2D_ab1rp")
 
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]

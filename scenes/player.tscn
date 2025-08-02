@@ -79,7 +79,7 @@ limit_right = 1760
 limit_bottom = 1760
 position_smoothing_enabled = true
 
-[node name="Timer" type="Timer" parent="."]
+[node name="FireRateTimer" type="Timer" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -115,4 +115,9 @@ scale = Vector2(1.1, 1.1)
 
 [node name="Die_menu" parent="." instance=ExtResource("8_vbs77")]
 
+[node name="ReloadTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="FireRateTimer" to="." method="_on_fire_rate_timer_timeout"]
 [connection signal="timeout" from="DodgeTimer" to="." method="_on_dodge_timer_timeout"]
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]

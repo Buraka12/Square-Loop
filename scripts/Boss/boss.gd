@@ -40,6 +40,7 @@ func fire():
 	$"..".add_child(bullet)
 
 func die():
+	print(health)
 	health -= 1
 	if health < 0:
 		$AnimationPlayer.play("Dead")
