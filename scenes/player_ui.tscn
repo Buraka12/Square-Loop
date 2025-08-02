@@ -67,33 +67,61 @@ gradient = SubResource("Gradient_8uq4m")
 [sub_resource type="Animation" id="Animation_7kp2m"]
 resource_name = "dodge_reload"
 length = 0.4
-tracks/0/type = "value"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ammo_and_dodge_and_laser/dodge_ui/dodge:modulate")
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"dodge_anim"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:dodge_state")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0.27451), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_w4lsl"]
 resource_name = "dodge_using"
 length = 0.1
-tracks/0/type = "value"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ammo_and_dodge_and_laser/dodge_ui/dodge:modulate")
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"dodge_anim"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:dodge_state")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.27451)]
+"values": [Color(1, 1, 1, 0.27451)]
 }
 
 [sub_resource type="Animation" id="Animation_2p274"]
@@ -111,6 +139,44 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0.015625, 0.3125), Vector2(1.40625, 0.3125)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:laser_dur")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [4.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:laser_state")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.406]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"laser_anim"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_teglw"]
 resource_name = "laser_use"
@@ -118,29 +184,55 @@ length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ammo_and_dodge_and_laser/laser_ui/gradient:scale")
+tracks/0/path = NodePath(".:laser_state")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1.40625, 0.3125), Vector2(0.015625, 0.3125)]
+"values": [0.016]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:laser_dur")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.4]
 }
 
 [sub_resource type="Animation" id="Animation_ecuqy"]
 resource_name = "reloading_ui"
-tracks/0/type = "value"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ammo_and_dodge_and_laser/reload_ui/reload:size")
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1, 13), Vector2(28, 13)]
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"reload_anim"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:reload_state")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [28]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a875l"]
@@ -154,6 +246,10 @@ _data = {
 
 [node name="player_ui" type="CanvasLayer"]
 script = ExtResource("1_6fsia")
+dodge_state = Color(1, 1, 1, 1)
+laser_state = 0.016
+reload_state = 28
+laser_dur = 0.4
 
 [node name="enemy count" type="Panel" parent="."]
 material = SubResource("ShaderMaterial_d3s1c")
@@ -233,8 +329,8 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_bvb6e")
 layout_mode = 0
 offset_left = 98.0
 offset_top = 58.0
-offset_right = 126.0
-offset_bottom = 74.0
+offset_right = 99.0
+offset_bottom = 71.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_mjvfc")
 
 [node name="corner" type="Panel" parent="ammo_and_dodge_and_laser/reload_ui"]
@@ -297,7 +393,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_3rbcj")
 
 [node name="gradient" type="Sprite2D" parent="ammo_and_dodge_and_laser/laser_ui"]
 position = Vector2(34, 38)
-scale = Vector2(1.40625, 0.3125)
+scale = Vector2(1.406, 0.313)
 texture = SubResource("GradientTexture2D_gre21")
 centered = false
 

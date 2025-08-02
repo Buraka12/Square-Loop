@@ -57,7 +57,7 @@ func _physics_process(delta: float) -> void:
 		reloading = true
 		$ReloadTimer.start(1)
 		$player_ui/AnimationPlayer.play("reloading_ui")
-		$player_ui/ammo_and_dodge_and_laser/reload_ui/corner.visible = true
+		$player_ui/ammo_and_dodge_and_laser/reload_ui.visible = true
 
 	if Input.is_action_just_pressed("laser") and can_laser:
 		state = states.FIRE
@@ -150,5 +150,6 @@ func _on_laser_timer_timeout() -> void:
 		laser.deactive = true
 		$LaserTimer.start(laser_cooldown)
 		$player_ui/AnimationPlayer.play("laser_reload")
+		$player_ui/ammo_and_dodge_and_laser/reload_ui.visible = false
 	else:
 		can_laser = true
