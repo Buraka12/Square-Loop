@@ -17,6 +17,7 @@ func _ready() -> void:
 	Global.entity += 1
 	print(Global.entity)
 	state = states.MOVE
+	$Laser.deactive = true
 
 func _physics_process(delta: float) -> void:
 	if !shooting:
@@ -56,9 +57,9 @@ func _on_timer_timeout() -> void:
 		$AnimationPlayer.stop()
 		$Laser.frame = 1
 		velocity += direction*tab
-		$Laser/HitBox/CollisionShape2D.disabled = false
+		$Laser.deactive = false
 		await get_tree().create_timer(0.4).timeout
-		$Laser/HitBox/CollisionShape2D.disabled = true
+		$Laser.deactive = true
 		shooting = false
 		$AnimationPlayer.play("Normal")
 		$Timer.start(1/fire_rate)

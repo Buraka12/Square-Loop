@@ -5,7 +5,7 @@ extends CharacterBody2D
 
 @onready var bulletscene : PackedScene = load("res://scenes/enemy_bullet.tscn")
 var can_shoot : bool = true
-var fire_rate : float = 1
+var fire_rate : float = 0.6
 var tab : float = 400.0
 
 var direction : Vector2

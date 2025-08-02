@@ -1,8 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dg0jnidxst3s0"]
+[gd_scene load_steps=16 format=3 uid="uid://dg0jnidxst3s0"]
 
 [ext_resource type="Texture2D" uid="uid://bqa7cpf4unqhh" path="res://assets/sprites/Boss/Boss_Tileset.png" id="1_3j2pb"]
+[ext_resource type="Script" path="res://scripts/Boss/boss_room.gd" id="1_wjv1j"]
 [ext_resource type="PackedScene" uid="uid://cf2ojhqia3yvw" path="res://scenes/Boss/BossPlayer/BossPlayer.tscn" id="2_o82pf"]
 [ext_resource type="PackedScene" uid="uid://b7uvgmguum755" path="res://scenes/Boss/boss.tscn" id="3_7kpf1"]
+[ext_resource type="Texture2D" uid="uid://dprurrx63v3im" path="res://assets/sprites/Warning.png" id="4_25wcd"]
+[ext_resource type="PackedScene" uid="uid://bwui2yn1j2bip" path="res://scenes/laser.tscn" id="5_6vrey"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hjdnd"]
 texture = ExtResource("1_3j2pb")
@@ -44,7 +47,535 @@ size = Vector2(141, 545)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cp2m1"]
 size = Vector2(94, 532)
 
-[node name="BossRoom" type="Node2D"]
+[sub_resource type="Animation" id="Animation_7xtd6"]
+resource_name = "Start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Boss:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.866667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(576, 785), Vector2(576, 149)]
+}
+
+[sub_resource type="Animation" id="Animation_2vffo"]
+resource_name = "Corner_Lazer"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HorizantalLazerArea1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HorizantalLazerArea2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HorizantalLazerArea3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HorizantalLazerArea6:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HorizantalLazerArea7:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HorizantalLazerArea8:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HorizantalLazerArea1/Laser1:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(1.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("HorizantalLazerArea1/Laser1:deactive")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("HorizantalLazerArea2/Laser2:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(1.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("HorizantalLazerArea2/Laser2:deactive")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(1.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("HorizantalLazerArea3/Laser3:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(1.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("HorizantalLazerArea3/Laser3:deactive")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(1.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("HorizantalLazerArea6/Laser6:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(1.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("HorizantalLazerArea6/Laser6:deactive")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(1.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("HorizantalLazerArea7/Laser7:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(1.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("HorizantalLazerArea7/Laser7:deactive")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(1.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("HorizantalLazerArea8/Laser8:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(1.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("HorizantalLazerArea8/Laser8:deactive")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(1.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_8vccg"]
+resource_name = "Line_Lazer"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HorizantalLazerArea1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HorizantalLazerArea3:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HorizantalLazerArea8:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HorizantalLazerArea6:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HorizantalLazerArea1/Laser1:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HorizantalLazerArea1/Laser1:deactive")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HorizantalLazerArea3/Laser3:deactive")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(1.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("HorizantalLazerArea3/Laser3:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("HorizantalLazerArea6/Laser6:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(1.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("HorizantalLazerArea6/Laser6:deactive")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(1.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("HorizantalLazerArea8/Laser8:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(1.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("HorizantalLazerArea8/Laser8:deactive")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(1.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_3jrs3"]
+resource_name = "Middle_Lazer"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HorizantalLazerArea3:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HorizantalLazerArea4:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HorizantalLazerArea5:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HorizantalLazerArea6:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HorizantalLazerArea5/Laser5:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HorizantalLazerArea5/Laser5:deactive")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HorizantalLazerArea4/Laser4:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(1.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("HorizantalLazerArea4/Laser4:deactive")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("HorizantalLazerArea3/Laser3:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(1.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("HorizantalLazerArea3/Laser3:deactive")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(1.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("HorizantalLazerArea6/Laser6:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(1.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_spinb"]
+_data = {
+"Corner_Lazer": SubResource("Animation_2vffo"),
+"Line_Lazer": SubResource("Animation_8vccg"),
+"Middle_Lazer": SubResource("Animation_3jrs3"),
+"Start": SubResource("Animation_7xtd6")
+}
+
+[node name="boos_room" type="Node2D"]
+script = ExtResource("1_wjv1j")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_hb65h")
@@ -53,7 +584,7 @@ layer_0/name = "Ground"
 layer_0/tile_data = PackedInt32Array(1310760, 0, 1, 1245224, 0, 1, 1179688, 0, 0, 1310759, 0, 1, 1245223, 0, 1, 1179687, 0, 0, 1310758, 0, 1, 1245222, 0, 1, 1179686, 0, 0, 1310757, 0, 1, 1245221, 0, 1, 1179685, 0, 0, 1310756, 0, 1, 1245220, 0, 1, 1179684, 0, 0, 1310755, 0, 1, 1245219, 0, 1, 1179683, 0, 0, 1310754, 0, 1, 1245218, 0, 1, 1179682, 0, 0, 1310753, 0, 1, 1245217, 0, 1, 1179681, 0, 0, 1310752, 0, 1, 1245216, 0, 1, 1179680, 0, 0, 1310751, 0, 1, 1245215, 0, 1, 1179679, 0, 0, 1310750, 0, 1, 1245214, 0, 1, 1179678, 0, 0, 1310749, 0, 1, 1245213, 0, 1, 1179677, 0, 0, 1310748, 0, 1, 1245212, 0, 1, 1179676, 0, 0, 1310747, 0, 1, 1245211, 0, 1, 1179675, 0, 0, 1310746, 0, 1, 1245210, 0, 1, 1179674, 0, 0, 1310745, 0, 1, 1245209, 0, 1, 1179673, 0, 0, 1310744, 0, 1, 1245208, 0, 1, 1179672, 0, 0, 1310743, 0, 1, 1245207, 0, 1, 1179671, 0, 0, 1310742, 0, 1, 1245206, 0, 1, 1179670, 0, 0, 1310741, 0, 1, 1245205, 0, 1, 1179669, 0, 0, 1310740, 0, 1, 1245204, 0, 1, 1179668, 0, 0, 1310739, 0, 1, 1245203, 0, 1, 1179667, 0, 0, 1310738, 0, 1, 1245202, 0, 1, 1179666, 0, 0, 1310737, 0, 1, 1245201, 0, 1, 1179665, 0, 0, 1310736, 0, 1, 1245200, 0, 1, 1179664, 0, 0, 1310735, 0, 1, 1245199, 0, 1, 1179663, 0, 0, 1310734, 0, 1, 1245198, 0, 1, 1179662, 0, 0, 1310733, 0, 1, 1245197, 0, 1, 1179661, 0, 0, 1310732, 0, 1, 1245196, 0, 1, 1179660, 0, 0, 1310731, 0, 1, 1245195, 0, 1, 1179659, 0, 0, 1310730, 0, 1, 1245194, 0, 1, 1179658, 0, 0, 1310729, 0, 1, 1245193, 0, 1, 1179657, 0, 0, 1310728, 0, 1, 1245192, 0, 1, 1179656, 0, 0, 1310727, 0, 1, 1245191, 0, 1, 1179655, 0, 0, 1310726, 0, 1, 1245190, 0, 1, 1179654, 0, 0, 1310725, 0, 1, 1245189, 0, 1, 1179653, 0, 0, 1310724, 0, 1, 1245188, 0, 1, 1179652, 0, 0, 1310723, 0, 1, 1245187, 0, 1, 1179651, 0, 0, 1310722, 0, 1, 1245186, 0, 1, 1179650, 0, 0, 1310721, 0, 1, 1245185, 0, 1, 1179649, 0, 0, 1310720, 0, 1, 1245184, 0, 1, 1179648, 0, 0, 1376255, 0, 1, 1310719, 0, 1, 1245183, 0, 0, 1376254, 0, 1, 1310718, 0, 1, 1245182, 0, 0, 1376253, 0, 1, 1310717, 0, 1, 1245181, 0, 0, 1376252, 0, 1, 1310716, 0, 1, 1245180, 0, 0, 1376251, 0, 1, 1310715, 0, 1, 1245179, 0, 0, 1376250, 0, 1, 1310714, 0, 1, 1245178, 0, 0, 1376249, 0, 1, 1310713, 0, 1, 1245177, 0, 0)
 
 [node name="Player" parent="." instance=ExtResource("2_o82pf")]
-position = Vector2(521, 517)
+position = Vector2(580, 527)
 
 [node name="WallLeft" type="StaticBody2D" parent="."]
 collision_layer = 2
@@ -73,4 +604,145 @@ position = Vector2(46, -266)
 shape = SubResource("RectangleShape2D_cp2m1")
 
 [node name="Boss" parent="." instance=ExtResource("3_7kpf1")]
-position = Vector2(569, 171)
+z_index = -1
+
+[node name="BossAnimations" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_spinb")
+}
+autoplay = "Start"
+
+[node name="HorizantalLazerArea1" type="ColorRect" parent="."]
+visible = false
+offset_right = 144.0
+offset_bottom = 576.0
+color = Color(1, 0, 0.14902, 0.247059)
+
+[node name="Sprite2D" type="Sprite2D" parent="HorizantalLazerArea1"]
+position = Vector2(74, 294)
+texture = ExtResource("4_25wcd")
+
+[node name="Laser1" parent="HorizantalLazerArea1" instance=ExtResource("5_6vrey")]
+visible = false
+position = Vector2(74, 576)
+scale = Vector2(4.7, 11.75)
+deactive = true
+
+[node name="HorizantalLazerArea2" type="ColorRect" parent="."]
+visible = false
+offset_left = 144.0
+offset_right = 288.0
+offset_bottom = 576.0
+color = Color(1, 0, 0.14902, 0.247059)
+
+[node name="Sprite2D" type="Sprite2D" parent="HorizantalLazerArea2"]
+position = Vector2(74, 294)
+texture = ExtResource("4_25wcd")
+
+[node name="Laser2" parent="HorizantalLazerArea2" instance=ExtResource("5_6vrey")]
+visible = false
+position = Vector2(74, 576)
+scale = Vector2(4.7, 11.75)
+deactive = true
+
+[node name="HorizantalLazerArea3" type="ColorRect" parent="."]
+visible = false
+offset_left = 288.0
+offset_right = 432.0
+offset_bottom = 576.0
+color = Color(1, 0, 0.14902, 0.247059)
+
+[node name="Sprite2D" type="Sprite2D" parent="HorizantalLazerArea3"]
+position = Vector2(74, 294)
+texture = ExtResource("4_25wcd")
+
+[node name="Laser3" parent="HorizantalLazerArea3" instance=ExtResource("5_6vrey")]
+visible = false
+position = Vector2(74, 576)
+scale = Vector2(4.7, 11.75)
+deactive = true
+
+[node name="HorizantalLazerArea4" type="ColorRect" parent="."]
+visible = false
+offset_left = 432.0
+offset_right = 576.0
+offset_bottom = 576.0
+color = Color(1, 0, 0.14902, 0.247059)
+
+[node name="Sprite2D" type="Sprite2D" parent="HorizantalLazerArea4"]
+position = Vector2(74, 294)
+texture = ExtResource("4_25wcd")
+
+[node name="Laser4" parent="HorizantalLazerArea4" instance=ExtResource("5_6vrey")]
+visible = false
+position = Vector2(74, 576)
+scale = Vector2(4.7, 11.75)
+deactive = true
+
+[node name="HorizantalLazerArea5" type="ColorRect" parent="."]
+visible = false
+offset_left = 576.0
+offset_right = 720.0
+offset_bottom = 576.0
+color = Color(1, 0, 0.14902, 0.247059)
+
+[node name="Sprite2D" type="Sprite2D" parent="HorizantalLazerArea5"]
+position = Vector2(74, 294)
+texture = ExtResource("4_25wcd")
+
+[node name="Laser5" parent="HorizantalLazerArea5" instance=ExtResource("5_6vrey")]
+visible = false
+position = Vector2(74, 576)
+scale = Vector2(4.7, 11.75)
+deactive = true
+
+[node name="HorizantalLazerArea6" type="ColorRect" parent="."]
+visible = false
+offset_left = 720.0
+offset_right = 864.0
+offset_bottom = 576.0
+color = Color(1, 0, 0.14902, 0.247059)
+
+[node name="Sprite2D" type="Sprite2D" parent="HorizantalLazerArea6"]
+position = Vector2(74, 294)
+texture = ExtResource("4_25wcd")
+
+[node name="Laser6" parent="HorizantalLazerArea6" instance=ExtResource("5_6vrey")]
+visible = false
+position = Vector2(74, 576)
+scale = Vector2(4.7, 11.75)
+deactive = true
+
+[node name="HorizantalLazerArea7" type="ColorRect" parent="."]
+visible = false
+offset_left = 864.0
+offset_right = 1008.0
+offset_bottom = 576.0
+color = Color(1, 0, 0.14902, 0.247059)
+
+[node name="Sprite2D" type="Sprite2D" parent="HorizantalLazerArea7"]
+position = Vector2(74, 294)
+texture = ExtResource("4_25wcd")
+
+[node name="Laser7" parent="HorizantalLazerArea7" instance=ExtResource("5_6vrey")]
+visible = false
+position = Vector2(74, 576)
+scale = Vector2(4.7, 11.75)
+deactive = true
+
+[node name="HorizantalLazerArea8" type="ColorRect" parent="."]
+visible = false
+offset_left = 1008.0
+offset_right = 1152.0
+offset_bottom = 576.0
+color = Color(1, 0, 0.14902, 0.247059)
+
+[node name="Sprite2D" type="Sprite2D" parent="HorizantalLazerArea8"]
+position = Vector2(74, 294)
+texture = ExtResource("4_25wcd")
+
+[node name="Laser8" parent="HorizantalLazerArea8" instance=ExtResource("5_6vrey")]
+visible = false
+position = Vector2(74, 576)
+scale = Vector2(4.7, 11.75)
+deactive = true

@@ -31,7 +31,6 @@ collision_layer = 16
 position = Vector2(0, 87.5)
 scale = Vector2(1, 10)
 shape = SubResource("RectangleShape2D_tches")
-disabled = true
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(0, -960)

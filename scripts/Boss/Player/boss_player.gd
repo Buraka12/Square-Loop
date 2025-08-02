@@ -19,22 +19,28 @@ var max_jump_time : float = 0.2
 enum states {MOVE,STOP,FIRE,DODGE,DEAD}
 var state : states = states.STOP
 
+func _ready() -> void:
+	$HurtBox/CollisionShape2D.disabled = true
+	await get_tree().create_timer(0.1).timeout
+	$HurtBox/CollisionShape2D.disabled = false
+
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += 40
 	
-	if Input.is_action_just_pressed("dodge"):
+	if Input.is_action_just_pressed("dodge") and state != states.DODGE:
+		state = states.DODGE
 		dodge()
 	
 	if Input.is_action_just_pressed("fire"):
 		fire()
 	
-	if Input.is_action_just_pressed("up") and is_on_floor():
+	if Input.is_action_just_pressed("up") and is_on_floor() and state != states.DODGE:
 		is_jumping = true
 		jump_timer = 0.0
 		velocity.y = jump_velocity
 		
-	if Input.is_action_pressed("up") and is_jumping:
+	if Input.is_action_pressed("up") and is_jumping and state != states.DODGE:
 		jump_timer += delta
 		if jump_timer < max_jump_time:
 			velocity.y = jump_velocity
@@ -45,10 +51,11 @@ func _physics_process(delta: float) -> void:
 		is_jumping = false
 	
 	direction = Input.get_axis("left", "right")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+	if state != states.DODGE:
+		if direction:
+			velocity.x = direction * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
 
@@ -62,6 +69,8 @@ func fire():
 func dodge():
 	velocity.x = direction*dodge_speed
 	$HurtBox.set_collision_mask_value(1,false)
+	await get_tree().create_timer(dodge_dur).timeout
+	state = states.STOP
 	
 func die():
 	get_tree().paused = true

@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://cf2ojhqia3yvw"]
+[gd_scene load_steps=14 format=3 uid="uid://cf2ojhqia3yvw"]
 
 [ext_resource type="Script" path="res://scripts/Boss/Player/boss_player.gd" id="1_dlp5t"]
 [ext_resource type="Texture2D" uid="uid://dw731i17papw7" path="res://assets/sprites/Player/Player.png" id="1_vn7ry"]
 [ext_resource type="Texture2D" uid="uid://boh8yf3o2x84e" path="res://assets/sprites/Player/Player_n.png" id="2_aasff"]
 [ext_resource type="PackedScene" uid="uid://bu3t5xqkxhiij" path="res://scenes/Components/hurt_box.tscn" id="4_n5wqi"]
+[ext_resource type="PackedScene" uid="uid://budh2sxits8vi" path="res://scenes/level_start.tscn" id="5_o8l77"]
 [ext_resource type="PackedScene" uid="uid://y2sekauyqslo" path="res://scenes/pause_menu.tscn" id="6_3yog2"]
 [ext_resource type="PackedScene" uid="uid://bdmpahix5qjbf" path="res://scenes/die_menu.tscn" id="7_uhin1"]
 
@@ -102,5 +103,7 @@ visible = false
 
 [node name="Die_menu" parent="." instance=ExtResource("7_uhin1")]
 visible = false
+
+[node name="level_start" parent="." instance=ExtResource("5_o8l77")]
 
 [connection signal="timeout" from="DodgeTimer" to="." method="_on_dodge_timer_timeout"]

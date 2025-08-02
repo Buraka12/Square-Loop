@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://b7uvgmguum755"]
+[gd_scene load_steps=11 format=3 uid="uid://b7uvgmguum755"]
 
 [ext_resource type="Script" path="res://scripts/Boss/boss.gd" id="1_iy5h0"]
 [ext_resource type="Texture2D" uid="uid://caxtp6krbnscy" path="res://assets/sprites/Boss/Boss-Sheet.png" id="1_vg20k"]
 [ext_resource type="Texture2D" uid="uid://s43i0p7q2841" path="res://assets/sprites/Boss/Boss-Sheet_n.png" id="2_37qcj"]
+[ext_resource type="PackedScene" uid="uid://bu3t5xqkxhiij" path="res://scenes/Components/hurt_box.tscn" id="4_rlegk"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_20cq5"]
 diffuse_texture = ExtResource("1_vg20k")
@@ -19,10 +20,32 @@ normal_texture = ExtResource("2_37qcj")
 [sub_resource type="CircleShape2D" id="CircleShape2D_seqqx"]
 radius = 78.0577
 
+[sub_resource type="Animation" id="Animation_q1c3d"]
+resource_name = "Idle"
+length = 2.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.2, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(576, 149), Vector2(576, 139), Vector2(576, 149), Vector2(576, 156)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8nv3a"]
+_data = {
+"Idle": SubResource("Animation_q1c3d")
+}
+
 [node name="Boss" type="CharacterBody2D"]
-position = Vector2(591, 262)
+position = Vector2(576, 149)
 collision_layer = 4
-collision_mask = 8
+collision_mask = 0
 script = ExtResource("1_iy5h0")
 
 [node name="Main" type="Sprite2D" parent="."]
@@ -62,3 +85,15 @@ region_rect = Rect2(1150, 122, 3, 8)
 visible = false
 position = Vector2(-2, 15)
 shape = SubResource("CircleShape2D_seqqx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8nv3a")
+}
+autoplay = "Idle"
+
+[node name="HurtBox" parent="." instance=ExtResource("4_rlegk")]
+position = Vector2(-1, 13)
+scale = Vector2(4.5, 4.5)
+collision_layer = 2
+collision_mask = 8

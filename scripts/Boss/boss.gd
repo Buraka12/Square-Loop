@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+var health : int = 150
+
 var times : Dictionary = {
 	"Day":{"Rot":0,"Speed":TAU/5},
 	"Hour":{"Rot":0,"Speed":TAU/2},
@@ -21,3 +23,9 @@ func set_rot(delta):
 		
 		clock.rotation = times[i]["Rot"]
 		pass
+
+func die():
+	health -= 1
+	if health < 0:
+		$AnimationPlayer.play("Dead")
+		get_tree().change_scene_to_file("Son") 

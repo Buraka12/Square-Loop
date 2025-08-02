@@ -49,9 +49,7 @@ func returnMainMenu():
 
 func restart():
 	Global.entity = 0
-	var now_level = str(Global.level)
-	var next_file = "res://scenes/levels/level_"+ now_level +".tscn"
-	get_tree().change_scene_to_file(next_file)
+	Global.CheckEntity_LevelChange()
 	
 func get_random_message() -> String:
 	return death_messages[randi()%death_messages.size()]
