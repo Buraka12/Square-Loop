@@ -21,15 +21,22 @@ bus = &"Music"
 
 [node name="Shoot_Player" type="AudioStreamPlayer" parent="clips"]
 stream = ExtResource("3_cgseb")
+volume_db = -20.0
+bus = &"Sfx"
 
 [node name="Laser_Player" type="AudioStreamPlayer" parent="clips"]
 stream = ExtResource("3_co38v")
+bus = &"Sfx"
 
 [node name="Laser_Enemy" type="AudioStreamPlayer" parent="clips"]
 stream = ExtResource("4_k5g7y")
+bus = &"Sfx"
 
 [node name="Shoot_Triangle" type="AudioStreamPlayer" parent="clips"]
 stream = ExtResource("6_jkrqq")
+volume_db = -20.0
+bus = &"Sfx"
 
 [node name="Shoot_Pentagon" type="AudioStreamPlayer" parent="clips"]
 stream = ExtResource("7_vx3wx")
+bus = &"Sfx"
