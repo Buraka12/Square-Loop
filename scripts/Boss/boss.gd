@@ -39,9 +39,9 @@ func fire():
 	bullet.global_position = global_position
 	$"..".add_child(bullet)
 
-func die():
+func die(damage = 1):
+	health -= damage
 	print(health)
-	health -= 1
 	if health < 0:
 		$AnimationPlayer.play("Dead")
 		get_tree().change_scene_to_file("Son") 
