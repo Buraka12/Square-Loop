@@ -704,19 +704,56 @@ tracks/3/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="Animation" id="Animation_1in4j"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_6j24g"]
+resource_name = "Player_Start"
+length = 4.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:shooting")
+tracks/0/path = NodePath("Player:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(1, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-199, 559), Vector2(576, 559)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transis/ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WallLeft/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.13333),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false]
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WallRight/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.13333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_spinb"]
@@ -728,7 +765,7 @@ _data = {
 "Line_Lazer": SubResource("Animation_8vccg"),
 "Middle_Empty_Lazer": SubResource("Animation_alqvr"),
 "Middle_Lazer": SubResource("Animation_3jrs3"),
-"RESET": SubResource("Animation_1in4j"),
+"Player_Start": SubResource("Animation_6j24g"),
 "Start": SubResource("Animation_7xtd6")
 }
 
@@ -742,7 +779,7 @@ layer_0/name = "Ground"
 layer_0/tile_data = PackedInt32Array(1310760, 0, 1, 1245224, 0, 1, 1179688, 0, 0, 1310759, 0, 1, 1245223, 0, 1, 1179687, 0, 0, 1310758, 0, 1, 1245222, 0, 1, 1179686, 0, 0, 1310757, 0, 1, 1245221, 0, 1, 1179685, 0, 0, 1310756, 0, 1, 1245220, 0, 1, 1179684, 0, 0, 1310755, 0, 1, 1245219, 0, 1, 1179683, 0, 0, 1310754, 0, 1, 1245218, 0, 1, 1179682, 0, 0, 1310753, 0, 1, 1245217, 0, 1, 1179681, 0, 0, 1310752, 0, 1, 1245216, 0, 1, 1179680, 0, 0, 1310751, 0, 1, 1245215, 0, 1, 1179679, 0, 0, 1310750, 0, 1, 1245214, 0, 1, 1179678, 0, 0, 1310749, 0, 1, 1245213, 0, 1, 1179677, 0, 0, 1310748, 0, 1, 1245212, 0, 1, 1179676, 0, 0, 1310747, 0, 1, 1245211, 0, 1, 1179675, 0, 0, 1310746, 0, 1, 1245210, 0, 1, 1179674, 0, 0, 1310745, 0, 1, 1245209, 0, 1, 1179673, 0, 0, 1310744, 0, 1, 1245208, 0, 1, 1179672, 0, 0, 1310743, 0, 1, 1245207, 0, 1, 1179671, 0, 0, 1310742, 0, 1, 1245206, 0, 1, 1179670, 0, 0, 1310741, 0, 1, 1245205, 0, 1, 1179669, 0, 0, 1310740, 0, 1, 1245204, 0, 1, 1179668, 0, 0, 1310739, 0, 1, 1245203, 0, 1, 1179667, 0, 0, 1310738, 0, 1, 1245202, 0, 1, 1179666, 0, 0, 1310737, 0, 1, 1245201, 0, 1, 1179665, 0, 0, 1310736, 0, 1, 1245200, 0, 1, 1179664, 0, 0, 1310735, 0, 1, 1245199, 0, 1, 1179663, 0, 0, 1310734, 0, 1, 1245198, 0, 1, 1179662, 0, 0, 1310733, 0, 1, 1245197, 0, 1, 1179661, 0, 0, 1310732, 0, 1, 1245196, 0, 1, 1179660, 0, 0, 1310731, 0, 1, 1245195, 0, 1, 1179659, 0, 0, 1310730, 0, 1, 1245194, 0, 1, 1179658, 0, 0, 1310729, 0, 1, 1245193, 0, 1, 1179657, 0, 0, 1310728, 0, 1, 1245192, 0, 1, 1179656, 0, 0, 1310727, 0, 1, 1245191, 0, 1, 1179655, 0, 0, 1310726, 0, 1, 1245190, 0, 1, 1179654, 0, 0, 1310725, 0, 1, 1245189, 0, 1, 1179653, 0, 0, 1310724, 0, 1, 1245188, 0, 1, 1179652, 0, 0, 1310723, 0, 1, 1245187, 0, 1, 1179651, 0, 0, 1310722, 0, 1, 1245186, 0, 1, 1179650, 0, 0, 1310721, 0, 1, 1245185, 0, 1, 1179649, 0, 0, 1310720, 0, 1, 1245184, 0, 1, 1179648, 0, 0, 1376255, 0, 1, 1310719, 0, 1, 1245183, 0, 0, 1376254, 0, 1, 1310718, 0, 1, 1245182, 0, 0, 1376253, 0, 1, 1310717, 0, 1, 1245181, 0, 0, 1376252, 0, 1, 1310716, 0, 1, 1245180, 0, 0, 1376251, 0, 1, 1310715, 0, 1, 1245179, 0, 0, 1376250, 0, 1, 1310714, 0, 1, 1245178, 0, 0, 1376249, 0, 1, 1310713, 0, 1, 1245177, 0, 0)
 
 [node name="Player" parent="." instance=ExtResource("2_o82pf")]
-position = Vector2(580, 527)
+position = Vector2(576, 559)
 
 [node name="WallLeft" type="StaticBody2D" parent="."]
 collision_layer = 2
@@ -776,7 +813,6 @@ deactive = true
 libraries = {
 "": SubResource("AnimationLibrary_spinb")
 }
-autoplay = "Start"
 
 [node name="HorizantalLazerArea1" type="ColorRect" parent="."]
 visible = false
@@ -930,3 +966,13 @@ texture = ExtResource("8_8wbym")
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 energy = 0.4
 blend_mode = 1
+
+[node name="Transis" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Transis"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)

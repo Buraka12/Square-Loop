@@ -13,6 +13,15 @@ var times : Dictionary = {
 	"Second":{"Rot":0,"Speed":TAU/0.2}
 }
 
+func _ready() -> void:
+	var dur : int
+	if Global.first_time:
+		dur = 5
+	else:
+		dur = 1
+	await get_tree().create_timer(dur).timeout
+	$AnimationPlayer.play("Idle")
+
 func _process(delta: float) -> void:
 	set_rot(delta)
 	if can_shoot:
@@ -43,11 +52,9 @@ func fire():
 	$"..".add_child(bullet)
 
 func die(damage = 1):
-	health -= damage
-	print(health)
-	if health < 0:
-		$AnimationPlayer.play("Dead")
-		get_tree().change_scene_to_file("Son") 
+	if $"..".start:
+		health -= damage
+		print(health)
 
 func _on_timer_timeout() -> void:
 	can_shoot = true

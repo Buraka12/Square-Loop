@@ -15,7 +15,17 @@ var timer : Timer
 
 @export var shooting : bool = false
 
+var start : bool = false
+
 func _ready() -> void:
+	start = !Global.first_time
+	$Transis.visible = Global.first_time
+	if Global.first_time:
+		Global.first_time = false
+		$BossAnimations.play("Player_Start")
+		await get_tree().create_timer(4.1).timeout
+		start = !Global.first_time
+	$BossAnimations.play("Start")
 	timer = Timer.new()
 	add_child(timer)
 	timer.timeout.connect(attack)
@@ -23,8 +33,8 @@ func _ready() -> void:
 	random_time = randi_range(3,4)
 	timer.start(random_time)
 
-func _process(delta: float) -> void:
-	if !shooting:
+func _process(_delta: float) -> void:
+	if !shooting and start:
 		var to_player = $Player.global_position - $Boss/Laser.global_position
 		$Boss/Laser.global_rotation = to_player.angle() + deg_to_rad(90)
 	

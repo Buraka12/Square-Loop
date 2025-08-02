@@ -1,10 +1,12 @@
 extends Node
 
-static var level :int = 0
+static var level :int = 11
 static var entity :int = 0
 
+static var first_time : bool = true
 
 func CheckEntity_LevelChange():
+	print(level)
 	if entity == 0:
 		level += 1
 		var next_file : String

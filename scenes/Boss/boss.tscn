@@ -90,7 +90,6 @@ shape = SubResource("CircleShape2D_seqqx")
 libraries = {
 "": SubResource("AnimationLibrary_8nv3a")
 }
-autoplay = "Idle"
 
 [node name="HurtBox" parent="." instance=ExtResource("4_rlegk")]
 position = Vector2(-1, 13)

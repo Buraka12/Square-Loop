@@ -12,7 +12,7 @@ extends CanvasLayer
 func _ready() -> void:
 	$ammo_and_dodge_and_laser/reload_ui.visible = false
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	enemy.text = str(Global.entity)
 	
 func laser_anim():

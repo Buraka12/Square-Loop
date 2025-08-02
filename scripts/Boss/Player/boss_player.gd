@@ -32,6 +32,9 @@ enum states {MOVE,STOP,FIRE,DODGE,DEAD}
 var state : states = states.STOP
 
 func _ready() -> void:
+	$level_start.visible = !Global.first_time
+	if !Global.first_time:
+		$level_start.start()
 	$HurtBox/CollisionShape2D.disabled = true
 	await get_tree().create_timer(0.1).timeout
 	$HurtBox/CollisionShape2D.disabled = false
@@ -89,7 +92,6 @@ func _physics_process(delta: float) -> void:
 
 func fire():
 	var bullet = bulletscene.instantiate()
-	var mouse_pos : Vector2 = get_global_mouse_position()
 	bullet.global_position = $Marker2D.global_position
 	bullet.pos = Vector2(global_position.x,0)
 	$AnimationPlayer.play("Shoot")
@@ -115,7 +117,7 @@ func dodge():
 	await get_tree().create_timer(dodge_dur).timeout
 	state = states.STOP
 	
-func die(damage = 1):
+func die(_damage = 1):
 	if state != states.DODGE:
 		get_tree().paused = true
 		state = states.DEAD
