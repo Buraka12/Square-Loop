@@ -19,7 +19,7 @@ func _ready() -> void:
 	state = states.MOVE
 	$Laser.deactive = true
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if !shooting:
 		look_at_player()
 		direction = -(player.global_position-global_position).normalized()
@@ -31,7 +31,7 @@ func look_at_player():
 	look_at(player.global_position)
 	rotation_degrees += 90
 
-func die(damage = 1):
+func die(_damage = 1):
 	Global.entity -= 1
 	Global.next = true
 	Global.CheckEntity_LevelChange()
