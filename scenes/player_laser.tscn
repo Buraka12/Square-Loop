@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://dwf57g8aocwp5"]
+
+[ext_resource type="Texture2D" uid="uid://btiwlnae5stmx" path="res://assets/sprites/Player/PlayerLaser.png" id="1_ekrpi"]
+[ext_resource type="Script" path="res://scripts/laser.gd" id="2_ai5u3"]
+[ext_resource type="PackedScene" uid="uid://dtij3gf5j2so8" path="res://scenes/Components/hit_box.tscn" id="3_1nnrh"]
+
+[sub_resource type="Gradient" id="Gradient_nxvvo"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_f0sg6"]
+gradient = SubResource("Gradient_nxvvo")
+fill_from = Vector2(0, 0.5)
+fill_to = Vector2(0.5, 0.5)
+repeat = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a1wmt"]
+
+[node name="PlayerLaser" type="Sprite2D"]
+visible = false
+position = Vector2(34, 1)
+rotation = 1.5708
+scale = Vector2(1, 10)
+texture = ExtResource("1_ekrpi")
+offset = Vector2(0, -184)
+script = ExtResource("2_ai5u3")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -960)
+scale = Vector2(1, 30)
+enabled = false
+color = Color(0.388235, 0.607843, 1, 1)
+energy = 1.5
+texture = SubResource("GradientTexture2D_f0sg6")
+
+[node name="HitBox" parent="." instance=ExtResource("3_1nnrh")]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, -700)
+scale = Vector2(1, 70)
+shape = SubResource("RectangleShape2D_a1wmt")
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]

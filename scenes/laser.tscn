@@ -6,10 +6,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tches"]
 size = Vector2(24, 195)
 
-[sub_resource type="Gradient" id="Gradient_nxvvo"]
+[sub_resource type="Gradient" id="Gradient_yj72q"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_jhcw1"]
-gradient = SubResource("Gradient_nxvvo")
+gradient = SubResource("Gradient_yj72q")
 fill_from = Vector2(0, 0.5)
 fill_to = Vector2(0.5, 0.5)
 repeat = 2

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmm1rn6m7wwxx"]
+[gd_scene load_steps=9 format=3 uid="uid://dmm1rn6m7wwxx"]
 
 [ext_resource type="Script" path="res://scripts/bullet.gd" id="1_xvptr"]
 [ext_resource type="Texture2D" uid="uid://l4mhe5w13gxx" path="res://assets/sprites/Bullet.png" id="2_1081e"]
@@ -9,6 +9,9 @@ light_mode = 1
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_brlnk"]
 radius = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3g2tp"]
+radius = 5.0
 
 [sub_resource type="Gradient" id="Gradient_7wl6q"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -38,6 +41,9 @@ shape = SubResource("CircleShape2D_brlnk")
 [node name="HitBox" parent="." instance=ExtResource("3_7am7r")]
 collision_layer = 16
 collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_3g2tp")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(0.854902, 0.207843, 0.207843, 1)

@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://xjuylb30biad"]
+[gd_scene load_steps=7 format=3 uid="uid://xjuylb30biad"]
 
 [ext_resource type="Texture2D" uid="uid://1tetvt28dnx6" path="res://assets/sprites/Boss/LineLazer.png" id="1_cv3fm"]
 [ext_resource type="PackedScene" uid="uid://dtij3gf5j2so8" path="res://scenes/Components/hit_box.tscn" id="2_o7v2w"]
 [ext_resource type="Script" path="res://scripts/laser.gd" id="2_xn7t6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8hl1u"]
+radius = 4.00347
 
 [sub_resource type="Gradient" id="Gradient_tovgq"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -21,6 +24,9 @@ script = ExtResource("2_xn7t6")
 scale = Vector2(0.5, 6)
 collision_layer = 16
 collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_8hl1u")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(0.249999, 0)

@@ -15,6 +15,12 @@ var max_ammo : int = 30
 var ammo : int = 30
 var reloading : bool = false
 
+@onready var laser : Sprite2D = $PlayerLaser
+var laser_cooldown : float = 4.0
+var laser_dur : float = 0.2
+var laser_tab : float = 300.0
+var can_laser : bool = true
+
 enum states {MOVE,STOP,FIRE,DODGE,DEAD}
 var state : states = states.MOVE
 
@@ -29,7 +35,11 @@ func _physics_process(delta: float) -> void:
 	if ammo != max_ammo and Input.is_action_just_pressed("reload"):
 		reloading = true
 		$ReloadTimer.start(1)
-		
+	
+	if Input.is_action_just_pressed("laser") and can_laser:
+		state = states.FIRE
+		velocity += (global_position-get_global_mouse_position()).normalized()*laser_tab
+		fire_laser()
 	
 	if Input.is_action_just_pressed("dodge") and state != states.DODGE and can_dodge:
 		can_dodge = false
@@ -44,7 +54,7 @@ func _physics_process(delta: float) -> void:
 	direction.y = Input.get_axis("up" , "down")
 	direction.x = Input.get_axis("left" , "right")
 	
-	if state != states.DODGE and direction != Vector2(0,0):
+	if state != states.DODGE and direction != Vector2(0,0) and state != states.FIRE:
 		state = states.MOVE
 
 func fire():
@@ -56,6 +66,13 @@ func fire():
 	$"..".add_child(bullet)
 	ammo -= 1
 	$player_ui/ammo_and_dodge/HBoxContainer/ammo_label.text = str(ammo)
+
+func fire_laser():
+	can_laser = false
+	laser.visible = true
+	laser.deactive = false
+	$LaserTimer.start(laser_dur)
+	
 
 func dodge():
 	velocity = direction.normalized()*dodge_speed
@@ -78,12 +95,18 @@ func _on_dodge_timer_timeout() -> void:
 	else:
 		can_dodge = true
 
-
 func _on_fire_rate_timer_timeout() -> void:
 	can_fire = true
 
-
 func _on_reload_timer_timeout() -> void:
 	ammo = max_ammo
-	print("Doldu")
 	reloading = false
+
+func _on_laser_timer_timeout() -> void:
+	if laser.visible:
+		state = states.STOP
+		laser.visible = false
+		laser.deactive = true
+		$LaserTimer.start(laser_cooldown)
+	else:
+		can_laser = true

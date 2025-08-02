@@ -854,13 +854,13 @@ scale = Vector2(4.7, 11.75)
 deactive = true
 
 [node name="LineLazer" parent="." instance=ExtResource("7_fahfu")]
-position = Vector2(-35, 548)
+position = Vector2(1355, 400)
 
 [node name="LineLazer2" parent="." instance=ExtResource("7_fahfu")]
-position = Vector2(1264, 484)
+position = Vector2(1354, 484)
 
 [node name="LineLazer3" parent="." instance=ExtResource("7_fahfu")]
-position = Vector2(730, 497)
+position = Vector2(1353, 327)
 
 [node name="BackGround" type="Sprite2D" parent="."]
 z_index = -5

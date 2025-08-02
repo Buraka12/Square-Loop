@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://2whhrm0r02h1"]
+[gd_scene load_steps=17 format=3 uid="uid://2whhrm0r02h1"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_baftj"]
 [ext_resource type="Texture2D" uid="uid://dw731i17papw7" path="res://assets/sprites/Player/Player.png" id="2_2e2v8"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" path="res://scenes/player_ui.tscn" id="6_ivp2n"]
 [ext_resource type="PackedScene" uid="uid://y2sekauyqslo" path="res://scenes/pause_menu.tscn" id="7_fjoyw"]
 [ext_resource type="PackedScene" uid="uid://bdmpahix5qjbf" path="res://scenes/die_menu.tscn" id="8_vbs77"]
+[ext_resource type="PackedScene" uid="uid://dwf57g8aocwp5" path="res://scenes/player_laser.tscn" id="10_tsgo4"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_8dgsr"]
 diffuse_texture = ExtResource("2_2e2v8")
@@ -118,6 +119,13 @@ scale = Vector2(1.1, 1.1)
 [node name="ReloadTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="LaserTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="PlayerLaser" parent="." instance=ExtResource("10_tsgo4")]
+deactive = true
+
 [connection signal="timeout" from="FireRateTimer" to="." method="_on_fire_rate_timer_timeout"]
 [connection signal="timeout" from="DodgeTimer" to="." method="_on_dodge_timer_timeout"]
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
+[connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]
