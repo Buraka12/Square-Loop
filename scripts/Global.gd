@@ -6,6 +6,7 @@ static var entity :int = 0
 static var first_time : bool = true
 
 static var next : bool = true
+static var end : bool = false
 
 func CheckEntity_LevelChange():
 	if entity == 0:
