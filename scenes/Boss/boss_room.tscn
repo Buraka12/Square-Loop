@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dg0jnidxst3s0"]
+[gd_scene load_steps=23 format=3 uid="uid://dg0jnidxst3s0"]
 
 [ext_resource type="Texture2D" uid="uid://bqa7cpf4unqhh" path="res://assets/sprites/Boss/Boss_Tileset.png" id="1_3j2pb"]
 [ext_resource type="Script" path="res://scripts/Boss/boss_room.gd" id="1_wjv1j"]
@@ -625,21 +625,6 @@ tracks/10/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="Animation" id="Animation_3a2r3"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Boss:can_shoot")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="Animation" id="Animation_7xtd6"]
 resource_name = "Start"
 tracks/0/type = "value"
@@ -667,15 +652,83 @@ tracks/1/keys = {
 "values": [false, true]
 }
 
+[sub_resource type="Animation" id="Animation_78hqq"]
+resource_name = "BossLazer"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Boss/Laser:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Boss/Laser:deactive")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Boss/Laser:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:shooting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_1in4j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:shooting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_spinb"]
 _data = {
+"BossLazer": SubResource("Animation_78hqq"),
 "Bottom_Empty_Lazer": SubResource("Animation_lktpd"),
 "Bottom_Lazer": SubResource("Animation_8jnfm"),
 "Corner_Lazer": SubResource("Animation_2vffo"),
 "Line_Lazer": SubResource("Animation_8vccg"),
 "Middle_Empty_Lazer": SubResource("Animation_alqvr"),
 "Middle_Lazer": SubResource("Animation_3jrs3"),
-"RESET": SubResource("Animation_3a2r3"),
+"RESET": SubResource("Animation_1in4j"),
 "Start": SubResource("Animation_7xtd6")
 }
 
@@ -711,6 +764,13 @@ shape = SubResource("RectangleShape2D_cp2m1")
 [node name="Boss" parent="." instance=ExtResource("3_7kpf1")]
 z_index = -1
 position = Vector2(576, 785)
+can_shoot = false
+
+[node name="Laser" parent="Boss" instance=ExtResource("5_6vrey")]
+visible = false
+z_index = -1
+rotation = -3.14159
+deactive = true
 
 [node name="BossAnimations" type="AnimationPlayer" parent="."]
 libraries = {
@@ -857,10 +917,10 @@ deactive = true
 position = Vector2(1355, 400)
 
 [node name="LineLazer2" parent="." instance=ExtResource("7_fahfu")]
-position = Vector2(1354, 484)
+position = Vector2(1264, 484)
 
 [node name="LineLazer3" parent="." instance=ExtResource("7_fahfu")]
-position = Vector2(1353, 327)
+position = Vector2(1264, 421)
 
 [node name="BackGround" type="Sprite2D" parent="."]
 z_index = -5

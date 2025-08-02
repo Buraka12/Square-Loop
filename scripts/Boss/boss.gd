@@ -32,6 +32,9 @@ func set_rot(delta):
 		clock.rotation = times[i]["Rot"]
 		pass
 
+func fire_laser():
+	pass
+
 func fire():
 	var bullet = bullet_scene.instantiate()
 	bullet.SPEED = 250.0
