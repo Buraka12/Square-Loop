@@ -12,6 +12,7 @@ func _ready() -> void:
 	AudioManager.play("Main",0,true)
 
 func _on_play_pressed() -> void:
+	Global.next = false
 	Global.CheckEntity_LevelChange()
 
 func _on_settings_pressed() -> void:

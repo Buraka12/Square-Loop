@@ -16,6 +16,7 @@ func _ready() -> void:
 
 func returnMainMenu():
 	Global.entity = 0
+	Global.next = false
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 func _unhandled_input(event: InputEvent) -> void:

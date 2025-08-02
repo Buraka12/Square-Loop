@@ -1,13 +1,16 @@
 extends Node
 
-static var level :int = 0
+static var level :int = 1
 static var entity :int = 0
 
 static var first_time : bool = true
 
+static var next : bool = true
+
 func CheckEntity_LevelChange():
 	if entity == 0:
-		level += 1
+		if next:
+			level += 1
 		var next_file : String
 		if level >= 12:
 			next_file = "res://scenes/Boss/boss_room.tscn"
