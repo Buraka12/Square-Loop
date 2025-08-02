@@ -2,8 +2,6 @@ extends Sprite2D
 
 @export var deactive: bool = false
 
-func free() -> void:
-	$HitBox/CollisionShape2D.disabled = deactive
 
 func _process(delta: float) -> void:
 	$HitBox/CollisionShape2D.disabled = deactive

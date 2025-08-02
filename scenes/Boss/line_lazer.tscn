@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://xjuylb30biad"]
+
+[ext_resource type="Texture2D" uid="uid://1tetvt28dnx6" path="res://assets/sprites/Boss/LineLazer.png" id="1_cv3fm"]
+[ext_resource type="PackedScene" uid="uid://dtij3gf5j2so8" path="res://scenes/Components/hit_box.tscn" id="2_o7v2w"]
+[ext_resource type="Script" path="res://scripts/laser.gd" id="2_xn7t6"]
+
+[node name="LineLazer" type="Sprite2D"]
+texture = ExtResource("1_cv3fm")
+script = ExtResource("2_xn7t6")
+
+[node name="HitBox" parent="." instance=ExtResource("2_o7v2w")]
+scale = Vector2(0.5, 6)
+collision_layer = 16
+collision_mask = 1
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]

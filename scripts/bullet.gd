@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 var pos : Vector2
-const SPEED : float = 700.0
+var SPEED : float = 700.0
 var dur : float = 6.0
 var time : float = 0.0
 

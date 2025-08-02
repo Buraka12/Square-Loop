@@ -95,5 +95,9 @@ autoplay = "Idle"
 [node name="HurtBox" parent="." instance=ExtResource("4_rlegk")]
 position = Vector2(-1, 13)
 scale = Vector2(4.5, 4.5)
-collision_layer = 2
+collision_layer = 4
 collision_mask = 8
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

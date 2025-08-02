@@ -105,5 +105,6 @@ visible = false
 visible = false
 
 [node name="level_start" parent="." instance=ExtResource("5_o8l77")]
+visible = false
 
 [connection signal="timeout" from="DodgeTimer" to="." method="_on_dodge_timer_timeout"]

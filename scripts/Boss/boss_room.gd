@@ -3,7 +3,10 @@ extends Node2D
 var attacks : Array = [
 	"Corner_Lazer",
 	"Line_Lazer",
-	"Middle_Lazer"
+	"Middle_Lazer",
+	"Bottom_Lazer",
+	"Middle_Empty_Lazer",
+	"Bottom_Empty_Lazer"
 ]
 
 var random_time : int
