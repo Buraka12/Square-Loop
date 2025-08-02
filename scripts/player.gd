@@ -55,6 +55,7 @@ func fire():
 	$AnimationPlayer.play("Shoot")
 	$"..".add_child(bullet)
 	ammo -= 1
+	$player_ui/ammo_and_dodge/HBoxContainer/ammo_label.text = str(ammo)
 
 func dodge():
 	velocity = direction.normalized()*dodge_speed

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bjf3l5xyt7dij" path="res://scenes/Components/move_comp.tscn" id="3_pnfas"]
 [ext_resource type="PackedScene" uid="uid://bu3t5xqkxhiij" path="res://scenes/Components/hurt_box.tscn" id="4_lg3dq"]
 [ext_resource type="PackedScene" uid="uid://budh2sxits8vi" path="res://scenes/level_start.tscn" id="6_go2uh"]
-[ext_resource type="PackedScene" path="res://scenes/player_ui.tscn" id="6_ivp2n"]
+[ext_resource type="PackedScene" uid="uid://b5akj6ksqqrlt" path="res://scenes/player_ui.tscn" id="6_ivp2n"]
 [ext_resource type="PackedScene" uid="uid://y2sekauyqslo" path="res://scenes/pause_menu.tscn" id="7_fjoyw"]
 [ext_resource type="PackedScene" uid="uid://bdmpahix5qjbf" path="res://scenes/die_menu.tscn" id="8_vbs77"]
 
@@ -60,7 +60,7 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.697248, 0.284404)
 
 [node name="Player" type="CharacterBody2D" groups=["Entity"]]
-collision_mask = 2
+collision_mask = 1026
 script = ExtResource("1_baftj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -91,7 +91,6 @@ position = Vector2(34, 1)
 
 [node name="PointLight2D" type="PointLight2D" parent="Marker2D"]
 scale = Vector2(2, 2)
-enabled = false
 color = Color(0.541176, 0.698039, 0.984314, 1)
 texture = SubResource("GradientTexture2D_tojss")
 

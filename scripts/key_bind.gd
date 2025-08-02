@@ -28,6 +28,9 @@ func set_action_name() -> void:
 			label.text = "Use Dodge"
 		"fire":
 			label.text = "Use Fire"
+		"reload":
+			label.text = "Use Reload"
+			
 
 		
 func set_text_for_key() -> void:

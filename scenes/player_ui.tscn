@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5akj6ksqqrlt"]
+[gd_scene load_steps=7 format=3 uid="uid://b5akj6ksqqrlt"]
 
 [ext_resource type="FontFile" uid="uid://cjimgeaiaqp6h" path="res://assets/fonts/ari-w9500.ttf" id="1_1gxuj"]
 [ext_resource type="Script" path="res://scripts/player_ui.gd" id="1_6fsia"]
 [ext_resource type="Shader" path="res://scripts/shaders/blur.gdshader" id="1_hl16e"]
+[ext_resource type="Texture2D" uid="uid://c2rmhppbk8dat" path="res://assets/sprites/ammo.png" id="4_gebf4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d3s1c"]
 shader = ExtResource("1_hl16e")
@@ -11,16 +12,16 @@ shader_parameter/brightness = 0.85
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8lwnm"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 1
+border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
+corner_radius_top_right = 10
 corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
 
 [node name="player_ui" type="CanvasLayer"]
 script = ExtResource("1_6fsia")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="enemy count" type="Panel" parent="."]
 material = SubResource("ShaderMaterial_d3s1c")
 anchors_preset = 5
 anchor_left = 0.5
@@ -31,7 +32,7 @@ offset_bottom = 40.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8lwnm")
 
-[node name="Panel2" type="Panel" parent="Panel"]
+[node name="Panel2" type="Panel" parent="enemy count"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -42,7 +43,7 @@ offset_bottom = 40.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8lwnm")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="enemy count"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -55,17 +56,69 @@ grow_horizontal = 2
 theme_override_constants/separation = 40
 alignment = 1
 
-[node name="enemy" type="Label" parent="Panel/HBoxContainer"]
+[node name="enemy" type="Label" parent="enemy count/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_1gxuj")
 theme_override_font_sizes/font_size = 30
 text = " "
 vertical_alignment = 1
 
-[node name="e_left" type="Label" parent="Panel/HBoxContainer"]
+[node name="e_left" type="Label" parent="enemy count/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_1gxuj")
 theme_override_font_sizes/font_size = 30
 text = "Enemy Left"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ammo_and_dodge" type="Panel" parent="."]
+material = SubResource("ShaderMaterial_d3s1c")
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -575.0
+offset_top = 553.0
+offset_right = -435.0
+offset_bottom = 593.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8lwnm")
+
+[node name="Panel2" type="Panel" parent="ammo_and_dodge"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -70.0
+offset_right = 70.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8lwnm")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ammo_and_dodge"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ammo_label" type="Label" parent="ammo_and_dodge/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1gxuj")
+theme_override_font_sizes/font_size = 30
+text = "30"
+vertical_alignment = 1
+
+[node name="text" type="Label" parent="ammo_and_dodge/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1gxuj")
+theme_override_font_sizes/font_size = 30
+text = "/30"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sprite" type="Sprite2D" parent="ammo_and_dodge/HBoxContainer"]
+position = Vector2(116.875, 22)
+scale = Vector2(2.01562, 2)
+texture = ExtResource("4_gebf4")
+hframes = 4
