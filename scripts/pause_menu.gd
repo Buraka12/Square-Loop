@@ -7,8 +7,10 @@ extends CanvasLayer
 @onready var settings_button: Button = $blur/corner/VBoxContainer/HBoxContainer/settings_button
 @onready var exit_button: Button = $blur/corner/VBoxContainer/HBoxContainer/exit_button
 
+@onready var settings_menu: Panel = $SettingsMenu
 
 func _ready() -> void:
+	settings_menu.visible = false
 	pause_menu.visible = false
 	resume_button.pressed.connect(unpause)
 	main_menu.pressed.connect(returnMainMenu)
@@ -29,7 +31,9 @@ func unpause():
 	get_tree().paused = false
 	
 func pause():
-	pause_menu.visible = true
-	get_tree().paused = true
+	if get_tree().paused == false:
+		pause_menu.visible = true
+		get_tree().paused = true
 	
-	
+func _on_settings_pressed() -> void:
+	settings_menu.visible = true
