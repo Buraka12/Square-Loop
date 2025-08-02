@@ -4,8 +4,6 @@ static var level :int = 0
 static var entity :int = 0
 
 
-
-
 func CheckEntity_LevelChange():
 	if entity == 0:
 		print(level)
