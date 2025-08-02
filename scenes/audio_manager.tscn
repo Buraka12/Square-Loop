@@ -26,10 +26,12 @@ bus = &"Sfx"
 
 [node name="Laser_Player" type="AudioStreamPlayer" parent="clips"]
 stream = ExtResource("3_co38v")
+volume_db = -20.0
 bus = &"Sfx"
 
 [node name="Laser_Enemy" type="AudioStreamPlayer" parent="clips"]
 stream = ExtResource("4_k5g7y")
+volume_db = -20.0
 bus = &"Sfx"
 
 [node name="Shoot_Triangle" type="AudioStreamPlayer" parent="clips"]
@@ -39,4 +41,5 @@ bus = &"Sfx"
 
 [node name="Shoot_Pentagon" type="AudioStreamPlayer" parent="clips"]
 stream = ExtResource("7_vx3wx")
+volume_db = -20.0
 bus = &"Sfx"

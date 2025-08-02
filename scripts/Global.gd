@@ -8,6 +8,9 @@ static var first_time : bool = true
 static var next : bool = true
 static var end : bool = false
 
+static  var music : float = 1
+static  var sfx : float = 1
+
 func CheckEntity_LevelChange():
 	if entity == 0:
 		if next:

@@ -290,5 +290,6 @@ theme_override_constants/separation = 20
 theme_override_styles/separator = SubResource("StyleBoxEmpty_4b6k5")
 
 [connection signal="pressed" from="Back_button" to="." method="_on_back_button_pressed"]
+[connection signal="changed" from="TabContainer/Sounds/MarginContainer/VBoxContainer/music_container/music" to="." method="_on_music_changed"]
 [connection signal="value_changed" from="TabContainer/Sounds/MarginContainer/VBoxContainer/music_container/music" to="TabContainer/Sounds/MarginContainer/VBoxContainer/music_container/music" method="_on_value_changed"]
 [connection signal="value_changed" from="TabContainer/Sounds/MarginContainer/VBoxContainer/sfx_container/sfx" to="TabContainer/Sounds/MarginContainer/VBoxContainer/sfx_container/sfx" method="_on_value_changed"]

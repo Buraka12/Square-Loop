@@ -2,6 +2,7 @@ extends Panel
 
 @onready var settings_menu: Panel = $"."
 @onready var main_buttons: VBoxContainer = $"../Main_buttons"
+@onready var music: HSlider = $TabContainer/Sounds/MarginContainer/VBoxContainer/music_container/music
 
 
 
