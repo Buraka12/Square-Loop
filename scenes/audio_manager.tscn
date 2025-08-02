@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://dmigsm7x6vkf1"]
+
+[ext_resource type="Script" path="res://scripts/audio_manager.gd" id="1_rwldi"]
+[ext_resource type="AudioStream" uid="uid://br3j5dj7pt0rp" path="res://assets/sounds/main/Backbeat.mp3" id="2_7w1ko"]
+[ext_resource type="AudioStream" uid="uid://d27arm7jrke6l" path="res://assets/sounds/effect/shott_player.ogg" id="3_cgseb"]
+[ext_resource type="AudioStream" uid="uid://boaqgemmt2q6d" path="res://assets/sounds/effect/player laser.ogg" id="3_co38v"]
+[ext_resource type="AudioStream" uid="uid://cb06kxuwm566d" path="res://assets/sounds/effect/enemy laser.ogg" id="4_k5g7y"]
+[ext_resource type="AudioStream" uid="uid://dydhoujwrdq5d" path="res://assets/sounds/effect/shoot_triangle.ogg" id="6_jkrqq"]
+[ext_resource type="AudioStream" uid="uid://d2qdulglg70ap" path="res://assets/sounds/effect/shoot_pentagon.ogg" id="7_vx3wx"]
+
+[node name="Audio_manager" type="Node" node_paths=PackedStringArray("clips")]
+process_mode = 3
+script = ExtResource("1_rwldi")
+clips = NodePath("clips")
+
+[node name="clips" type="Node" parent="."]
+
+[node name="Main" type="AudioStreamPlayer" parent="clips"]
+stream = ExtResource("2_7w1ko")
+bus = &"Music"
+
+[node name="Shoot_Player" type="AudioStreamPlayer" parent="clips"]
+stream = ExtResource("3_cgseb")
+
+[node name="Laser_Player" type="AudioStreamPlayer" parent="clips"]
+stream = ExtResource("3_co38v")
+
+[node name="Laser_Enemy" type="AudioStreamPlayer" parent="clips"]
+stream = ExtResource("4_k5g7y")
+
+[node name="Shoot_Triangle" type="AudioStreamPlayer" parent="clips"]
+stream = ExtResource("6_jkrqq")
+
+[node name="Shoot_Pentagon" type="AudioStreamPlayer" parent="clips"]
+stream = ExtResource("7_vx3wx")

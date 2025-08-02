@@ -6,8 +6,10 @@ extends Control
 
 
 func _ready() -> void:
-		main_buttons.visible = true
-		settings_menu.visible = false
+	main_buttons.visible = true
+	settings_menu.visible = false
+
+	AudioManager.play("Main",0,true)
 
 func _on_play_pressed() -> void:
 	Global.CheckEntity_LevelChange()

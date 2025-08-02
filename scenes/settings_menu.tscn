@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://de4g5oumbcjxs"]
+[gd_scene load_steps=22 format=3 uid="uid://de4g5oumbcjxs"]
 
 [ext_resource type="Script" path="res://scripts/settings_menu.gd" id="1_ffthq"]
 [ext_resource type="Shader" path="res://scripts/shaders/blur.gdshader" id="1_s0qn1"]
@@ -6,6 +6,8 @@
 [ext_resource type="FontFile" uid="uid://bm0677vb04kec" path="res://assets/fonts/KiwiSoda.ttf" id="3_1nkmd"]
 [ext_resource type="FontFile" uid="uid://cjimgeaiaqp6h" path="res://assets/fonts/ari-w9500.ttf" id="5_8l3yd"]
 [ext_resource type="PackedScene" uid="uid://bbgf6h1hvcsha" path="res://scenes/key_bind.tscn" id="5_ql2om"]
+[ext_resource type="Script" path="res://scripts/music.gd" id="6_23asq"]
+[ext_resource type="Script" path="res://scripts/sfx.gd" id="7_8yi7k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t8pfp"]
 shader = ExtResource("1_s0qn1")
@@ -63,6 +65,20 @@ border_width_bottom = 1
 border_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 10
 corner_radius_bottom_right = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r1yto"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_gum0d"]
+color = Color(0.0666667, 0, 0.45098, 1)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 5
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_3udje"]
+color = Color(0.0612873, 0, 0.423564, 1)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 5
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y2m51"]
 
@@ -135,14 +151,81 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("5_8l3yd")
 theme_override_font_sizes/font_size = 16
 tab_alignment = 1
-current_tab = 1
+current_tab = 0
 
 [node name="Sounds" type="TabBar" parent="TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Sounds"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Sounds/MarginContainer"]
+layout_mode = 2
+
+[node name="music_container" type="HBoxContainer" parent="TabContainer/Sounds/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Sounds/MarginContainer/VBoxContainer/music_container"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_8l3yd")
+theme_override_font_sizes/font_size = 30
+text = "Music"
+
+[node name="VSeparator" type="VSeparator" parent="TabContainer/Sounds/MarginContainer/VBoxContainer/music_container"]
+layout_mode = 2
+theme_override_constants/separation = 20
+theme_override_styles/separator = SubResource("StyleBoxEmpty_r1yto")
+
+[node name="music" type="HSlider" parent="TabContainer/Sounds/MarginContainer/VBoxContainer/music_container"]
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/slider = SubResource("StyleBoxLine_gum0d")
+min_value = -80.0
+max_value = 6.0
+value = -15.0
+script = ExtResource("6_23asq")
+bus_name = "Music"
+
+[node name="sfx_container" type="HBoxContainer" parent="TabContainer/Sounds/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="TabContainer/Sounds/MarginContainer/VBoxContainer/sfx_container"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_8l3yd")
+theme_override_font_sizes/font_size = 30
+text = "VFX"
+
+[node name="VSeparator2" type="VSeparator" parent="TabContainer/Sounds/MarginContainer/VBoxContainer/sfx_container"]
+layout_mode = 2
+theme_override_constants/separation = 34
+theme_override_styles/separator = SubResource("StyleBoxEmpty_r1yto")
+
+[node name="sfx" type="HSlider" parent="TabContainer/Sounds/MarginContainer/VBoxContainer/sfx_container"]
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/slider = SubResource("StyleBoxLine_3udje")
+min_value = -80.0
+max_value = 6.0
+value = -15.0
+script = ExtResource("7_8yi7k")
+bus_name = "Vfx"
+
 [node name="Keybinding" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -207,3 +290,4 @@ theme_override_constants/separation = 20
 theme_override_styles/separator = SubResource("StyleBoxEmpty_4b6k5")
 
 [connection signal="pressed" from="Back_button" to="." method="_on_back_button_pressed"]
+[connection signal="value_changed" from="TabContainer/Sounds/MarginContainer/VBoxContainer/music_container/music" to="TabContainer/Sounds/MarginContainer/VBoxContainer/music_container/music" method="_on_value_changed"]

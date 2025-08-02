@@ -24,12 +24,16 @@ var can_laser : bool = true
 enum states {MOVE,STOP,FIRE,DODGE,DEAD}
 var state : states = states.MOVE
 
+func _ready() -> void:
+	$level_start.start() 
+
 func _physics_process(delta: float) -> void:
 	if state == states.DEAD:
 		return
 	if Input.is_action_pressed("fire") and state != states.DODGE and can_fire and ammo > 0 and !reloading:
 		can_fire = false
 		$FireRateTimer.start(1/fire_rate)
+		AudioManager.play("Shoot_Player")
 		fire()
 	
 	if ammo != max_ammo and Input.is_action_just_pressed("reload"):
@@ -41,7 +45,9 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("laser") and can_laser:
 		state = states.FIRE
 		velocity += (global_position-get_global_mouse_position()).normalized()*laser_tab
+		AudioManager.play("Laser_Player")
 		fire_laser()
+		
 	
 	if Input.is_action_just_pressed("dodge") and state != states.DODGE and can_dodge:
 		can_dodge = false

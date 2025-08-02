@@ -46,6 +46,7 @@ func fire(direction):
 		bullet.global_position = i.global_position
 		area.add_child(bullet)
 		a+=1
+		AudioManager.play("Shoot_Pentagon")
 	$AnimationPlayer.play("Shoot")
 
 func _on_stop_area_body_entered(body: Node2D) -> void:

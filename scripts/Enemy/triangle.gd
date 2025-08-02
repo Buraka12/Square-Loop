@@ -42,6 +42,7 @@ func fire():
 	bullet.pos = player.global_position
 	bullet.global_position = $Marker2D.global_position
 	$AnimationPlayer.play("Shoot")
+	AudioManager.play("Shoot_Triangle")
 	area.add_child(bullet)
 
 func _on_stop_area_body_entered(body: Node2D) -> void:
