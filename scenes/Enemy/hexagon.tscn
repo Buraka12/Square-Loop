@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dsd1fe453iuu3"]
+[gd_scene load_steps=10 format=3 uid="uid://dsd1fe453iuu3"]
 
 [ext_resource type="Texture2D" uid="uid://caxjlytrc3hkq" path="res://assets/sprites/Enemy/Hexagon.png" id="1_17p37"]
 [ext_resource type="Script" path="res://scripts/Enemy/hexagon.gd" id="1_d31e4"]
@@ -13,6 +13,9 @@ normal_texture = ExtResource("3_ko7tq")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0vgo3"]
 radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3buo0"]
+radius = 4.02462
 
 [node name="Hexagon" type="CharacterBody2D" groups=["Entity"]]
 collision_layer = 4
@@ -30,6 +33,9 @@ shape = SubResource("CircleShape2D_0vgo3")
 scale = Vector2(4.5, 4.5)
 collision_layer = 4
 collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_3buo0")
 
 [node name="MoveComp" parent="." instance=ExtResource("4_xehso")]
 

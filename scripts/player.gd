@@ -75,9 +75,6 @@ func fire():
 	elif ammo < 20:
 		$player_ui/ammo_and_dodge/HBoxContainer/sprite.frame = 1
 
-		
-		
-
 func fire_laser():
 	can_laser = false
 	laser.visible = true
@@ -89,7 +86,7 @@ func dodge():
 	velocity = direction.normalized()*dodge_speed
 	$HurtBox.set_collision_mask_value(1,false)
 	
-func die():
+func die(damage = 1):
 	if state != states.DODGE:
 		get_tree().paused = true
 		state = states.DEAD

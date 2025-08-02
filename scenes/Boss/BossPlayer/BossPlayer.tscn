@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cf2ojhqia3yvw"]
+[gd_scene load_steps=16 format=3 uid="uid://cf2ojhqia3yvw"]
 
 [ext_resource type="Script" path="res://scripts/Boss/Player/boss_player.gd" id="1_dlp5t"]
 [ext_resource type="Texture2D" uid="uid://dw731i17papw7" path="res://assets/sprites/Player/Player.png" id="1_vn7ry"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://budh2sxits8vi" path="res://scenes/level_start.tscn" id="5_o8l77"]
 [ext_resource type="PackedScene" uid="uid://y2sekauyqslo" path="res://scenes/pause_menu.tscn" id="6_3yog2"]
 [ext_resource type="PackedScene" uid="uid://bdmpahix5qjbf" path="res://scenes/die_menu.tscn" id="7_uhin1"]
+[ext_resource type="PackedScene" path="res://scenes/player_ui.tscn" id="8_8y8g8"]
+[ext_resource type="PackedScene" uid="uid://dwf57g8aocwp5" path="res://scenes/player_laser.tscn" id="9_djl7k"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_8dgsr"]
 diffuse_texture = ExtResource("1_vn7ry")
@@ -57,7 +59,7 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.697248, 0.284404)
 
-[node name="Player" type="CharacterBody2D" groups=["Entity"]]
+[node name="Player2" type="CharacterBody2D" groups=["Entity"]]
 position = Vector2(204, 247)
 collision_mask = 2
 script = ExtResource("1_dlp5t")
@@ -97,6 +99,9 @@ texture = SubResource("GradientTexture2D_tojss")
 one_shot = true
 
 [node name="HurtBox" parent="." instance=ExtResource("4_n5wqi")]
+visible = false
+
+[node name="player_ui" parent="." instance=ExtResource("8_8y8g8")]
 
 [node name="Pause_menu" parent="." instance=ExtResource("6_3yog2")]
 
@@ -104,4 +109,20 @@ one_shot = true
 
 [node name="level_start" parent="." instance=ExtResource("5_o8l77")]
 
+[node name="FireRateTimer" type="Timer" parent="."]
+
+[node name="ReloadTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="LaserTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="PlayerLaser" parent="." instance=ExtResource("9_djl7k")]
+position = Vector2(0, -35)
+rotation = 0.0
+deactive = true
+
 [connection signal="timeout" from="DodgeTimer" to="." method="_on_dodge_timer_timeout"]
+[connection signal="timeout" from="FireRateTimer" to="." method="_on_fire_rate_timer_timeout"]
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
+[connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]
