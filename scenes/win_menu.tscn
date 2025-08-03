@@ -1,17 +1,17 @@
-[gd_scene load_steps=14 format=3 uid="uid://bdmpahix5qjbf"]
+[gd_scene load_steps=14 format=3 uid="uid://di7q2f5vfvnw5"]
 
-[ext_resource type="Script" path="res://scripts/die_menu.gd" id="1_mcluh"]
-[ext_resource type="Shader" path="res://scripts/shaders/blur.gdshader" id="2_slsjs"]
-[ext_resource type="FontFile" uid="uid://dlss2jn5oociv" path="res://assets/fonts/GrapeSoda.ttf" id="3_qu412"]
-[ext_resource type="FontFile" uid="uid://bm0677vb04kec" path="res://assets/fonts/KiwiSoda.ttf" id="4_thf04"]
+[ext_resource type="Script" path="res://scripts/win_menu.gd" id="1_t62ni"]
+[ext_resource type="Shader" path="res://scripts/shaders/blur.gdshader" id="2_twx1u"]
+[ext_resource type="FontFile" uid="uid://dlss2jn5oociv" path="res://assets/fonts/GrapeSoda.ttf" id="3_fysl7"]
+[ext_resource type="FontFile" uid="uid://bm0677vb04kec" path="res://assets/fonts/KiwiSoda.ttf" id="4_5iiai"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_65jy0"]
-shader = ExtResource("2_slsjs")
+shader = ExtResource("2_twx1u")
 shader_parameter/blur = 2.5
 shader_parameter/brightness = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ksgbv"]
-bg_color = Color(0.75, 0.179375, 0.1275, 0.392157)
+bg_color = Color(0.423529, 0.423529, 0.423529, 0.454902)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
@@ -65,10 +65,10 @@ pressed = true
 [sub_resource type="Shortcut" id="Shortcut_6fli5"]
 events = [SubResource("InputEventAction_47sw1")]
 
-[node name="Die_menu" type="CanvasLayer"]
+[node name="Win_menu" type="CanvasLayer"]
 process_mode = 3
 layer = 2
-script = ExtResource("1_mcluh")
+script = ExtResource("1_t62ni")
 
 [node name="blur" type="Panel" parent="."]
 material = SubResource("ShaderMaterial_65jy0")
@@ -112,10 +112,9 @@ grow_vertical = 2
 [node name="label" type="Label" parent="blur/corner/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("3_qu412")
+theme_override_fonts/font = ExtResource("3_fysl7")
 theme_override_font_sizes/font_size = 40
-text = "Died
-"
+text = "Win"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -130,24 +129,22 @@ size_flags_horizontal = 4
 size_flags_vertical = 6
 theme_override_constants/separation = 33
 
-[node name="restart_button" type="Button" parent="blur/corner/VBoxContainer/HBoxContainer"]
+[node name="next_level_button" type="Button" parent="blur/corner/VBoxContainer/HBoxContainer"]
 process_mode = 3
 layout_mode = 2
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("4_thf04")
+theme_override_fonts/font = ExtResource("4_5iiai")
 theme_override_font_sizes/font_size = 28
 theme_override_styles/focus = SubResource("StyleBoxEmpty_seaot")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6h5vk")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_e3ggx")
 theme_override_styles/normal = SubResource("StyleBoxFlat_24mkb")
 shortcut = SubResource("Shortcut_6fli5")
-text = " Restart "
+text = "Next level"
 
 [node name="main menu" type="Button" parent="blur/corner/VBoxContainer/HBoxContainer"]
 process_mode = 3
 layout_mode = 2
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("4_thf04")
+theme_override_fonts/font = ExtResource("4_5iiai")
 theme_override_font_sizes/font_size = 28
 theme_override_styles/focus = SubResource("StyleBoxEmpty_seaot")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6h5vk")
@@ -159,8 +156,7 @@ text = " Main menu "
 [node name="exit_button" type="Button" parent="blur/corner/VBoxContainer/HBoxContainer"]
 process_mode = 3
 layout_mode = 2
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("4_thf04")
+theme_override_fonts/font = ExtResource("4_5iiai")
 theme_override_font_sizes/font_size = 28
 theme_override_styles/focus = SubResource("StyleBoxEmpty_seaot")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6h5vk")
@@ -168,6 +164,6 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_e3ggx")
 theme_override_styles/normal = SubResource("StyleBoxFlat_24mkb")
 text = "   Exit   "
 
-[connection signal="pressed" from="blur/corner/VBoxContainer/HBoxContainer/restart_button" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="blur/corner/VBoxContainer/HBoxContainer/next_level_button" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="blur/corner/VBoxContainer/HBoxContainer/main menu" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="blur/corner/VBoxContainer/HBoxContainer/exit_button" to="." method="_on_exit_pressed"]

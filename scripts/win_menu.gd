@@ -1,12 +1,12 @@
 extends CanvasLayer
 
-@onready var next_button: Button = $win/corner/VBoxContainer/HBoxContainer/next_level_button
-@onready var main_menu: Button = $"win/corner/VBoxContainer/HBoxContainer/main menu"
-@onready var exit_button: Button = $win/corner/VBoxContainer/HBoxContainer/exit_button
-@onready var label: Label = $win/corner/VBoxContainer/label
-@onready var win: Panel = $win
+@onready var win_menu: CanvasLayer = $"."
 
-@onready var start: Panel = $start
+
+@onready var next_button: Button = $blur/corner/VBoxContainer/HBoxContainer/next_level_button
+@onready var main_menu: Button = $"blur/corner/VBoxContainer/HBoxContainer/main menu"
+@onready var exit_button: Button = $blur/corner/VBoxContainer/HBoxContainer/exit_button
+@onready var label: Label = $blur/corner/VBoxContainer/label
 
 var win_messages = [
 	"You won? Must be your 
@@ -39,11 +39,9 @@ var win_messages = [
 ]
 
 func _ready() -> void:
-	get_tree().paused = true
 	randomize()
-	show_game_over_message()
 	if Global.next == true:
-		win.visible = true
+		win_menu.visible = true
 	next_button.pressed.connect(next)
 	main_menu.pressed.connect(returnMainMenu)
 	exit_button.pressed.connect(get_tree().quit)
@@ -54,12 +52,7 @@ func returnMainMenu():
 	
 
 func next():
-	win.visible = false
-	$AnimationPlayer.play("level_start")
-	await get_tree().create_timer(3).timeout
-	start.visible = false
-	get_tree().paused = false
-	
+	win_menu.visible = false
 	
 	
 func get_random_message() -> String:
