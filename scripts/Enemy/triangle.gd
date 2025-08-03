@@ -4,7 +4,9 @@ extends CharacterBody2D
 @onready var player : CharacterBody2D = area.find_child("Player")
 
 @onready var bulletscene : PackedScene = load("res://scenes/enemy_bullet.tscn")
-var can_shoot : bool = true
+
+
+var can_shoot : bool = false
 var fire_rate : float = 0.6
 var tab : float = 400.0
 
@@ -14,6 +16,10 @@ enum states {STOP,MOVE,FIRE}
 var state : states
 
 func _ready() -> void:
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	var wait_time = rng.randf_range(0.5, 1.0)
+	$Timer.start(wait_time/fire_rate)
 	Global.entity += 1
 	state = states.MOVE
 
@@ -21,10 +27,13 @@ func _physics_process(_delta: float) -> void:
 	look_at_player()
 	direction = (player.global_position-global_position).normalized()
 	if can_shoot:
+		var rng = RandomNumberGenerator.new()
+		rng.randomize()
+		var wait_time = rng.randf_range(0.5, 1.0)
 		can_shoot = false
 		velocity = -direction*tab
 		move_and_slide()
-		$Timer.start(1/fire_rate)
+		$Timer.start(wait_time/fire_rate)
 		fire()
 
 
