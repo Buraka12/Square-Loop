@@ -53,6 +53,8 @@ func fire():
 	$"..".add_child(bullet)
 
 func die(damage = 1):
+	if Global.end:
+		return
 	if $"..".start:
 		health -= damage
 		var ratio = health/150
@@ -67,6 +69,7 @@ func die(damage = 1):
 			tween.tween_property($".","modulate",black,5)
 			tween.finished.connect(func():
 				$".".queue_free()
+				$"..".find_child("BossAnimations").stop()
 				$"..".find_child("BossAnimations").play("Door")
 			)
 
