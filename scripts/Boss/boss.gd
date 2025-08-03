@@ -59,8 +59,6 @@ func die(damage = 1):
 		health -= damage
 		var ratio = health/150
 		$"../HEALTH/Border/TextureRect".scale.x = ratio
-		print(ratio)
-		print(health)
 		if health<=0:
 			Global.end = true
 			$"..".find_child("BossAnimations").play("End")
