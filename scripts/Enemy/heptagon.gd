@@ -56,6 +56,7 @@ func _on_timer_timeout() -> void:
 		shooting = true
 		await get_tree().create_timer(0.4).timeout
 		$AnimationPlayer.stop()
+		AudioManager.play("Laser_Enemy")
 		$Laser.frame = 1
 		velocity += direction*tab
 		$Laser.deactive = false
