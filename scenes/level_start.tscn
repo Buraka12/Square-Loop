@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://budh2sxits8vi"]
+[gd_scene load_steps=15 format=3 uid="uid://budh2sxits8vi"]
 
 [ext_resource type="Script" path="res://scripts/level_start.gd" id="1_qevc4"]
 [ext_resource type="FontFile" uid="uid://dlss2jn5oociv" path="res://assets/fonts/GrapeSoda.ttf" id="2_f5ii3"]
@@ -95,13 +95,6 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
-
-[sub_resource type="InputEventAction" id="InputEventAction_47sw1"]
-action = &"ui_cancel"
-pressed = true
-
-[sub_resource type="Shortcut" id="Shortcut_aaolh"]
-events = [SubResource("InputEventAction_47sw1")]
 
 [node name="level_start" type="CanvasLayer"]
 process_mode = 3
@@ -220,7 +213,6 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_qa3y6")
 theme_override_styles/hover = SubResource("StyleBoxFlat_503hv")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_8r6ie")
 theme_override_styles/normal = SubResource("StyleBoxFlat_f2dv8")
-shortcut = SubResource("Shortcut_aaolh")
 text = " Next level "
 
 [node name="main menu" type="Button" parent="win/corner/VBoxContainer/HBoxContainer"]
@@ -233,7 +225,6 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_qa3y6")
 theme_override_styles/hover = SubResource("StyleBoxFlat_503hv")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_8r6ie")
 theme_override_styles/normal = SubResource("StyleBoxFlat_f2dv8")
-shortcut = SubResource("Shortcut_aaolh")
 text = " Main menu "
 
 [node name="exit_button" type="Button" parent="win/corner/VBoxContainer/HBoxContainer"]

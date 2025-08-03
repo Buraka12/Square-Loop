@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bdmpahix5qjbf"]
+[gd_scene load_steps=12 format=3 uid="uid://bdmpahix5qjbf"]
 
 [ext_resource type="Script" path="res://scripts/die_menu.gd" id="1_mcluh"]
 [ext_resource type="Shader" path="res://scripts/shaders/blur.gdshader" id="2_slsjs"]
@@ -57,13 +57,6 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
-
-[sub_resource type="InputEventAction" id="InputEventAction_47sw1"]
-action = &"ui_cancel"
-pressed = true
-
-[sub_resource type="Shortcut" id="Shortcut_6fli5"]
-events = [SubResource("InputEventAction_47sw1")]
 
 [node name="Die_menu" type="CanvasLayer"]
 process_mode = 3
@@ -140,7 +133,6 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_seaot")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6h5vk")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_e3ggx")
 theme_override_styles/normal = SubResource("StyleBoxFlat_24mkb")
-shortcut = SubResource("Shortcut_6fli5")
 text = " Restart "
 
 [node name="main menu" type="Button" parent="blur/corner/VBoxContainer/HBoxContainer"]
@@ -153,7 +145,6 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_seaot")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6h5vk")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_e3ggx")
 theme_override_styles/normal = SubResource("StyleBoxFlat_24mkb")
-shortcut = SubResource("Shortcut_6fli5")
 text = " Main menu "
 
 [node name="exit_button" type="Button" parent="blur/corner/VBoxContainer/HBoxContainer"]
