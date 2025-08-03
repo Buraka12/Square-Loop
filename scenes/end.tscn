@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cv52gvb5jihut"]
+[gd_scene load_steps=4 format=3 uid="uid://cv52gvb5jihut"]
 
 [ext_resource type="Script" path="res://scripts/end.gd" id="1_bs5f4"]
 [ext_resource type="FontFile" uid="uid://cjimgeaiaqp6h" path="res://assets/fonts/ari-w9500.ttf" id="2_whsyw"]
+[ext_resource type="Texture2D" uid="uid://cifrq2c6wa5ro" path="res://assets/sprites/icon.svg" id="3_gocr6"]
 
 [node name="End" type="Node2D"]
 script = ExtResource("1_bs5f4")
@@ -34,6 +35,30 @@ theme_override_fonts/font = ExtResource("2_whsyw")
 theme_override_font_sizes/font_size = 60
 text = "Thanks For Playing!"
 
+[node name="Godot" type="Label" parent="CanvasLayer/ColorRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -169.0
+offset_top = -77.0
+offset_right = 169.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_whsyw")
+theme_override_font_sizes/font_size = 35
+text = "Made With Godot"
+vertical_alignment = 1
+
+[node name="Icon" type="Sprite2D" parent="CanvasLayer/ColorRect/Godot"]
+z_index = 7
+position = Vector2(307.5, 40)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_gocr6")
+
 [node name="Credit" type="Label" parent="CanvasLayer/ColorRect"]
 layout_mode = 1
 anchors_preset = 8
@@ -44,7 +69,7 @@ anchor_bottom = 0.5
 offset_left = -528.0
 offset_top = -174.0
 offset_right = 530.0
-offset_bottom = 303.0
+offset_bottom = 223.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -53,7 +78,6 @@ theme_override_font_sizes/font_size = 60
 text = "Credit:
 Sound Effects:Kenney.nl (Audio Assets)
 Music:FreePD.com
-
 All Other Assets and Code
 by Burak & Metehan"
 horizontal_alignment = 1
