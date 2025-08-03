@@ -54,8 +54,8 @@ text = "Credit:
 Sound Effects:Kenney.nl (Audio Assets)
 Music:FreePD.com
 
-Rest of Them By Us
-(Burak,Metehan)"
+All Other Assets and Code
+by Burak & Metehan"
 horizontal_alignment = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
