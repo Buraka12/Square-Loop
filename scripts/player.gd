@@ -86,7 +86,6 @@ func fire_laser():
 	laser.visible = true
 	laser.deactive = false
 	$LaserTimer.start(laser_dur)
-	print("Laser Use")
 	$player_ui/AnimationPlayer.play("laser_use")
 	
 
