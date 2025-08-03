@@ -1,36 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://budh2sxits8vi"]
+[gd_scene load_steps=17 format=3 uid="uid://budh2sxits8vi"]
 
 [ext_resource type="Script" path="res://scripts/level_start.gd" id="1_qevc4"]
 [ext_resource type="FontFile" uid="uid://dlss2jn5oociv" path="res://assets/fonts/GrapeSoda.ttf" id="2_f5ii3"]
 [ext_resource type="Shader" path="res://scripts/shaders/blur.gdshader" id="2_ohlg2"]
 [ext_resource type="FontFile" uid="uid://bm0677vb04kec" path="res://assets/fonts/KiwiSoda.ttf" id="4_1cph5"]
-
-[sub_resource type="Animation" id="Animation_ppauu"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("start:material:shader_parameter/blur")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [2.5]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("start/Label:text")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": ["3"]
-}
 
 [sub_resource type="Animation" id="Animation_jqjwj"]
 resource_name = "level_start"
@@ -62,7 +35,6 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lbo3q"]
 _data = {
-"RESET": SubResource("Animation_ppauu"),
 "level_start": SubResource("Animation_jqjwj")
 }
 

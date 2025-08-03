@@ -41,7 +41,8 @@ func _process(_delta: float) -> void:
 		var to_player = $Player.global_position - $Boss/Laser.global_position
 		$Boss/Laser.global_rotation = to_player.angle() + deg_to_rad(90)
 	
-	
+func play_laser():
+	AudioManager.play("Laser_Enemy")
 
 func attack():
 	if Global.end:

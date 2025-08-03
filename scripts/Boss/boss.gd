@@ -3,7 +3,7 @@ extends CharacterBody2D
 var health : float = 150
 
 var bullet_scene : PackedScene = load("res://scenes/enemy_bullet.tscn")
-var fire_rate : float = 6.0
+var fire_rate : float = 9.0
 
 @export var black : Color
 @export var can_shoot : bool = true

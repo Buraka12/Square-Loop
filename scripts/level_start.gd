@@ -39,14 +39,15 @@ var win_messages = [
 ]
 
 func _ready() -> void:
-	get_tree().paused = true
-	randomize()
-	show_game_over_message()
-	if Global.next == true:
-		win.visible = true
-	next_button.pressed.connect(next)
-	main_menu.pressed.connect(returnMainMenu)
-	exit_button.pressed.connect(get_tree().quit)
+	if Global.level < 11:
+		get_tree().paused = true
+		randomize()
+		show_game_over_message()
+		if Global.next == true:
+			win.visible = true
+		next_button.pressed.connect(next)
+		main_menu.pressed.connect(returnMainMenu)
+		exit_button.pressed.connect(get_tree().quit)
 	
 func returnMainMenu():
 	Global.entity = 0

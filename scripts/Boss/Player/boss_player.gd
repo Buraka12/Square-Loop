@@ -34,7 +34,7 @@ var state : states = states.STOP
 func _ready() -> void:
 	$level_start.visible = !Global.first_time
 	if !Global.first_time:
-		$level_start.start()
+		$level_start.next()
 	$HurtBox/CollisionShape2D.disabled = true
 	await get_tree().create_timer(0.1).timeout
 	$HurtBox/CollisionShape2D.disabled = false

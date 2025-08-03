@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dg0jnidxst3s0"]
+[gd_scene load_steps=34 format=3 uid="uid://dg0jnidxst3s0"]
 
 [ext_resource type="Texture2D" uid="uid://bqa7cpf4unqhh" path="res://assets/sprites/Boss/Boss_Tileset.png" id="1_3j2pb"]
 [ext_resource type="Script" path="res://scripts/Boss/boss_room.gd" id="1_wjv1j"]
@@ -101,6 +101,20 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_laser"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_lktpd"]
@@ -365,6 +379,20 @@ tracks/17/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/18/type = "method"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath(".")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_laser"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_8asng"]
@@ -676,6 +704,20 @@ tracks/11/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/12/type = "method"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath(".")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_laser"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_alqvr"]
 resource_name = "Middle_Empty_Lazer"
@@ -840,6 +882,20 @@ tracks/10/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/11/type = "method"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath(".")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(1.46667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_laser"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_6j24g"]
 resource_name = "Player_Start"
@@ -932,21 +988,6 @@ tracks/2/keys = {
 "values": [false, true]
 }
 
-[sub_resource type="Animation" id="Animation_7glyf"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HEALTH:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_spinb"]
 _data = {
 "BossLazer": SubResource("Animation_78hqq"),
@@ -959,7 +1000,6 @@ _data = {
 "Middle_Empty_Lazer": SubResource("Animation_alqvr"),
 "Middle_Lazer": SubResource("Animation_3jrs3"),
 "Player_Start": SubResource("Animation_6j24g"),
-"RESET": SubResource("Animation_7glyf"),
 "Start": SubResource("Animation_7xtd6")
 }
 
