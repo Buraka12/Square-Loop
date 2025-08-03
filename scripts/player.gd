@@ -55,7 +55,7 @@ func _physics_process(delta: float) -> void:
 		state = states.DODGE
 		$DodgeTimer.start(dodge_dur*delta)
 		$player_ui/AnimationPlayer.play("dodge_using")
-		
+		AudioManager.play("Dash",0.5)
 		dodge()
 	
 	#mouse bakma
