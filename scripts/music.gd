@@ -8,7 +8,7 @@ func _ready() -> void:
 	bus_id = AudioServer.get_bus_index(bus_name)
 	value = Global.music
 
-func _on_value_changed(value: float) -> void:
-	Global.music = value
-	var db = linear_to_db(value)
+func _on_value_changed(dvalue: float) -> void:
+	Global.music = dvalue
+	var db = linear_to_db(dvalue)
 	AudioServer.set_bus_volume_db(bus_id,db)
