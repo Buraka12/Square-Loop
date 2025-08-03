@@ -24,6 +24,9 @@ var can_laser : bool = true
 enum states {MOVE,STOP,FIRE,DODGE,DEAD}
 var state : states = states.MOVE
 
+func _ready() -> void:
+	if !Global.level_start:
+		$level_start.next()
 
 func _physics_process(delta: float) -> void:
 	if state == states.DEAD:

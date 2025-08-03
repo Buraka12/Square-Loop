@@ -5,6 +5,8 @@ static var entity :int = 0
 
 static var first_time : bool = true
 
+static var level_start : bool = true
+
 static var next : bool = true
 static var end : bool = false
 
@@ -13,8 +15,10 @@ static  var sfx : float = 1
 
 func CheckEntity_LevelChange():
 	if entity == 0:
+		level_start = false
 		if next:
 			level += 1
+			level_start = true
 		var next_file : String
 		if level >= 12:
 			next_file = "res://scenes/Boss/boss_room.tscn"

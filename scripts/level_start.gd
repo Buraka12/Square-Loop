@@ -39,7 +39,8 @@ var win_messages = [
 ]
 
 func _ready() -> void:
-	if Global.level < 11:
+	print(Global.level_start)
+	if Global.level < 12 and Global.level_start:
 		get_tree().paused = true
 		randomize()
 		show_game_over_message()
@@ -55,6 +56,7 @@ func returnMainMenu():
 	
 
 func next():
+	get_tree().paused = true
 	win.visible = false
 	$AnimationPlayer.play("level_start")
 	await get_tree().create_timer(3).timeout
