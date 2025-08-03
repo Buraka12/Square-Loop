@@ -1,6 +1,6 @@
 extends Node
 
-static var level :int = 12
+static var level :int = 1
 static var entity :int = 0
 
 static var first_time : bool = true
