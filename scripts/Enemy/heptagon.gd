@@ -15,7 +15,6 @@ var state : states
 
 func _ready() -> void:
 	Global.entity += 1
-	print(Global.entity)
 	state = states.MOVE
 	$Laser.deactive = true
 

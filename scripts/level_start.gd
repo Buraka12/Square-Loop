@@ -39,7 +39,6 @@ var win_messages = [
 ]
 
 func _ready() -> void:
-	print(Global.level_start)
 	if Global.level < 12 and Global.level_start:
 		get_tree().paused = true
 		randomize()
