@@ -55,6 +55,7 @@ func _physics_process(delta: float) -> void:
 		can_fire = false
 		$FireRateTimer.start(1/fire_rate)
 		fire()
+		AudioManager.play("Shoot_Player")
 	
 	if ammo != max_ammo and Input.is_action_just_pressed("reload"):
 		reloading = true
@@ -65,6 +66,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("laser") and can_laser:
 		state = states.FIRE
 		fire_laser()
+		AudioManager.play("Laser_Player")
 	
 	if Input.is_action_just_pressed("up") and is_on_floor() and state != states.DODGE:
 		is_jumping = true

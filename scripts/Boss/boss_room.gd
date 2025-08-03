@@ -35,10 +35,12 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if Global.end:
+		$HEALTH.visible = false
 		return
 	if !shooting and start:
 		var to_player = $Player.global_position - $Boss/Laser.global_position
 		$Boss/Laser.global_rotation = to_player.angle() + deg_to_rad(90)
+	
 	
 
 func attack():

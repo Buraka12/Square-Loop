@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var health : int = 5
+var health : float = 150
 
 var bullet_scene : PackedScene = load("res://scenes/enemy_bullet.tscn")
 var fire_rate : float = 6.0
@@ -55,6 +55,9 @@ func fire():
 func die(damage = 1):
 	if $"..".start:
 		health -= damage
+		var ratio = health/150
+		$"../HEALTH/Border/TextureRect".scale.x = ratio
+		print(ratio)
 		print(health)
 		if health<=0:
 			Global.end = true
