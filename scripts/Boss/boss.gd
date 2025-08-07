@@ -71,7 +71,5 @@ func die(damage = 1):
 				$"..".find_child("BossAnimations").play("Door")
 			)
 
-
-
 func _on_timer_timeout() -> void:
 	can_shoot = true
