@@ -1,7 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://cch7rs7cfurgk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t4m0w"]
-radius = 353.001
+radius = 113.018
 
 [node name="StopArea" type="Area2D"]
 collision_layer = 4

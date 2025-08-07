@@ -2,9 +2,9 @@ extends CharacterBody2D
 
 @onready var area : Node2D = $".."
 @onready var player : CharacterBody2D = area.find_child("Player")
+@onready var agent : NavigationAgent2D = $NavigationAgent2D
 
 @onready var bulletscene : PackedScene = load("res://scenes/enemy_bullet.tscn")
-
 
 var can_shoot : bool = false
 var fire_rate : float = 0.6
@@ -25,7 +25,7 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	look_at_player()
-	direction = (player.global_position-global_position).normalized()
+	direction = (agent.get_next_path_position()-global_position).normalized()
 	if can_shoot:
 		var rng = RandomNumberGenerator.new()
 		rng.randomize()
@@ -65,3 +65,6 @@ func _on_stop_area_body_exited(body: Node2D) -> void:
 
 func _on_timer_timeout() -> void:
 	can_shoot = true
+
+func _on_path_find_timer_timeout() -> void:
+	agent.target_position = player.global_position

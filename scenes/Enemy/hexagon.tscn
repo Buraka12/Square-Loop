@@ -20,6 +20,8 @@ radius = 4.02462
 [node name="Hexagon" type="CharacterBody2D" groups=["Entity"]]
 collision_layer = 4
 collision_mask = 2
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_d31e4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -43,4 +45,11 @@ shape = SubResource("CircleShape2D_3buo0")
 collision_layer = 4
 collision_mask = 8
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="PathFindTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
+[connection signal="timeout" from="PathFindTimer" to="." method="_on_path_find_timer_timeout"]

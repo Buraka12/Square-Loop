@@ -19,6 +19,6 @@ func _physics_process(delta: float) -> void:
 func move(delta,direction):
 	SPEED += clutch*delta
 	if SPEED <= max_speed:
-		parent.velocity = direction.normalized()*SPEED
+		parent.velocity = direction*SPEED
 	else:
-		parent.velocity = direction.normalized()*max_speed
+		parent.velocity = direction*max_speed

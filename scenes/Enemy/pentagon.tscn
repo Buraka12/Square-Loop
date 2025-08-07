@@ -83,6 +83,8 @@ fill_to = Vector2(0.697, 0.284)
 [node name="Pentagon" type="CharacterBody2D" groups=["Entity"]]
 collision_layer = 4
 collision_mask = 2
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_fqhux")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -95,7 +97,6 @@ shape = SubResource("CircleShape2D_vyrux")
 [node name="Timer" type="Timer" parent="."]
 
 [node name="StopArea" parent="." instance=ExtResource("3_4rtct")]
-visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -143,6 +144,13 @@ scale = Vector2(1.2, 1.2)
 collision_layer = 4
 collision_mask = 8
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="PathFindTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="StopArea" to="." method="_on_stop_area_body_entered"]
 [connection signal="body_exited" from="StopArea" to="." method="_on_stop_area_body_exited"]
+[connection signal="timeout" from="PathFindTimer" to="." method="_on_path_find_timer_timeout"]
