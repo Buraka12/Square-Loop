@@ -1,70 +1,45 @@
-extends CharacterBody2D
-
-@onready var area : Node2D = $".."
-@onready var player : CharacterBody2D = area.find_child("Player")
-@onready var agent : NavigationAgent2D = $NavigationAgent2D
-
-@onready var bulletscene : PackedScene = load("res://scenes/enemy_bullet.tscn")
-
-var can_shoot : bool = false
-var fire_rate : float = 0.6
-var tab : float = 400.0
-
-var direction : Vector2
-
-enum states {STOP,MOVE,FIRE}
-var state : states
+extends Enemy
 
 func _ready() -> void:
-	var rng = RandomNumberGenerator.new()
-	rng.randomize()
-	var wait_time = rng.randf_range(0.5, 1.0)
-	$Timer.start(wait_time/fire_rate)
+	#Level ataması
+	area = $".."
+	player = area.find_child("Player")
+	random_dur()
+	#Varlık sayısı arttırılır
 	Global.entity += 1
+	#Başlangıç için durum atanır
 	state = states.MOVE
 
 func _physics_process(_delta: float) -> void:
+	#Yön ataması
+	change_dir(1)
 	look_at_player()
-	direction = (agent.get_next_path_position()-global_position).normalized()
+	#Ateş edebilir mi kontrolü
 	if can_shoot:
-		var rng = RandomNumberGenerator.new()
-		rng.randomize()
-		var wait_time = rng.randf_range(0.5, 1.0)
-		can_shoot = false
+		fire(0)
+		random_dur()
+		#Geri tepme için hız ayarı
 		velocity = -direction*tab
+		#Geri tepmeden dolayı hareket ettirme
 		move_and_slide()
-		$Timer.start(wait_time/fire_rate)
-		fire()
 
-
-func look_at_player():
-	look_at(player.global_position)
-	rotation_degrees += 90
-
-func die(_damage = 1):
-	Global.entity -= 1
-	Global.next = true
-	call_deferred("queue_free")
-	Global.CheckEntity_LevelChange()
-
-func fire():
-	var bullet = bulletscene.instantiate()
-	bullet.pos = player.global_position
-	bullet.global_position = $Marker2D.global_position
-	$AnimationPlayer.play("Shoot")
-	AudioManager.play("Shoot_Triangle")
-	area.add_child(bullet)
-
+#StopArea
 func _on_stop_area_body_entered(body: Node2D) -> void:
+	#Oyuncu alana girdiyse düşman durur
 	if body.name == "Player":
 		state = states.STOP
 
+#StopArea
 func _on_stop_area_body_exited(body: Node2D) -> void:
+	#Oyuncu alandan çıktıysa düşman hareket eder
 	if body.name == "Player":
 		state = states.MOVE
 
-func _on_timer_timeout() -> void:
+#ShootTimer
+func _on_shoot_timer_timeout() -> void:
 	can_shoot = true
 
+#PathFinderTimer
 func _on_path_find_timer_timeout() -> void:
+	#Belirli saniyede bir hedef konumu güncellenir
 	agent.target_position = player.global_position

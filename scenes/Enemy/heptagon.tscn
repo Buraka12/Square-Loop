@@ -147,10 +147,12 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.697, 0.284)
 
-[node name="Heptagon" type="CharacterBody2D"]
+[node name="Heptagon" type="CharacterBody2D" node_paths=PackedStringArray("anim", "shoot_timer")]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_57fvq")
+anim = NodePath("AnimationPlayer")
+shoot_timer = NodePath("ShootTimer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("CanvasTexture_giack")
@@ -185,7 +187,7 @@ visible = false
 position = Vector2(0, -38)
 frame = 0
 
-[node name="Timer" type="Timer" parent="."]
+[node name="ShootTimer" type="Timer" parent="."]
 one_shot = true
 
 [node name="RunArea" parent="." instance=ExtResource("6_gp6th")]
@@ -194,6 +196,13 @@ visible = false
 [node name="MoveComp" parent="." instance=ExtResource("7_pkwaa")]
 max_speed = 150.0
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="PathFindTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="body_entered" from="RunArea" to="." method="_on_run_area_body_entered"]
 [connection signal="body_exited" from="RunArea" to="." method="_on_run_area_body_exited"]
+[connection signal="timeout" from="PathFindTimer" to="." method="_on_path_find_timer_timeout"]

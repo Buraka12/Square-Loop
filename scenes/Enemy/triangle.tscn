@@ -56,16 +56,19 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.697, 0.284)
 
-[node name="Triangle" type="CharacterBody2D" groups=["Entity"]]
+[node name="Triangle" type="CharacterBody2D" node_paths=PackedStringArray("anim", "shoot_timer") groups=["Entity"]]
 collision_layer = 4
 collision_mask = 2
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_7kcm5")
+anim = NodePath("AnimationPlayer")
+shoot_timer = NodePath("ShootTimer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("CanvasTexture_0ixiy")
 hframes = 2
+frame = 1
 region_rect = Rect2(47, 45, 34, 36)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -73,9 +76,9 @@ visible = false
 position = Vector2(0, 4)
 shape = SubResource("CircleShape2D_so033")
 
-[node name="StopArea" parent="." instance=ExtResource("3_ypk0a")]
+[node name="ShootTimer" type="Timer" parent="."]
 
-[node name="Timer" type="Timer" parent="."]
+[node name="StopArea" parent="." instance=ExtResource("3_ypk0a")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -87,7 +90,6 @@ position = Vector2(0, -23)
 
 [node name="PointLight2D" type="PointLight2D" parent="Marker2D"]
 scale = Vector2(2, 2)
-enabled = false
 color = Color(0.854902, 0.207843, 0.207843, 1)
 energy = 1.5
 texture = SubResource("GradientTexture2D_oocsj")
@@ -107,7 +109,7 @@ collision_mask = 8
 wait_time = 0.1
 autostart = true
 
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="body_entered" from="StopArea" to="." method="_on_stop_area_body_entered"]
 [connection signal="body_exited" from="StopArea" to="." method="_on_stop_area_body_exited"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="PathFindTimer" to="." method="_on_path_find_timer_timeout"]

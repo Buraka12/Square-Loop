@@ -1,33 +1,28 @@
-extends CharacterBody2D
+extends Enemy
 
-var direction : Vector2
+#Dönme Hızı
 var rot_speed : float = 700.0
 
-@onready var main : Node2D = $".."
-@onready var player: CharacterBody2D = main.find_child("Player")
-@onready var agent: NavigationAgent2D = $NavigationAgent2D
-
-enum states {MOVE,STOP}
-var state : states
-
 func _ready() -> void:
+	#Level ataması
+	area = $".."
+	player = area.find_child("Player")
+	#Varlık sayısı arttırılır
 	Global.entity += 1
+	#Başlangıç için durum atanır
 	state = states.MOVE
 
 func _physics_process(delta: float) -> void:
-	direction = (agent.get_next_path_position()-global_position).normalized()
+	#Yön ataması
+	change_dir(1)
+	#Döndürme
 	rotation_degrees+=delta*rot_speed
 
-func die(_damage = 1):
-	Global.entity -= 1
-	Global.next = true
-	Global.CheckEntity_LevelChange()
-	call_deferred("queue_free")
+func _on_hit_box_area_entered(area2: Node2D) -> void:
+	if area2.name == "HurtBox":
+		area2.get_parent().die()
 
-func _on_hit_box_area_entered(area: Node2D) -> void:
-	if area.name == "HurtBox":
-		area.get_parent().die()
-
-
+#PathFinderTimer
 func _on_path_find_timer_timeout() -> void:
+	#Belirli saniyede bir hedef konumu güncellenir
 	agent.target_position = player.global_position
