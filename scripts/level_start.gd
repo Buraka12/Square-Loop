@@ -1,10 +1,11 @@
 extends CanvasLayer
 
+@onready var win: Panel = $win
 @onready var next_button: Button = $win/corner/VBoxContainer/HBoxContainer/next_level_button
 @onready var main_menu: Button = $"win/corner/VBoxContainer/HBoxContainer/main menu"
 @onready var exit_button: Button = $win/corner/VBoxContainer/HBoxContainer/exit_button
+#Kazanma Mesajı
 @onready var label: Label = $win/corner/VBoxContainer/label
-@onready var win: Panel = $win
 
 @onready var start: Panel = $start
 
@@ -39,21 +40,24 @@ var win_messages = [
 ]
 
 func _ready() -> void:
+	#Sonraki Bölüme Geçilip Geçilmediği
 	if Global.level < 12 and Global.level_start:
 		get_tree().paused = true
 		randomize()
-		show_game_over_message()
-		if Global.next == true:
-			win.visible = true
+		show_next_level_message()
+		#Eğer sonraki bölüme geçliliyorsa
+		win.visible = true
+		#Fonkisyonları Butonlara bağlama
 		next_button.pressed.connect(next)
 		main_menu.pressed.connect(returnMainMenu)
 		exit_button.pressed.connect(get_tree().quit)
-	
+
+#Main Menu Button
 func returnMainMenu():
 	Global.entity = 0
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
-	
 
+#Sonraki Bölüme Geçerkenki Geri Sayım
 func next():
 	get_tree().paused = true
 	win.visible = false
@@ -61,12 +65,12 @@ func next():
 	await get_tree().create_timer(3).timeout
 	start.visible = false
 	get_tree().paused = false
-	
-	
-	
+
+#Rastgele Mesaj Ataması
 func get_random_message() -> String:
 	return win_messages[randi()%win_messages.size()]
 
-func show_game_over_message():
+#Rastgele Mesaj Bölüm Geçme Mesajı
+func show_next_level_message():
 	label.text = get_random_message()
 	label.show()

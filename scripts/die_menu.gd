@@ -5,6 +5,7 @@ extends CanvasLayer
 @onready var restart_button: Button = $blur/corner/VBoxContainer/HBoxContainer/restart_button
 @onready var main_menu: Button = $"blur/corner/VBoxContainer/HBoxContainer/main menu"
 @onready var exit_button: Button = $blur/corner/VBoxContainer/HBoxContainer/exit_button
+#Ölüm Mesajı
 @onready var label: Label = $blur/corner/VBoxContainer/label
 
 var death_messages = [
@@ -37,24 +38,30 @@ var death_messages = [
 ]
 
 func _ready() -> void:
+	#Rastgele yazı için
 	randomize()
 	die_menu.visible = false
+	#Fonksiyonlar Buton'lara bağlanır.
 	restart_button.pressed.connect(restart)
 	main_menu.pressed.connect(returnMainMenu)
 	exit_button.pressed.connect(get_tree().quit)
-	
+
+#Main Manu Button
 func returnMainMenu():
 	Global.entity = 0
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
+#Restart Button
 func restart():
 	Global.entity = 0
 	Global.next = false
 	Global.CheckEntity_LevelChange()
-	
+
+#Rastgele yazı ataması
 func get_random_message() -> String:
 	return death_messages[randi()%death_messages.size()]
 
+#Rastgele Ölüm Mesajı
 func show_game_over_message():
 	label.text = get_random_message()
 	label.show()

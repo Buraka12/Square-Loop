@@ -1,20 +1,24 @@
 extends CanvasLayer
-@onready var enemy: Label = $"enemy count/HBoxContainer/enemy"
+
+@onready var enemy_count: Label = $"enemy count/HBoxContainer/enemy"
 @onready var ammolabel: Label = $ammo_and_dodge_and_laser/HBoxContainer/ammo_label
-@onready var sprite: Sprite2D = $ammo_and_dodge_and_laser/HBoxContainer/sprite
 @onready var player: CharacterBody2D = $".."
 
+#Hangi değer olacak.
 @export var dodge_state : Color
+#Hangi değer olacak.
 @export var laser_state : float
+#Hangi değer olacak.
 @export var reload_state : int
+#Ne kadar sürede olacak.
 @export var laser_dur : float
 
 func _ready() -> void:
 	$ammo_and_dodge_and_laser/reload_ui.visible = false
 
 func _process(_delta: float) -> void:
-	enemy.text = str(Global.entity)
-	
+	enemy_count.text = str(Global.entity)
+
 func laser_anim():
 	var tween = create_tween()
 	tween.tween_property($ammo_and_dodge_and_laser/laser_ui/gradient,"scale:x",laser_state,laser_dur)

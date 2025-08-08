@@ -11,11 +11,13 @@ var reloading : bool = false
 
 @onready var laser : Sprite2D = $PlayerLaser
 var laser_cooldown : float = 4.0
+#Lazer kaç saniye aktif olacak
 var laser_dur : float = 0.2
 var can_laser : bool = true
 
 var direction : float
 
+#Me kadar süre dokunulmaz olunur(*delta)
 var dodge_dur : float = 6.5
 var dodge_speed : float = 1200
 var dodge_cooldown : float = 0.7
@@ -23,67 +25,72 @@ var can_dodge : bool = true
 
 const SPEED = 400.0
 
+#Zıplama süresi
 var jump_timer : float = 0.0
 var is_jumping : bool = false
 var jump_velocity : float = -450.0
+#Maksimum kaç saniye zıplanabilir
 var max_jump_time : float = 0.2
 
 enum states {MOVE,STOP,FIRE,DODGE,DEAD}
 var state : states = states.STOP
 
 func _ready() -> void:
+	$"player_ui/enemy count".visible = false
 	$level_start.visible = !Global.first_time
+	#Eğer boss odasına ilk defa geldiyse geri sayımsız
 	if !Global.first_time:
 		$level_start.next()
-	$HurtBox/CollisionShape2D.disabled = true
-	await get_tree().create_timer(0.1).timeout
-	$HurtBox/CollisionShape2D.disabled = false
 
 func _physics_process(delta: float) -> void:
+	#Zeminde değil ise yer çekimi
 	if not is_on_floor():
 		velocity.y += 40
+	else:
+		velocity.y = 0
 	
-	if Input.is_action_just_pressed("dodge") and state != states.DODGE:
-		can_dodge = false
-		state = states.DODGE
-		$DodgeTimer.start(dodge_dur*delta)
-		$player_ui/AnimationPlayer.play("dodge_using")
-		AudioManager.play("Dash",0.5)
-		
-		dodge()
+	#Dodge
+	if check_dodge():
+		dodge(delta)
 	
-	if Input.is_action_pressed("fire") and !reloading and ammo > 0 and can_fire:
+	#Ateş
+	if check_fire():
 		can_fire = false
 		$FireRateTimer.start(1/fire_rate)
 		fire()
 		AudioManager.play("Shoot_Player")
 	
+	#Reload
 	if ammo != max_ammo and Input.is_action_just_pressed("reload"):
 		reloading = true
 		$ReloadTimer.start(1)
 		$player_ui/AnimationPlayer.play("reloading_ui")
 		$player_ui/ammo_and_dodge_and_laser/reload_ui.visible = true
-
+	
+	#Lazer
 	if Input.is_action_just_pressed("laser") and can_laser:
 		state = states.FIRE
 		fire_laser()
 		AudioManager.play("Laser_Player")
 	
-	if Input.is_action_just_pressed("up") and is_on_floor() and state != states.DODGE:
+	#Zıplama Kontrolleri
+	if check_jump():
 		is_jumping = true
 		jump_timer = 0.0
 		velocity.y = jump_velocity
-		
-	if Input.is_action_pressed("up") and is_jumping and state != states.DODGE:
+	
+	if check_jump():
 		jump_timer += delta
 		if jump_timer < max_jump_time:
 			velocity.y = jump_velocity
 		else:
 			is_jumping = false
 	
+	#Zıplamayı Bırak
 	if Input.is_action_just_released("up"):
 		is_jumping = false
 	
+	#Hareket
 	direction = Input.get_axis("left", "right")
 	if state != states.DODGE:
 		if direction:
@@ -93,14 +100,30 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+func check_dodge():
+	return Input.is_action_just_pressed("dodge") and state != states.DODGE
+
+func check_fire():
+	return Input.is_action_pressed("fire") and !reloading and ammo > 0 and can_fire
+
+func check_jump():
+	if is_on_floor():
+		return Input.is_action_just_pressed("up") and state != states.DODGE
+	else:
+		return Input.is_action_pressed("up") and is_jumping and state != states.DODGE
+
 func fire():
+	#Yeni mermi
 	var bullet = bulletscene.instantiate()
 	bullet.global_position = $Marker2D.global_position
+	#Yönü hep yukarıya doğru
 	bullet.pos = Vector2(global_position.x,0)
 	$AnimationPlayer.play("Shoot")
 	$"..".add_child(bullet)
 	ammo -= 1
+	#UI Göstergesi
 	$player_ui/ammo_and_dodge_and_laser/HBoxContainer/ammo_label.text = str(ammo)
+	#Kalan mermi sayısına göre UI göstergesi
 	if ammo == 0:
 		$player_ui/ammo_and_dodge_and_laser/HBoxContainer/sprite.frame = 3
 	elif ammo <10:
@@ -112,49 +135,68 @@ func fire_laser():
 	can_laser = false
 	laser.visible = true
 	laser.deactive = false
+	#İlk Zamanlayıcı başlar
 	$LaserTimer.start(laser_dur)
 
-func dodge():
+func dodge(delta):
+	can_dodge = false
+	state = states.DODGE
+	#İlk Zamanlayıcı başlar
+	$DodgeTimer.start(dodge_dur*delta)
+	$player_ui/AnimationPlayer.play("dodge_using")
+	AudioManager.play("Dash",0.5)
 	velocity.x = direction*dodge_speed
+	#Dokunulmaz Yap
 	$HurtBox.set_collision_mask_value(1,false)
-	await get_tree().create_timer(dodge_dur).timeout
-	state = states.STOP
+	#await get_tree().create_timer(dodge_dur).timeout
+	#state = states.STOP
 	
 func die(_damage = 1):
 	if state != states.DODGE and !Global.end:
 		get_tree().paused = true
 		state = states.DEAD
-		Global.entity = 0
 		die_menu.show_game_over_message()
 		die_menu.visible = true
 	
+#DodgeTimer
 func _on_dodge_timer_timeout() -> void:
+	#İlk zaman dolunca dodge biter.
+	#İkinci zaman dolunca tekrar dodge atabilir ahle gelir.
 	if state == states.DODGE:
 		state = states.STOP
 		$HurtBox.set_collision_mask_value(1,true)
+		#İkinci zamanlayıcı
 		$DodgeTimer.start(dodge_cooldown)
+		#UI Animasyonu
 		$player_ui/AnimationPlayer.play("dodge_reload")
 	else:
 		can_dodge = true
 
-
+#FireRateTimer
 func _on_fire_rate_timer_timeout() -> void:
 	can_fire = true
 
+#ReloadTimer
 func _on_reload_timer_timeout() -> void:
 	ammo = max_ammo
 	reloading = false
+	#UI Göstergesi
 	$player_ui/ammo_and_dodge_and_laser/reload_ui/corner.visible = false
 	$player_ui/ammo_and_dodge_and_laser/HBoxContainer/ammo_label.text = str(ammo)
 	$player_ui/ammo_and_dodge_and_laser/HBoxContainer/sprite.frame = 0
 	$player_ui/ammo_and_dodge_and_laser/reload_ui.visible = false
 
+#LaserTimer
 func _on_laser_timer_timeout() -> void:
+	#İlk zaman dolunca lazer deaktif edilir.
+	#İkinci zaman dolunca tekrar lazer ateşlenebilir olur.
 	if laser.visible:
 		state = states.STOP
 		laser.visible = false
 		laser.deactive = true
+		#İkinci Zamanlayıcı başlar
 		$LaserTimer.start(laser_cooldown)
+		#UI Animasyonu
 		$player_ui/AnimationPlayer.play("laser_reload")
 	else:
 		can_laser = true

@@ -12,28 +12,33 @@ extends CanvasLayer
 func _ready() -> void:
 	settings_menu.visible = false
 	pause_menu.visible = false
+	#Fonksiyonlar Butonlara bağlanır.
 	resume_button.pressed.connect(unpause)
 	main_menu.pressed.connect(returnMainMenu)
 	exit_button.pressed.connect(get_tree().quit)
 
+#Main Menu Button
 func returnMainMenu():
 	Global.entity = 0
 	Global.next = false
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
+#Pause Menu kapatma.
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		pause()
-		
-		
+
+#Oyun devam eder.
 func unpause():
 	pause_menu.visible = false
 	get_tree().paused = false
-	
+
+#Oyun durdurulur.
 func pause():
-	if get_tree().paused == false:
+	if !get_tree().paused:
 		pause_menu.visible = true
 		get_tree().paused = true
-	
+
+#Settings Button
 func _on_settings_pressed() -> void:
 	settings_menu.visible = true
